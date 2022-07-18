@@ -1,4 +1,4 @@
-# pet_knowhow_vue
+# petknowhow_vue
 
 ## Project setup
 ```
