@@ -1,20 +1,27 @@
 <template>
   <div class="checkList">
-    <div>펫프로필 영역</div>
-    <div>주간달력 영역</div>
-    <div>퀵메뉴 영역</div>
-    <div>체크리스트 영역</div>
+    <pet-profile></pet-profile>
+    <weekly-calendar></weekly-calendar>
+    <quick-menu></quick-menu>
+    <list></list>
 
-    <button>추가버튼</button>
+    <button>추가+</button>
   </div>
 </template>
 
 <script>
 // import {ref, reactive} from "vue";
 import customPopup from "@/components/CustomPopup";
+import petProfile from "@/components/checkList/petProfile";
+import quickMenu from "@/components/checkList/quickMenu";
+import list from "@/components/checkList/list";
+
 export default {
   components: {
     customPopup,
+    petProfile,
+    quickMenu,
+    list
   },
   setup() {
     function showModal() {
