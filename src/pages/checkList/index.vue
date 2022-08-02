@@ -6,12 +6,17 @@
     <list></list>
 
     <button>추가+</button>
+
+    <custom-popup>
+      <template v-slot:create>등록 폼</template>
+      <template v-slot:detail>조회/수정 화면</template>
+    </custom-popup>
   </div>
 </template>
 
 <script>
 // import {ref, reactive} from "vue";
-import customPopup from "@/components/CustomPopup";
+import customPopup from "@/components/common/CustomPopup";
 import petProfile from "@/components/checkList/petProfile";
 import quickMenu from "@/components/checkList/quickMenu";
 import list from "@/components/checkList/list";
