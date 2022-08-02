@@ -1,3 +1,13 @@
-@charset 'utf-8';
-@import 'fonts';
 
+#app {
+  max-width: 460px;
+  margin: auto;
+  color: #2c3e50;
+  text-align: center;
+  background: yellowgreen;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
