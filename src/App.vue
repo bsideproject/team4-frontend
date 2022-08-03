@@ -1,14 +1,14 @@
 <template>
   <Header/>
-  <div class="harupet">
-    <h2>Harupet</h2>
+  <div class="main">
+    <router-view></router-view>
   </div>
   <Footer/>
 </template>
 
 <script>
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/common/Header";
+import Footer from "@/components/common/Footer";
 
 export default {
   name: 'App',
@@ -20,14 +20,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-
-  background: grey;
-}
+@import "assets/styles/common.scss";
 </style>
