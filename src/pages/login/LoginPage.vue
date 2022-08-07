@@ -1,10 +1,10 @@
 <template>
-  <div>주간 달력 영역</div>
+  <router-view />
 </template>
 
 <script>
 export default {
-  name: "weeklyCalendar"
+  name: ROUTE.Login
 }
 </script>
 

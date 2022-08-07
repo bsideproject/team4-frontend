@@ -1,20 +1,30 @@
 <template>
-  <Header/>
+  <comp-header />
+  <hr />
+  <pet-profile />
+  <hr />
+  <weekly-calendar />
+  <hr />
   <div class="main">
-    <router-view></router-view>
+    <router-view />
   </div>
-  <Footer/>
+  <hr />
+  <comp-footer />
 </template>
 
 <script>
-import Header from "@/components/common/Header";
-import Footer from "@/components/common/Footer";
+import CompHeader from "@/components/common/Header.vue";
+import CompFooter from "@/components/common/Footer.vue";
+import PetProfile from "@/components/common/PetProfile.vue";
+import WeeklyCalendar from "@/components/common/WeeklyCalendar.vue";
 
 export default {
   name: 'App',
   components: {
-    Header,
-    Footer,
+    CompHeader,
+    CompFooter,
+    PetProfile,
+    WeeklyCalendar
   }
 }
 </script>

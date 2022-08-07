@@ -1,11 +1,20 @@
 import { createApp } from 'vue'
-import { router } from './router'; // 라우터 추가
-
 import App from './App.vue'
 
-// Create Vue Instance
 const app = createApp(App);
 
-app.use(router); // 사용 설정
+import ROUTE from '@/constants/route.json'
+window.ROUTE = ROUTE
 
-app.mount('#app');
+import { router } from './router/index';
+app.use(router);
+
+import store from './store/index'
+app.use(store)
+
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+app.use(VueAxios, axios)
+
+
+app.mount('#app')
