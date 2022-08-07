@@ -1,13 +1,13 @@
 <template>
-  <div>리스트 영역</div>
+  <div class="pet-profile">펫프로필</div>
 </template>
 
 <script>
 export default {
-  name: "list"
+
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

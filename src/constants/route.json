@@ -1,0 +1,7 @@
+{
+    "Main": "Main",
+    "Login": "Login",
+    "Checklist": {
+        "Main": "ChecklistPage"
+    }
+}
