@@ -5,9 +5,9 @@
   <hr />
   <weekly-calendar />
   <hr />
-  <div class="main">
+  <main>
     <router-view />
-  </div>
+  </main>
   <hr />
   <comp-footer />
 </template>

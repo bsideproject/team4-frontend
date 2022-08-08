@@ -1,7 +1,7 @@
 <template>
-  <div class="Login">
-    <button @click="clickKakaoLogin">카카오로 로그인하기</button>
-    <h3>구글 로그인하기</h3>
+  <div class="login">
+    <h3>카카오로 로그인하기</h3>
+    <h3>구글로 로그인하기</h3>
   </div>
 </template>
 
@@ -25,6 +25,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+@import '@/assets/styles/login/login.scss';
 </style>
