@@ -8,7 +8,7 @@ const LoginPage = () => import('@/pages/login/LoginPage.vue')
 export default [
   {
     path: '/',
-    name: ROUTE.MainPage,
+    name: ROUTE.Main,
     component: MainPage,
     auth: false,
   },

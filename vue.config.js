@@ -3,6 +3,13 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
+  css: {
+    loaderOptions: {
+      sass: {
+
+      }
+    }
+  },
   devServer: {
     port: process.env.VUE_APP_BASE_PORT,
     proxy: {
