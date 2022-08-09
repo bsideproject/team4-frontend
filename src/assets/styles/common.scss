@@ -1,8 +1,10 @@
+@charset 'utf-8';
+
+@import 'fonts.scss';
 
 #app {
   max-width: 460px;
   margin: auto;
-  color: #2c3e50;
   text-align: center;
   background: lightgray;
 }
@@ -10,6 +12,7 @@
 *, body {
   margin: 0;
   padding: 0;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Poppins', sans-serif;
 }
 
 //.section {
