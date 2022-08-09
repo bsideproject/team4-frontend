@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">Footer</footer>
+  <footer class="footer"><p>Copyright &copy; Sidefriends. All Rights Deserved</p></footer>
 </template>
 
 <script>
