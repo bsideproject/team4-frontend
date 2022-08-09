@@ -1,7 +1,16 @@
 <template>
-  <div class="header">Header</div>
-  <hr>
-  <div class="gnb">GNB - 체크리스트 / 양육일지</div>
+  <div class="header section">
+    <div class="header-main">
+      <a class="header-main__logo">logo</a>
+      <a class="header-main__menu">menu</a>
+    </div>
+    <div class="header-sub">
+      <div class="header-sub__tabMenu">
+        <button class="tabMenu__item">체크리스트</button>
+        <button class="tabMenu__item">양육일지</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

@@ -4,10 +4,96 @@
   margin: auto;
   color: #2c3e50;
   text-align: center;
-  background: yellowgreen;
+  background: lightgray;
 }
 
-body {
+*, body {
   margin: 0;
   padding: 0;
+}
+
+//.section {
+//  padding: 0 20px;
+//}
+
+.header {
+  padding: 0 20px;
+  &-main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+  &-sub {
+    padding: 10px 0;
+  }
+}
+
+.petProfile {
+  padding: 20px;
+  &-link {
+    text-align: right;
+  }
+  &-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &__item {
+      .item__image {
+        border-radius: 60px;
+        background: darkgray;
+        width: 80px;
+        height: 80px;
+      }
+      .item__name, .item__age { display: none }
+    }
+    &__item.active {
+      .item__image {
+        border-radius: 60px;
+        width: 120px;
+        height: 120px;
+        position: relative;
+
+        &::after {
+          content: '별';
+          position: absolute;
+          width: 24px;
+          height: 24px;
+          background: yellow;
+          left: 40%;
+          right: 50%;
+          top: -10%;
+        }
+      }
+      .item__name, .item__age { display: block }
+    }
+  }
+}
+
+
+.weeklyCalendar {
+  padding: 20px 0;
+  &-monthWrapper {
+    p {
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+  &-dateWrapper {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+.main {
+  padding: 20px 0;
+}
+
+
+.footer {
+  padding: 10px 0;
+  p {
+    font-size: 12px;
+    color: gray;
+  }
 }
