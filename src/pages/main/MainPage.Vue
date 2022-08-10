@@ -1,17 +1,21 @@
 <template>
-    <div>
-        <h1>메인 페이지</h1>
-        <h3>집사의 기록, 펫하루</h3>
-        <h3>Pretendard Poppins</h3>
-    </div>
+  <pet-profile />
+  <hr />
+  <weekly-calendar />
 </template>
 
 <script>
+import PetProfile from '@/components/common/PetProfile.vue'
+import WeeklyCalendar from '@/components/common/WeeklyCalendar.vue'
+
 export default {
-    name: ROUTE.Main
+  name: ROUTE.Main,
+  components: {
+    PetProfile,
+    WeeklyCalendar,
+  },
 }
 </script>
 
 <style>
-
 </style>
