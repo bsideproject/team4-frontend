@@ -1,30 +1,33 @@
 <template>
-  <div class="login">
-    <h3>카카오로 로그인하기</h3>
-    <h3>구글로 로그인하기</h3>
-  </div>
+  <section class="login">
+    <article class="login__logo">
+      <img src="@images/login/avatar.jpg" alt="" />
+    </article>
+    <article class="login__sns">
+      <button class="kakao" @click="() => clickLogin('kakao')">
+        카카오로 로그인하기
+      </button>
+      <button class="google" @click="() => clickLogin('google')">
+        구글로 로그인하기
+      </button>
+    </article>
+  </section>
 </template>
 
 <script>
-import { login } from '@/api/login/login.js'
-// import { ref } from '@vue/reactivity'
-
 export default {
   setup() {
-    // const info = ref({id: 'test', password: 'qwer1234'})
-
-    const clickKakaoLogin = () => {
-      login({id: 'test', password: 'qwer1234'})
+    const clickLogin = (target) => {
+      location.href = `${process.env.VUE_APP_API_URL}/oauth2/authorization/${target}`
     }
 
     return {
-      clickKakaoLogin,
-      // info
+      clickLogin,
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/login/login.scss';
+@import '@styles/login/login.scss';
 </style>
