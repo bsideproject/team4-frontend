@@ -1,8 +1,24 @@
 const { defineConfig } = require('@vue/cli-service')
+const path = require('path')
 
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '*': path.join(__dirname, '/'),
+        '@': path.join(__dirname, 'src/'),
+        '@styles': path.join(__dirname, 'src/assets/styles'),
+        '@images': path.join(__dirname, 'src/assets/images'),
+        '@utils': path.join(__dirname, 'src/utils'),
+        '@assets': path.join(__dirname, 'src/assets'),
+        '@components': path.join(__dirname, 'src/components'),
+        '@constants': path.join(__dirname, 'src/constants'),
+        '@api': path.join(__dirname, 'src/api')
+      }
+    }
+  },  
   css: {
     loaderOptions: {
       sass: {
