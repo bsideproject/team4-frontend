@@ -15,14 +15,18 @@ module.exports = defineConfig({
         '@assets': path.join(__dirname, 'src/assets'),
         '@components': path.join(__dirname, 'src/components'),
         '@constants': path.join(__dirname, 'src/constants'),
-        '@api': path.join(__dirname, 'src/api')
+        '@api': path.join(__dirname, 'src/api'),
+        '@routes': path.join(__dirname, 'src/router/routes'),
+        '@pages': path.join(__dirname, 'src/pages')
       }
     }
   },  
   css: {
     loaderOptions: {
       sass: {
-
+        additionalData: `
+          @import "@/assets/styles/mixins.scss";
+        `
       }
     }
   },

@@ -1,0 +1,42 @@
+@charset 'utf-8';
+
+.setting-main {
+    max-width: $maxWidth;
+
+    &__profile {
+        .profile-image {
+            padding-top: 40px;
+
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+        }
+
+        .profile-name {
+            font-weight: 600;
+        }
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-around;
+        padding: 50px;
+    }
+
+    &__menu {
+        div {
+            display: block;
+            text-align: left;
+            width: 260px;
+            height: 40px;
+            margin: 5px 0px 5px 60px;
+            border-bottom: 1px solid black;
+        }
+
+        .none-border {
+            border: 0;
+        }
+    }
+}

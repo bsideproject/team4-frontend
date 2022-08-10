@@ -2,6 +2,12 @@
     "Main": "Main",
     "Login": "Login",
     "Checklist": {
-        "Main": "ChecklistPage"
+        "Page": "ChecklistPage",
+        "Main": "Main"
+    },
+    "Setting": {
+        "Page": "SettingPage",
+        "Main": "SettingMain",
+        "Profile": "MyProfile"
     }
 }
