@@ -2,7 +2,7 @@
   <div class="header section">
     <div class="header-main">
       <a class="header-main__logo">logo</a>
-      <a class="header-main__menu">menu</a>
+      <router-link to="/setting" class="header-main__menu">menu</router-link>
     </div>
     <div class="header-sub">
       <div class="header-sub__tabMenu">
@@ -14,10 +14,8 @@
 </template>
 
 <script>
-export default {
-}
+export default {}
 </script>
 
 <style scoped>
-
 </style>

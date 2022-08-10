@@ -13,6 +13,13 @@
   margin: 0;
   padding: 0;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Poppins', sans-serif;
+  
+  a, a:hover, a:visited { 
+    text-decoration: none; 
+    color: #111; 
+    outline: none; 
+    -webkit-tap-highlight-color: transparent; 
+  }
 }
 
 //.section {
