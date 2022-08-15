@@ -5,10 +5,10 @@
     </article>
     <article class="login__sns">
       <button class="kakao" @click="() => clickLogin('kakao')">
-        카카오로 로그인하기
+        카카오 계정으로 로그인
       </button>
       <button class="google" @click="() => clickLogin('google')">
-        구글로 로그인하기
+        구글 계정으로 로그인
       </button>
     </article>
   </section>
