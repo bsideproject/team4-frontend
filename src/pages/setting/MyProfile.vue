@@ -1,7 +1,7 @@
 <template>
   <section class="my-profile">
     <article class="my-profile__image">
-      <img src="@images/login/avatar.jpg" />
+      <img src="@images/profile.svg" />
     </article>
 
     <article class="my-profile__form">

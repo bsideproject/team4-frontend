@@ -1,0 +1,36 @@
+@charset 'utf-8';
+
+.family {
+    width: $maxWidth;
+    height: $minHeight;
+
+    &__list {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        div {
+            margin: 20px;
+            width: 140px;
+        }
+    }
+
+    &__empty {
+        padding: 40px;
+        img {
+            width: 150px;
+            height: 150px;
+        }
+
+        span {
+            display: block;
+            padding: 5px 10px 0 10px;
+        }
+
+        button {
+            margin-top: 80px;
+            width: 250px;
+            height: 60px;
+            border-radius: 25px;
+        }
+    }
+}
