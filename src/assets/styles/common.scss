@@ -242,9 +242,9 @@ body {
 
 
 .floatArea {
-  position: absolute;
-  left: 296px;
-  top: 712px;
+  position: fixed;
+  right: 8px;
+  bottom: 32px;
 
   .btn--float {
     width: 56px;
