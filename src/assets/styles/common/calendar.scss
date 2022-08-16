@@ -1,0 +1,36 @@
+@charset 'utf-8';
+
+.calendar {
+    display: none;
+    &__dimmed {
+        background-color: black;
+        opacity: 0.6;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    &__datepicker {
+        .v3dp {
+            &__datepicker{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: $maxWidth;
+                height: 270px;
+            }
+            &__input_wrapper {
+                display: none;
+            }
+            &__popout {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.show {
+    display: block;
+}
