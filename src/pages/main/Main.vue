@@ -1,7 +1,4 @@
 <template>
-  <pet-profile />
-  <hr />
-  <weekly-calendar />
 </template>
 
 <script>
