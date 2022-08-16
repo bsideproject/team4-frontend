@@ -47,7 +47,7 @@
     },
     "rules": {
       "vue/multi-word-component-names": ["error", {
-        "ignores": ["App", "Header", "Footer", "Login"]
+        "ignores": ["App", "Header", "Footer", "Login", "Gnb"]
       }]
     }
   },
