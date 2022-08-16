@@ -1,13 +1,27 @@
 <template>
   <div class="checkList">
-    체크리스트
+    <quick-menu/>
+    <list-table/>
+
+    <div class="floatArea">
+      <button class="btn--float">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-
+import WeeklyCalendar from '@/components/common/WeeklyCalendar'
+import QuickMenu from '@/components/checkList/QuickMenu'
+import ListTable from '@/components/checkList/ListTable'
 export default {
-  components: {},
+  components: {
+    WeeklyCalendar,
+    QuickMenu,
+    ListTable
+  },
   setup() {
     
   }

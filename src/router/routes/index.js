@@ -3,7 +3,7 @@ import ROUTE from '@/constants/route.json'
 import LoginRouter from '@routes/login/index.js'
 import SettingRouter from '@routes/setting/index.js'
 
-const Main = () => import('@pages/main/Main.vue')
+const Main = () => import('@/pages/checklist/ChecklistPage')
 const LoginPage = () => import('@pages/login/LoginPage.vue')
 const SettingPage = () => import('@pages/setting/SettingPage.vue')
 
