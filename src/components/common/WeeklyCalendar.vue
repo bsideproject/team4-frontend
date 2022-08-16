@@ -1,7 +1,13 @@
 <template>
   <div class="weeklyCalendar section">
     <div class="weeklyCalendar-monthWrapper">
-      <p class="weeklyCalendar-month">8월</p>
+      <p class="weeklyCalendar-month" @click="clickMonth">8월</p>
+      <calendar
+        ref="compCalendar"
+        id="mainCalendar"
+        :value="calendarValue"
+        @change="changeCalendar"
+      />
     </div>
     <div class="weeklyCalendar-dateWrapper">
       <div class="weeklyCalendar-dateWrapper__date">
@@ -36,12 +42,20 @@
   </div>
 </template>
 
-<script>
-export default {
+<script setup>
+import Calendar from '@components/common/Calendar.vue'
+import { ref } from 'vue'
 
+const compCalendar = ref(null)
+const calendarValue = ref(new Date())
+
+const clickMonth = () => {
+  compCalendar.value.openCalendar()
+}
+const changeCalendar = (value) => {
+  calendarValue.value = value
 }
 </script>
 
 <style>
-
 </style>
