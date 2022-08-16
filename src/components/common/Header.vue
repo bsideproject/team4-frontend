@@ -1,14 +1,13 @@
 <template>
   <div class="header section">
-    <div class="header-main">
-      <a class="header-main__logo">logo</a>
-      <router-link to="/setting" class="header-main__menu">menu</router-link>
-    </div>
-    <div class="header-sub">
-      <div class="header-sub__tabMenu">
-        <button class="tabMenu__item">체크리스트</button>
-        <button class="tabMenu__item">양육일지</button>
-      </div>
+    <div class="header-wrapper">
+      <div></div>
+      <router-link to="/" class="header-wrapper__logo">
+        <img class="logo__img" src="@images/petharu_logo.png" alt="">
+      </router-link>
+      <router-link to="/setting" class="header-wrapper__menu">
+        <img class="menu__icon" src="@images/icons/menu.svg" alt=""/>
+      </router-link>
     </div>
   </div>
 </template>
