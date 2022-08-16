@@ -2,6 +2,10 @@
   <comp-header />
   <hr />
   <main>
+    <pet-profile/>
+    <hr />
+    <weekly-calendar/>
+    <hr />
     <router-view />
   </main>
   <hr />
