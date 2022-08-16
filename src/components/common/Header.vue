@@ -16,6 +16,5 @@
 export default {}
 </script>
 
-<style lang="scss" scoped>
-@import '@styles/common/header.scss';
+<style scoped>
 </style>
