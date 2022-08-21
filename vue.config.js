@@ -10,6 +10,7 @@ module.exports = defineConfig({
         '*': path.join(__dirname, '/'),
         '@': path.join(__dirname, 'src/'),
         '@styles': path.join(__dirname, 'src/assets/styles'),
+        '@fonts': path.join(__dirname, 'src/assets/fonts'),
         '@images': path.join(__dirname, 'src/assets/images'),
         '@utils': path.join(__dirname, 'src/utils'),
         '@assets': path.join(__dirname, 'src/assets'),
@@ -17,7 +18,8 @@ module.exports = defineConfig({
         '@constants': path.join(__dirname, 'src/constants'),
         '@api': path.join(__dirname, 'src/api'),
         '@routes': path.join(__dirname, 'src/router/routes'),
-        '@pages': path.join(__dirname, 'src/pages')
+        '@pages': path.join(__dirname, 'src/pages'),
+        '@store': path.join(__dirname, 'src/store/modules')
       }
     }
   },  
