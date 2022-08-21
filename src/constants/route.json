@@ -8,6 +8,13 @@
     "Setting": {
         "Page": "SettingPage",
         "Main": "SettingMain",
-        "Profile": "MyProfile"
+        "Profile": "MyProfile",
+        "Licence": "Licence",
+        "Notice": {
+            "List": "List",
+            "Detail": "Detail"
+        },
+        "Feedback": "Feedback",
+        "Withdraw": "Withdraw"
     }
 }

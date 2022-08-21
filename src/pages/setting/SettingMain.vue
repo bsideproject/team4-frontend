@@ -1,41 +1,60 @@
 <template>
   <section class="setting-main">
     <article class="setting-main__profile">
-      <div class="profile-image">
+      <div class="setting-main__profile_image">
         <img src="@images/login/avatar.jpg" alt="" />
-      </div>
-      <div class="profile-name">
-        <span>별 펫이랑</span>
+        <span class="setting-main__profile_name">펫이랑</span>
       </div>
     </article>
 
     <article class="setting-main__info">
       <div>
-        <router-link to="/setting/profile">내 정보</router-link>
+        <div class="setting-main__info_icon">
+          <router-link to="/setting/profile">
+            <img src="@images/pet_02.jpeg" />
+          </router-link>
+        </div>
+        <div class="setting-main__info_name">
+          <span>내 정보</span>
+        </div>
       </div>
       <div>
-        <a href="#">펫 정보</a>
+        <div class="setting-main__info_icon">
+          <router-link to="#">
+            <img src="@images/pet_02.jpeg" />
+          </router-link>
+        </div>
+        <div class="setting-main__info_name">
+          <span>펫 정보</span>
+        </div>
       </div>
       <div>
-        <a href="#">가족 정보</a>
+        <div class="setting-main__info_icon">
+          <router-link to="/family">
+            <img src="@images/pet_02.jpeg" />
+          </router-link>
+        </div>
+        <div class="setting-main__info_name">
+          <span>가족 정보</span>
+        </div>
       </div>
     </article>
 
     <article class="setting-main__menu">
       <div>
-        <a href="#">공지사항</a>
+        <router-link to="/setting/notice">공지사항</router-link>
       </div>
       <div>
-        <a href="#">라이선스</a>
+        <router-link to="/setting/licence">라이선스</router-link>
       </div>
       <div>
-        <a href="#">피드백</a>
+        <router-link to="/setting/feedback">피드백</router-link>
       </div>
       <div class="none-border">
         <a href="#">로그아웃</a>
       </div>
       <div class="none-border">
-        <a href="#">회원탈퇴</a>
+        <router-link to="/setting/withdraw">회원탈퇴</router-link>
       </div>
     </article>
   </section>

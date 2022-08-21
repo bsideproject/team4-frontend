@@ -1,0 +1,24 @@
+@charset 'utf-8';
+
+.notice-detail {
+    width: $maxWidth;
+    height: $minHeight;
+
+    padding-top: 16px;
+    text-align: left;
+
+    &__title {
+        @include ptBold16;
+        padding: 0 20px 0 20px;
+    }
+    &__date {
+        @include ppRegular12;
+        padding: 8px 20px 12px 20px;
+        color: #CFCFCF;
+        border-bottom: 1px solid #F4F4F4;
+    }
+    &__content {
+        @include ptRegular14;
+        padding: 12px 20px 0 20px;
+    }
+}
