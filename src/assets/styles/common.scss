@@ -24,6 +24,10 @@ body {
     border-style: none;
   }
 
+  ul {
+    list-style: none;
+  }
+
   a, a:hover, a:visited { 
     text-decoration: none; 
     color: #111; 
@@ -33,7 +37,7 @@ body {
 }
 
 .header {
-  background: #000000;
+  background: #5794F0;
 
   &--login {
     background: #ffffff;
@@ -65,7 +69,7 @@ body {
 
 .petProfile {
   padding: 24px 20px 48px;
-  background: #000000;
+  background: #5794F0;
   color: #ffffff;
 
   &-wrapper {
@@ -245,6 +249,31 @@ body {
       }
     }
   }
+}
+
+.quickNote {
+  padding: 0 20px;
+
+  &-list {
+    &__item {
+      padding: 16px;
+      border: 1px solid #E7E7E7;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      text-align: left;
+      line-height: 1.2em;
+
+      .item__title {
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .item__count {
+        color: #5794F0;
+        font-size: 14px;
+      }
+    }
+  }
+  &-modify {}
 }
 
 

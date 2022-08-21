@@ -1,7 +1,7 @@
 <template>
   <div class="quickMenu">
     <div class="quickMenu-btn">
-      <button class="quickMenu-btn--edit">편집</button>
+      <a href="/quickNote" class="quickMenu-btn--edit">편집</a>
     </div>
     <div class="quickMenu-group">
       <div class="quickMenu-group__item">
