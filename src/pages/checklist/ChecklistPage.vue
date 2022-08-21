@@ -4,7 +4,7 @@
     <list-table/>
 
     <div class="floatArea">
-      <button class="btn--float">
+      <button class="floatArea__btn--float">
         <span></span>
         <span></span>
       </button>

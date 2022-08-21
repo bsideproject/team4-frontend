@@ -1,9 +1,9 @@
 <template>
-  <comp-header />
+  <comp-header/>
   <main>
-    <pet-profile/>
-    <tab-menu/>
-    <weekly-calendar/>
+    <pet-profile v-if="this.$route.name !== 'Login'"/>
+    <tab-menu v-if="this.$route.name !== 'Login'"/>
+    <weekly-calendar v-if="this.$route.name !== 'Login'"/>
     <router-view />
   </main>
   <comp-footer />
@@ -17,7 +17,6 @@ import TabMenu from '@/components/common/TabMenu.vue'
 import WeeklyCalendar from '@/components/common/WeeklyCalendar.vue'
 
 export default {
-  name: 'App',
   components: {
     CompHeader,
     CompFooter,

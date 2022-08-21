@@ -1,5 +1,5 @@
 <template>
-  <div class="header section">
+  <div class="header" :class="this.$route.name === 'Login' ? 'header--login' : ''">
     <div class="header-wrapper">
       <div></div>
       <router-link to="/" class="header-wrapper__logo">
