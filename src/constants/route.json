@@ -9,5 +9,6 @@
         "Page": "SettingPage",
         "Main": "SettingMain",
         "Profile": "MyProfile"
-    }
+    },
+    "Family": "Family"
 }

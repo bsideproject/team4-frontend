@@ -17,7 +17,7 @@
         <a href="#">펫 정보</a>
       </div>
       <div>
-        <a href="#">가족 정보</a>
+        <router-link to="/family">가족 정보</router-link>
       </div>
     </article>
 
