@@ -6,6 +6,7 @@ import SettingRouter from '@routes/setting/index.js'
 const Main = () => import('@/pages/checklist/ChecklistPage')
 const LoginPage = () => import('@pages/login/LoginPage.vue')
 const SettingPage = () => import('@pages/setting/SettingPage.vue')
+const quickNote = () => import('@pages/quickNote/quickNote.vue')
 
 export default [
   {
@@ -23,5 +24,9 @@ export default [
     path: '/setting',
     component: SettingPage,
     children: SettingRouter
+  },
+  {
+    path: '/quickNote',
+    component: quickNote,
   }
 ]
