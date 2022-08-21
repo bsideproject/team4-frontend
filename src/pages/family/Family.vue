@@ -7,17 +7,17 @@
       </div>
     </article>
     <article class="family__empty" v-else>
-      <div>
-        <img src="@images/login/avatar.jpg" alt="" />
-      </div>
-      <div>
-        <span>아직 구성원이 없어요!</span>
+      <div class="family__empty_title">
+        <span>아직 구성원이 없어요! :()</span>
         <span>초대해볼까요?</span>
       </div>
-      <div>
-        <button>초대하기</button>
+      <div class="family__empty_image">
+        <img src="@images/login/avatar.jpg" alt="" />
       </div>
     </article>
+    <div class="family__invite">
+      <button>초대하기</button>
+    </div>
   </section>
 </template>
 

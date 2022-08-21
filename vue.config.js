@@ -10,6 +10,7 @@ module.exports = defineConfig({
         '*': path.join(__dirname, '/'),
         '@': path.join(__dirname, 'src/'),
         '@styles': path.join(__dirname, 'src/assets/styles'),
+        '@fonts': path.join(__dirname, 'src/assets/fonts'),
         '@images': path.join(__dirname, 'src/assets/images'),
         '@utils': path.join(__dirname, 'src/utils'),
         '@assets': path.join(__dirname, 'src/assets'),
