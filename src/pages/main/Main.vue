@@ -1,8 +1,4 @@
 <template>
-  <gnb />
-  <pet-profile />
-  <hr />
-  <weekly-calendar />
 </template>
 
 <script>
