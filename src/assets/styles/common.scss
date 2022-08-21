@@ -10,7 +10,9 @@ body {
 *, body {
   margin: 0;
   padding: 0;
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Poppins', sans-serif;
+  // font-family: Poppins, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-family: Poppins, Pretendard, sans-serif;
+  font-style: normal;
   font-size: 16px;
 
   a {
@@ -29,7 +31,6 @@ body {
     -webkit-tap-highlight-color: transparent; 
   }
 }
-
 
 .header {
   background: #000000;
