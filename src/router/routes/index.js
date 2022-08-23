@@ -1,4 +1,5 @@
 import ROUTE from '@/constants/route.json'
+import HEADER_TYPE from '@/constants/headerType.json'
 
 import LoginRouter from '@routes/login/index.js'
 import SettingRouter from '@routes/setting/index.js'
@@ -14,21 +15,35 @@ export default [
     path: '/',
     name: ROUTE.Main,
     component: Main,
-    auth: false,
+    meta: {
+      headerType: HEADER_TYPE.MAIN
+    }
   },
   {
     path: '/login',
     component: LoginPage,
-    children: LoginRouter
+    children: LoginRouter,
+    meta: {
+      title: '로그인',
+      headerType: HEADER_TYPE.NONE
+    }
   },
   {
     path: '/setting',
     component: SettingPage,
-    children: SettingRouter
+    children: SettingRouter,
+    meta: {
+      title: '설정',
+      headerType: HEADER_TYPE.NONE
+    }
   },
   {
     path: '/family',
     component: Family,
-    children: FamilyRouter
+    children: FamilyRouter,
+    meta: {
+      title: '그룹 정보',
+      headerType: HEADER_TYPE.DROP
+    }
   }
 ]
