@@ -30,7 +30,39 @@
     outline: none; 
     -webkit-tap-highlight-color: transparent; 
   }
+
+  
 }
+
+.btn-lg {
+  &-default {
+    @include btnLg;
+    @include ptBold20;
+    background: #F4F4F4;  
+  }
+  
+  &-disabled {
+    @include btnLg;
+    @include ptBold20;
+    background: #F4F4F4;  
+    color: #CFCFCF;
+  }
+  &-enabled {
+    @include btnLg;
+    @include ptBold20;
+    background: #5794F0;
+    color: #FBFBFB;
+  }
+  &-pressed {
+    @include btnLg;
+    @include ptBold20;
+    background: #2773E4;
+    color: #FBFBFB;
+  }
+}
+
+
+
 
 .header {
   background: #000000;

@@ -2,3 +2,93 @@
 
 $maxWidth: 360px;
 $minHeight: 800px;
+
+@mixin btnLg {
+    width: 320px;
+    height: 56px;
+    border-radius: 4px;
+}
+
+@mixin ptBold28 {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+}
+
+@mixin ptBold24 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+@mixin ptBold20 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+@mixin ptBold16 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+@mixin ppBold28 {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 42px;
+}
+
+@mixin ppBold24 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+@mixin ppBold20 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+@mixin ppBold16 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+@mixin ptRegular16 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+@mixin ptRegular14 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@mixin ptRegular12 {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+@mixin ppRegular16 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+@mixin ppRegular14 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+@mixin ppRegular12 {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+}
