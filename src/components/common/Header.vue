@@ -16,7 +16,8 @@
     <article class="header-wrapper" v-else-if="getHeaderType === 'more'">
       <a @click="goBack" class="header-wrapper__back"></a>
       <div class="header-wrapper__title">{{ getTitle }}</div>
-      <button class="header-wrapper__more"></button>
+      <button class="header-wrapper__more" @click="clickMore"></button>
+      <bottom-sheet ref="optionBottomSheet" :option-list="getMoreOptionList" />
     </article>
 
     <article class="header-wrapper" v-else-if="getHeaderType === 'none'">
@@ -27,13 +28,15 @@
 </template>
 
 <script setup>
-import { computed } from '@vue/runtime-core'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { MODULE_NAME, TYPES } from '@store/common/headerStore.js'
+import BottomSheet from '@components/common/BottomSheet.vue'
 
 const store = useStore()
 const router = useRouter()
+const optionBottomSheet = ref(null)
 
 const getTitle = computed(
   () => store.getters[`${MODULE_NAME}/${TYPES.getTitle}`]
@@ -41,8 +44,15 @@ const getTitle = computed(
 const getHeaderType = computed(
   () => store.getters[`${MODULE_NAME}/${TYPES.getHeaderType}`]
 )
+const getMoreOptionList = computed(
+  () => store.getters[`${MODULE_NAME}/${TYPES.getMoreOptionList}`]
+)
+
 const goBack = () => {
   router.back()
+}
+const clickMore = () => {
+  optionBottomSheet.value.openBottomSheet()
 }
 </script>
 

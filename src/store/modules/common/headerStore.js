@@ -7,13 +7,17 @@ const TYPES = makeModuleTypes([
   'setTitle',
   'headerType',
   'getHeaderType',
-  'setHeaderType'
+  'setHeaderType',
+  'moreOptionList',
+  'getMoreOptionList',
+  'setMoreOptionList'
 ])
 const module = {
   namespaced: true,
   state: {
     title: '',
-    headerType: ''
+    headerType: '',
+    moreOptionList: []
   },
   getters: {
     [TYPES.getTitle](state) {
@@ -21,6 +25,9 @@ const module = {
     },
     [TYPES.getHeaderType](state) {
       return state.headerType
+    },
+    [TYPES.getMoreOptionList](state) {
+      return state.moreOptionList
     }
   },
   mutations: {
@@ -29,6 +36,9 @@ const module = {
     },
     [TYPES.setHeaderType](state, payload) {
       state.headerType = payload
+    },
+    [TYPES.setMoreOptionList](state, payload) {
+      state.moreOptionList = payload
     }
   }
 }
