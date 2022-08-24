@@ -17,31 +17,46 @@ export default [
     {
         path: 'profile',
         name: ROUTE.Setting.Profile,
-        component: MyProfile
+        component: MyProfile,
     },
     {
         path: 'licence',
         name: ROUTE.Setting.Licence,
-        component: Licence
+        component: Licence,
+        meta: {
+            title: '라이선스'
+        }
     },
     {
         path: 'notice',
         name: ROUTE.Setting.Notice.List,
-        component: NoticeList
+        component: NoticeList,
+        meta: {
+            title: '공지사항'
+        }
     },
     {
         path: 'notice/detail/:no',
         name: ROUTE.Setting.Notice.Detail,
-        component: NoticeDetail
+        component: NoticeDetail,
+        meta: {
+            title: '공지사항'
+        }
     },
     {
         path: 'feedback',
         name: ROUTE.Setting.Feedback,
-        component: Feedback
+        component: Feedback,
+        meta: {
+            title: '피드백'
+        }
     },
     {
         path: 'withdraw',
         name: ROUTE.Setting.Withdraw,
-        component: Withdraw
+        component: Withdraw,
+        meta: {
+            title: '회원탈퇴'
+        }
     },
 ]
