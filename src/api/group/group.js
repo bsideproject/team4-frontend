@@ -1,9 +1,9 @@
 import axios from "@/api/axios/index.js";
 
-const selectFamilyList = () => {
+const selectGroupList = () => {
   return axios.get('/api/v1/family')
 }
 
 export {
-    selectFamilyList
+  selectGroupList
 }

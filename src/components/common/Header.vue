@@ -13,10 +13,10 @@
       <button class="header-wrapper__check"></button>
     </article>
 
-    <article class="header-wrapper" v-else-if="getHeaderType === 'drop'">
+    <article class="header-wrapper" v-else-if="getHeaderType === 'more'">
       <a @click="goBack" class="header-wrapper__back"></a>
       <div class="header-wrapper__title">{{ getTitle }}</div>
-      <button class="header-wrapper__check"></button>
+      <button class="header-wrapper__more"></button>
     </article>
 
     <article class="header-wrapper" v-else-if="getHeaderType === 'none'">

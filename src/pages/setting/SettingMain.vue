@@ -11,7 +11,7 @@
       <div>
         <div class="setting-main__info_icon">
           <router-link to="/setting/profile">
-            <img src="@images/icons/profile.svg" />
+            <img src="@images/icons/profile_mini.svg" />
           </router-link>
         </div>
         <div class="setting-main__info_name">
@@ -30,12 +30,12 @@
       </div>
       <div>
         <div class="setting-main__info_icon">
-          <router-link to="/family">
+          <router-link to="/group">
             <img src="@images/icons/share_group.svg" />
           </router-link>
         </div>
         <div class="setting-main__info_name">
-          <span>가족 정보</span>
+          <span>그룹 정보</span>
         </div>
       </div>
     </article>

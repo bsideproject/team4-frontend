@@ -3,12 +3,12 @@ import HEADER_TYPE from '@/constants/headerType.json'
 
 import LoginRouter from '@routes/login/index.js'
 import SettingRouter from '@routes/setting/index.js'
-import FamilyRouter from '@routes/family/index.js'
+import GroupRouter from '@routes/group/index.js'
 
 const Main = () => import('@/pages/checklist/ChecklistPage')
 const LoginPage = () => import('@pages/login/LoginPage.vue')
 const SettingPage = () => import('@pages/setting/SettingPage.vue')
-const Family = () => import('@pages/family/Family.vue')
+const Group = () => import('@pages/group/Group.vue')
 
 export default [
   {
@@ -38,12 +38,12 @@ export default [
     }
   },
   {
-    path: '/family',
-    component: Family,
-    children: FamilyRouter,
+    path: '/group',
+    component: Group,
+    children: GroupRouter,
     meta: {
       title: '그룹 정보',
-      headerType: HEADER_TYPE.DROP
+      headerType: HEADER_TYPE.MORE
     }
   }
 ]
