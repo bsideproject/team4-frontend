@@ -49,8 +49,7 @@ export default [
       auth: true,
       title: '그룹 정보',
       headerType: HEADER_TYPE.MORE
-    },
-    children: SettingRouter
+    }
   },
   {
     path: '/quickNote',
