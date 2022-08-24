@@ -37,35 +37,35 @@
   }
 }
 
-.header {
-  background: #5794F0;
+.btn-lg {
+  &-default {
+    @include btnLg;
+    @include ptBold20;
+    background: #F4F4F4;  
+  }
   
-  &--login {
-    background: #ffffff;
+  &-disabled {
+    @include btnLg;
+    @include ptBold20;
+    background: #F4F4F4;  
+    color: #CFCFCF;
   }
-
-  &-wrapper {
-    border-bottom: 1px solid #D3D3D3;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    &__logo {
-      width: 84px;
-      height: 33px;
-      .logo__img {
-        width: 100%;
-      }
-    }
-    &__menu {
-      width: 24px;
-      height: 24px;
-      .menu__icon {
-        width: 100%;
-      }
-    }
+  &-enabled {
+    @include btnLg;
+    @include ptBold20;
+    background: #5794F0;
+    color: #FBFBFB;
   }
+  &-pressed {
+    @include btnLg;
+    @include ptBold20;
+    background: #2773E4;
+    color: #FBFBFB;
+  }
+}
+
+.hide {
+  display: none;
 }
 
 .petProfile {
