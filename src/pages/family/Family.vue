@@ -2,7 +2,7 @@
   <section class="family">
     <article class="family__list" v-if="getFamilyList.length">
       <div v-for="(item, index) in getFamilyList" :key="index">
-        <img src="@images/profile.svg" alt="" />
+        <img src="@images/icons/profile.svg" alt="" />
         <span>{{ item.name }}</span>
       </div>
     </article>
@@ -12,7 +12,7 @@
         <span>초대해볼까요?</span>
       </div>
       <div class="family__empty_image">
-        <img src="@images/login/avatar.jpg" alt="" />
+        <img src="@images/png/group_illust.png" alt="" />
       </div>
     </article>
     <div class="family__invite">

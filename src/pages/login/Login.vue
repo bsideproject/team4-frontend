@@ -1,7 +1,7 @@
 <template>
   <section class="login">
     <article class="login__logo">
-      <img src="@images/login/avatar.jpg" alt="" />
+      <img src="@images/png/logo_black.png" alt="" />
     </article>
     <article class="login__sns">
       <button class="kakao" @click="() => clickLogin('kakao')">

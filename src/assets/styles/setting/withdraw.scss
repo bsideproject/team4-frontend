@@ -1,9 +1,7 @@
 @charset 'utf-8';
 
 .withdraw {
-    width: $maxWidth;
-    height: $minHeight;
-
+    min-height: $minHeight;
     padding-top: 90px;
 
     &__confirm {

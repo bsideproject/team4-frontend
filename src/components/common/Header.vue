@@ -2,7 +2,7 @@
   <section class="header">
     <article class="header-wrapper bg-primary" v-if="getHeaderType === 'main'">
       <div class="header-wrapper__logo">
-        <img src="@images/petharu_logo.png" alt="" />
+        <img src="@images/png/logo_white.png" alt="" />
       </div>
       <router-link to="/setting" class="header-wrapper__menu" />
     </article>

@@ -1,7 +1,6 @@
 @charset 'utf-8';
 
 .login {
-    max-width: $maxWidth;
     min-height: $minHeight;
     
     margin: auto;
@@ -41,7 +40,7 @@
                     left: 16px;
                     width: 40px;
                     height: 40px;
-                    background: url('@images/login/login_kakao.svg') center center no-repeat;
+                    background: url('@images/icons/login_kakao.svg') center center no-repeat;
                 }
             }
 
@@ -54,7 +53,7 @@
                     left: 16px;
                     width: 40px;
                     height: 40px;
-                    background: url('@images/login/login_google.svg') center center no-repeat;
+                    background: url('@images/icons/login_google.svg') center center no-repeat;
                 }
             }
         }

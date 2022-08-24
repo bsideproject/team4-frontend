@@ -1,14 +1,12 @@
 @charset 'utf-8';
 
 .notice-list {
-    width: $maxWidth;
-    height: $minHeight;
-
+    min-height: $minHeight;
     padding-top: 16px;
 
     &__item {
         position: relative;
-        width: 320px;
+        // width: 320px;
         height: 81px;
         margin: 0 20px 0 20px;
         text-align: left;

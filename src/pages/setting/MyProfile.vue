@@ -1,7 +1,7 @@
 <template>
   <section class="my-profile">
     <article class="my-profile__image">
-      <img src="@images/profile.svg" />
+      <div></div>
     </article>
 
     <article class="my-profile__form">
@@ -16,7 +16,9 @@
         </div>
       </form>
 
-      <button @click="clickEditProfile">수정하기</button>
+      <button class="btn-lg-disabled" @click="clickEditProfile">
+        수정하기
+      </button>
     </article>
   </section>
 </template>
