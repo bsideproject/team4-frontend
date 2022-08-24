@@ -1,11 +1,14 @@
 import axios from "@/api/axios/index.js";
 
+const selectProfile = () => {
+  return axios.get('/api/v1/user')
+}
+
 const editProfile = (data) => {
-  console.log('editProfile api', data)
-  const userId = 'temp'
-  return axios.put(`/api/v1/user/${userId}`, data)
+  return axios.put('/api/v1/user', data)
 }
 
 export {
-    editProfile
+  selectProfile,
+  editProfile
 }
