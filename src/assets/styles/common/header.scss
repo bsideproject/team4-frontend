@@ -50,6 +50,15 @@
        height: 24px;
        background: url('@images/icons/check.svg') center center no-repeat;
      }
+
+     &__more {
+      position: absolute;
+      right: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/more.svg') center center no-repeat;
+    }
   }
 }
   

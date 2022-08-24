@@ -1,6 +1,8 @@
 @charset 'utf-8';
 
-.family {
+
+
+.group {
     width: $maxWidth;
     height: $minHeight;
 
@@ -18,7 +20,20 @@
             font-size: 16px;
             line-height: 19px;
         }
+
+        .bdge {
+            &::after {
+                display: inline-block;
+                content: ' ';
+                width: 16px;
+                height: 16px;
+                background: url('@images/icons/group_master.svg') center center no-repeat;
+                vertical-align: middle;
+                margin-left: 4px;
+            }
+        }
     }
+
 
     &__empty_title {
         padding: 28px 20px 0px 20px;
