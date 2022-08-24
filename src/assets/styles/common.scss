@@ -1,8 +1,9 @@
 @charset 'utf-8';
 
-body {
-  background: #ffffff;
-  max-width: 460px;
+@import 'fonts.scss';
+
+#app {
+  max-width: 360px;
   margin: auto;
   text-align: center;
 }
@@ -37,12 +38,7 @@ body {
 }
 
 .header {
-  background: #5794F0;
-
-  &--login {
-    background: #ffffff;
-  }
-
+  background: #000000;
   &-wrapper {
     border-bottom: 1px solid #D3D3D3;
     padding: 10px 20px;
@@ -50,22 +46,39 @@ body {
     justify-content: space-between;
     align-items: center;
 
-    &__logo {
-      width: 84px;
-      height: 33px;
-      .logo__img {
-        width: 100%;
-      }
-    }
-    &__menu {
-      width: 24px;
-      height: 24px;
-      .menu__icon {
-        width: 100%;
-      }
-    }
+.btn-lg {
+  &-default {
+    @include btnLg;
+    @include ptBold20;
+    background: #F4F4F4;
+  }
+
+  &-disabled {
+    @include btnLg;
+    @include ptBold20;
+    background: #F4F4F4;
+    color: #CFCFCF;
+  }
+  &-enabled {
+    @include btnLg;
+    @include ptBold20;
+    background: #5794F0;
+    color: #FBFBFB;
+  }
+  &-pressed {
+    @include btnLg;
+    @include ptBold20;
+    background: #2773E4;
+    color: #FBFBFB;
   }
 }
+
+.hide {
+  display: none;
+}
+
+
+
 
 .petProfile {
   padding: 24px 20px 48px;
@@ -249,31 +262,6 @@ body {
       }
     }
   }
-}
-
-.quickNote {
-  padding: 0 20px;
-
-  &-list {
-    &__item {
-      padding: 16px;
-      border: 1px solid #E7E7E7;
-      border-radius: 12px;
-      margin-bottom: 10px;
-      text-align: left;
-      line-height: 1.2em;
-
-      .item__title {
-        font-size: 16px;
-        font-weight: 700;
-      }
-      .item__count {
-        color: #5794F0;
-        font-size: 14px;
-      }
-    }
-  }
-  &-modify {}
 }
 
 

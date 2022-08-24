@@ -1,7 +1,7 @@
 <template>
   <section class="login">
     <article class="login__logo">
-      <img src="@images/petharu_logo.png" alt="" />
+      <img src="@images/png/logo_black.png" alt="" />
     </article>
     <article class="login__sns">
       <button class="kakao" @click="() => clickLogin('kakao')">
@@ -16,9 +16,6 @@
 
 <script>
 export default {
-  created() {
-    console.log('###', this.$route.name )
-  },
   setup() {
     const clickLogin = (target) => {
       location.href = `${process.env.VUE_APP_API_URL}/oauth2/authorization/${target}`

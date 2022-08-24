@@ -1,26 +1,64 @@
 @charset 'utf-8';
 
 .header {
-    padding: 0 20px;
-    &-main {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 0;
+  border-bottom: 1px solid #E7E7E7;
+  .bg-primary {
+    background: $primaryColor;
+  }
+  
+  &-wrapper {
+    height: 52px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      &__logo {
-        content: '';
-        width: 24px;
-        height: 24px;
-        background: url('@images/common/back.svg') center center no-repeat;
-      }
-
-      &__menu {
-        content: '';
-        width: 24px;
-        height: 24px;
-        background: url('@images/common/menu.svg') center center no-repeat;
+    &__logo {
+      img {
+        width: 90px;
+        height: 36px;
       }
     }
-    
+
+    &__title {
+      @include ptBold16;
+    }
+
+    &__menu {
+      position: absolute;
+      right: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/menu.svg') center center no-repeat;
+    }
+
+    &__back {
+       position: absolute;
+       left: 16px;
+       content: '';
+       width: 24px;
+       height: 24px;
+       background: url('@images/icons/back.svg') center center no-repeat;
+     }
+ 
+     &__check {
+       position: absolute;
+       right: 16px;
+       content: '';
+       width: 24px;
+       height: 24px;
+       background: url('@images/icons/check.svg') center center no-repeat;
+     }
+
+     &__more {
+      position: absolute;
+      right: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/more.svg') center center no-repeat;
+    }
   }
+}
   

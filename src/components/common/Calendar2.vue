@@ -10,7 +10,6 @@
         :enableTimePicker="false"
         inline
         autoApply
-        noToday
       />
     </article>
   </section>

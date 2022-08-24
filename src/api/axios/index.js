@@ -1,13 +1,11 @@
 import axios from 'axios'
-
-const HEADERS_CONTENT_TYPE_JSON = 'application/json;charset=utf-8'
-const AUTHORIZATION_TYPE = 'Bearer'
+import { getAuthorization } from '@utils/login/index.js'
 
 const instance = axios.create({
   baseURL: process.env.VUE_APP_API_URL,
   timeout: 5000,
   headers: {
-    'Content-Type': HEADERS_CONTENT_TYPE_JSON
+    'Content-Type': 'application/json;charset=utf-8'
   }
 })
 
@@ -15,9 +13,9 @@ instance.interceptors.request.use(
   function (config) {
     console.log('axios request interceptor', config)
 
-    const accessToken = localStorage.getItem('userToken')
-    if (accessToken) {
-      config.headers.Authorization = `${AUTHORIZATION_TYPE} ${accessToken}`
+    const authorization = getAuthorization()
+    if (authorization) {
+      config.headers.Authorization = authorization
       return config
     }
 

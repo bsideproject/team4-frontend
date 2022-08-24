@@ -1,41 +1,80 @@
 @charset 'utf-8';
 
 .my-profile {
-    max-width: $maxWidth;
+    min-height: $minHeight;
 
     &__image {
-        padding: 50px;
-
-        img {
-            width: 100px;
-            height: 100px;
+        padding: 20px 0 24px 0;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 50;
+            width: 94px;
+            height: 94px;
+            border-radius: 100%;
+            
+            img {
+                width: 140px;
+                height: 140px;
+            }
+            
+            &::after {
+                @include ptRegular16;
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+                background: #000;
+                opacity: 0.7;
+                color: #FFF;
+                border-bottom-left-radius: 100%;
+                border-bottom-right-radius: 100%;
+                content: '편집';
+                line-height: 32px;
+            }
         }
     }
 
+
     &__form {
         div {
-            display: block;
-            padding: 20px 40px 20px 40px;
-
-            & {
-                display: flex;
-                align-items: flex-start;
-            }
+            display: flex;
+            padding: 16px 20px 0 20px;
+            justify-content: left;
+            flex-direction: column;
+            align-items: left;
+            width: 320px;
 
             label {
-                width: 100px;
+                @include ptRegular14;
                 text-align: left;
+                height: 17px;
+                margin-bottom: 4px;
             }
 
             input {
-                width: 200px;
+                @include ptRegular16;
+                height: 47px;
+                border-radius: 4px;
+                border: 1px solid #E7E7E7;
+                &:focus {
+                    outline: 2px solid $primaryColor;
+                }
+
+                &[type="text"]:disabled {
+                    background: #E7E7E7;
+                }
             }
+
         }
 
         button {
-            width: 300px;
-            height: 40px;
-            margin: 30px
+            margin-top: 82px;
         }
     }
 }

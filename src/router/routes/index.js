@@ -13,16 +13,40 @@ export default [
     path: '/',
     name: ROUTE.Main,
     component: Main,
-    auth: false,
+    meta: {
+      auth: true,
+      headerType: HEADER_TYPE.MAIN
+    }
   },
   {
     path: '/login',
     component: LoginPage,
-    children: LoginRouter
+    children: LoginRouter,
+    meta: {
+      auth: false,
+      title: '로그인',
+      headerType: HEADER_TYPE.NONE
+    }
   },
   {
     path: '/setting',
     component: SettingPage,
+    children: SettingRouter,
+    meta: {
+      auth: true,
+      title: '설정',
+      headerType: HEADER_TYPE.NONE
+    }
+  },
+  {
+    path: '/group',
+    component: Group,
+    children: GroupRouter,
+    meta: {
+      auth: true,
+      title: '그룹 정보',
+      headerType: HEADER_TYPE.MORE
+    }
     children: SettingRouter
   },
   {
