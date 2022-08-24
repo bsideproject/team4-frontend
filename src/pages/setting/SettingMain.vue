@@ -51,7 +51,7 @@
         <router-link to="/setting/feedback">피드백</router-link>
       </div>
       <div class="none-border">
-        <a href="#">로그아웃</a>
+        <a href="#" @click="clickLogout">로그아웃</a>
       </div>
       <div class="none-border">
         <router-link to="/setting/withdraw">회원탈퇴</router-link>
@@ -60,9 +60,15 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: ROUTE.Setting.Main,
+<script setup>
+import { useRouter } from 'vue-router'
+import { removeToken } from '@utils/login/index.js'
+
+const router = useRouter()
+
+const clickLogout = () => {
+  removeToken()
+  router.replace({ name: ROUTE.Login })
 }
 </script>
 

@@ -3,7 +3,7 @@
 @import 'fonts.scss';
 
 #app {
-  max-width: 460px;
+  max-width: 360px;
   margin: auto;
   text-align: center;
 }
@@ -61,7 +61,9 @@
   }
 }
 
-
+.hide {
+  display: none;
+}
 
 
 

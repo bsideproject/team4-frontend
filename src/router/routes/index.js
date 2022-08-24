@@ -16,6 +16,7 @@ export default [
     name: ROUTE.Main,
     component: Main,
     meta: {
+      auth: true,
       headerType: HEADER_TYPE.MAIN
     }
   },
@@ -24,6 +25,7 @@ export default [
     component: LoginPage,
     children: LoginRouter,
     meta: {
+      auth: false,
       title: '로그인',
       headerType: HEADER_TYPE.NONE
     }
@@ -33,6 +35,7 @@ export default [
     component: SettingPage,
     children: SettingRouter,
     meta: {
+      auth: true,
       title: '설정',
       headerType: HEADER_TYPE.NONE
     }
@@ -42,6 +45,7 @@ export default [
     component: Group,
     children: GroupRouter,
     meta: {
+      auth: true,
       title: '그룹 정보',
       headerType: HEADER_TYPE.MORE
     }
