@@ -135,6 +135,27 @@
   }
 }
 
+.createProfile {
+  padding: 28px 20px 24px;
+  &-photo {
+    &__img {
+      width: 94px;
+      height: 94px;
+    }
+  }
+  &-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    &__row {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
 
 
 

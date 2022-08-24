@@ -10,6 +10,7 @@ const LoginPage = () => import('@pages/login/LoginPage.vue')
 const SettingPage = () => import('@pages/setting/SettingPage.vue')
 const Group = () => import('@pages/group/Group.vue')
 const quickNote = () => import('@pages/quickNote/quickNote.vue')
+const CreateProfile = () => import('@pages/profile/CreateProfile.vue')
 
 export default [
   {
@@ -54,5 +55,14 @@ export default [
   {
     path: '/quickNote',
     component: quickNote,
+  },
+  {
+    path: '/profile/create',
+    component: CreateProfile,
+    meta: {
+      auth: true,
+      title: '펫 등록하기',
+      headerType: HEADER_TYPE.MORE
+    }
   }
 ]

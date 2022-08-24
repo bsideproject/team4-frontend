@@ -14,7 +14,7 @@
         <img src="@assets/images/png/petadd_illust.png" alt=""/>
       </div>
       <p class="empty__txt">등록된 펫이 없습니다. <br/>펫을 등록해주세요!</p>
-      <button class="empty__btn btn-lg-enabled">등록</button>
+      <button class="empty__btn btn-lg-enabled" @click="$router.push('profile/create')">등록</button>
     </div>
 
   </div>
