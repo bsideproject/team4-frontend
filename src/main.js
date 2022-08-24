@@ -17,8 +17,8 @@ import VueAxios from 'vue-axios'
 app.use(VueAxios, axios)
 
 
-import Datepicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
-app.component('Datepicker', Datepicker);
+// import Datepicker from '@vuepic/vue-datepicker';
+// import '@vuepic/vue-datepicker/dist/main.css'
+// app.component('Datepicker', Datepicker);
 
 app.mount('#app')

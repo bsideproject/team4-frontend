@@ -1,11 +1,14 @@
 import ROUTE from '@/constants/route.json'
+import HEADER_TYPE from '@/constants/headerType.json'
 
 import LoginRouter from '@routes/login/index.js'
 import SettingRouter from '@routes/setting/index.js'
+import GroupRouter from '@routes/group/index.js'
 
 const Main = () => import('@/pages/checklist/ChecklistPage')
 const LoginPage = () => import('@pages/login/LoginPage.vue')
 const SettingPage = () => import('@pages/setting/SettingPage.vue')
+const Group = () => import('@pages/group/Group.vue')
 const quickNote = () => import('@pages/quickNote/quickNote.vue')
 
 export default [
@@ -46,7 +49,7 @@ export default [
       auth: true,
       title: '그룹 정보',
       headerType: HEADER_TYPE.MORE
-    }
+    },
     children: SettingRouter
   },
   {
