@@ -2,7 +2,7 @@
   <section class="feedback">
     <article class="feedback__comment">
       <span>OO님, 펫하루 사용은 어떠하셨나요?</span>
-      <img src="@images/pet_02.jpeg" />
+      <img src="@images/png/feedback_illust.png" />
     </article>
     <article class="feedback__content">
       <textarea

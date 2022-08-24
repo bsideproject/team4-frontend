@@ -1,8 +1,8 @@
 @charset 'utf-8';
 
 .setting-main {
-    max-width: $maxWidth;
-
+    min-height: $minHeight;
+    
     &__profile {
         position: relative;
         height: 68px;
@@ -27,10 +27,8 @@
     &__info {
         display: flex;
         justify-content: space-around;
-        // margin-top: 68px;
         margin: 0 20px 0px 20px;
         padding: 95px 12px 20px 12px;
-
         border: 1px solid #505050;
         border-radius: 8px;
     }
@@ -46,7 +44,6 @@
             width: 100%;
             height: 100%;
         }
-
         img {
             width: 32px;
             height: 32px;
@@ -63,10 +60,11 @@
     &__menu {
         
         div {
+            position: relative;
             display: block;
             text-align: left;
             line-height: 64px;
-            width: 320px;
+            // width: 320px;
             height: 64px;
             margin: 0px 20px 0px 20px;
             padding: 0px 8px 0px 8px;

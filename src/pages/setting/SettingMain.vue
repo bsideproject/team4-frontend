@@ -2,7 +2,7 @@
   <section class="setting-main">
     <article class="setting-main__profile">
       <div class="setting-main__profile_image">
-        <img src="@images/login/avatar.jpg" alt="" />
+        <img src="@images/icons/profile.svg" alt="" />
         <span class="setting-main__profile_name">펫이랑</span>
       </div>
     </article>
@@ -11,7 +11,7 @@
       <div>
         <div class="setting-main__info_icon">
           <router-link to="/setting/profile">
-            <img src="@images/pet_02.jpeg" />
+            <img src="@images/icons/profile.svg" />
           </router-link>
         </div>
         <div class="setting-main__info_name">
@@ -21,7 +21,7 @@
       <div>
         <div class="setting-main__info_icon">
           <router-link to="#">
-            <img src="@images/pet_02.jpeg" />
+            <img src="@images/icons/footprint_check.svg" />
           </router-link>
         </div>
         <div class="setting-main__info_name">
@@ -31,7 +31,7 @@
       <div>
         <div class="setting-main__info_icon">
           <router-link to="/family">
-            <img src="@images/pet_02.jpeg" />
+            <img src="@images/icons/share_group.svg" />
           </router-link>
         </div>
         <div class="setting-main__info_name">

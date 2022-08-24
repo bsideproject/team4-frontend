@@ -1,9 +1,7 @@
 @charset 'utf-8';
 
 .feedback {
-    width: $maxWidth;
-    height: $minHeight;
-
+    min-height: $minHeight;
     padding: 28px 0 0 0;
 
     &__comment {
