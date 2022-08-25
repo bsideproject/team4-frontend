@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, getCurrentInstance } from 'vue'
 import { useStore } from 'vuex'
 import {
   MODULE_NAME as MN_GROUP,
@@ -34,8 +34,10 @@ import {
   MODULE_NAME as MN_HEADER,
   TYPES as TY_HEADER,
 } from '@store/common/headerStore.js'
+import { _confirm } from '@/utils/common'
 
 const store = useStore()
+const instance = getCurrentInstance()
 
 const getGroupList = computed(
   () => store.getters[`${MN_GROUP}/${TY_GROUP.getGroupList}`]
@@ -53,7 +55,18 @@ onMounted(() => {
     {
       title: '내보내기',
       callback: () => {
-        alert('내보내기')
+        _confirm(instance, {
+          text: "'동생2'님을 내보내시겠습니까?<br />'동생2'님이 남긴 글은 삭제되지않습니다.",
+          ok: {
+            label: '내보내기',
+            callback: () => {
+              alert('내보내라')
+            },
+          },
+          cancel: {
+            label: '아니오',
+          },
+        })
       },
     },
     {

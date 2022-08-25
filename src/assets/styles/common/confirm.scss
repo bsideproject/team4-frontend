@@ -1,0 +1,33 @@
+@charset 'utf-8';
+
+.confirm {
+    
+    &__dimmed {
+        @include dimmed;
+    }
+
+    &__content {
+        @include ptRegular16;
+        position: fixed;
+        margin: 0 auto;
+        top: 40%;
+        bottom: 50%;
+        left: 0;
+        right: 0;
+        width: 80%;
+        height: 120px;
+        background: #FFF;
+        padding: 20px 20px;
+        border-radius: 10px 10px;
+
+        div {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 20px 0;
+            button {
+                width: 136px;
+                height: 51px;
+            }
+        }
+    }
+}
