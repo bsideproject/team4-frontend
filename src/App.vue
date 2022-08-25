@@ -1,6 +1,6 @@
 <template>
-  <comp-header/>
-  <main>
+  <comp-header />
+  <main ref="main">
     <router-view />
   </main>
   <comp-footer />
