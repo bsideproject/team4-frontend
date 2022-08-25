@@ -1,5 +1,5 @@
 <template>
-  <section :class="['bottom-sheet', isOpen ? 'show' : '']">
+  <section class="bottom-sheet" v-if="isOpen">
     <article class="bottom-sheet__dimmed" @click="clickDimmed"></article>
     <article class="bottom-sheet__content">
       <div v-for="(item, index) in props.optionList" :key="index">
