@@ -1,0 +1,30 @@
+@charset 'utf-8';
+
+.bottom-sheet {
+    display: none;
+
+    &__dimmed {
+        @include dimmed;
+    }
+
+    &__content {
+        @include ptRegular14;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #FFF;
+        padding: 20px 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        div {
+            padding: 20px 28px;
+            text-align: left;
+        }
+    }
+}
+
+.show {
+    display: block;
+}

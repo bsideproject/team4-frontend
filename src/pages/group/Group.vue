@@ -25,16 +25,44 @@
 
 <script setup>
 import { computed, onMounted } from 'vue'
-import { MODULE_NAME, TYPES } from '@store/group/groupStore.js'
 import { useStore } from 'vuex'
+import {
+  MODULE_NAME as MN_GROUP,
+  TYPES as TY_GROUP,
+} from '@store/group/groupStore.js'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@store/common/headerStore.js'
 
 const store = useStore()
+
 const getGroupList = computed(
-  () => store.getters[`${MODULE_NAME}/${TYPES.getGroupList}`]
+  () => store.getters[`${MN_GROUP}/${TY_GROUP.getGroupList}`]
 )
 
 onMounted(() => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.selectGroupList}`)
+  store.dispatch(`${MN_GROUP}/${TY_GROUP.selectGroupList}`)
+  store.commit(`${MN_HEADER}/${TY_HEADER.setMoreOptionList}`, [
+    {
+      title: '그룹장 변경하기',
+      callback: () => {
+        alert('그룹장 변경하기')
+      },
+    },
+    {
+      title: '내보내기',
+      callback: () => {
+        alert('내보내기')
+      },
+    },
+    {
+      title: '그룹 삭제하기',
+      callback: () => {
+        alert('그룹 삭제하기')
+      },
+    },
+  ])
 })
 
 const inviteURL = 'http://localhost:5000/family/invite'

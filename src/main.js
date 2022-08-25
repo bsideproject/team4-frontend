@@ -21,4 +21,8 @@ app.use(VueAxios, axios)
 // import '@vuepic/vue-datepicker/dist/main.css'
 // app.component('Datepicker', Datepicker);
 
+import BottomSheet from '@components/common/BottomSheet.vue'
+app.component('BottomSheet', BottomSheet)
+
+
 app.mount('#app')
