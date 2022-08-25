@@ -4,14 +4,11 @@
     min-height: $minHeight;
     
     &__profile {
-        position: relative;
         height: 68px;
     }
 
     &__profile_image {
-        position: absolute;
-        top: 22px;
-        left: 133px;
+        padding-top: 20px;
         img {
             width: 94px;
             height: 94px;

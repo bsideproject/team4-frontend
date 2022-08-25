@@ -1,5 +1,5 @@
 <template>
-  <section :class="['calendar', isOpen ? 'show' : '']">
+  <section class="calendar" v-if="isOpen">
     <article class="calendar__dimmed" @click="clickDimmed"></article>
     <article class="calendar__datepicker">
       <Datepicker
