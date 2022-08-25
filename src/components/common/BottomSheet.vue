@@ -3,7 +3,7 @@
     <article class="bottom-sheet__dimmed" @click="clickDimmed"></article>
     <article class="bottom-sheet__content">
       <div v-for="(item, index) in props.optionList" :key="index">
-        <span @click="item.callback">{{ item.title }}</span>
+        <span @click="() => clickItem(item.callback)">{{ item.title }}</span>
       </div>
     </article>
   </section>
@@ -25,7 +25,10 @@ const openBottomSheet = () => {
 const closeBottomSheet = () => {
   isOpen.value = false
 }
-
+const clickItem = (callback) => {
+  callback()
+  closeBottomSheet()
+}
 defineExpose({
   openBottomSheet,
   closeBottomSheet,

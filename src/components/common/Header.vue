@@ -32,7 +32,6 @@ import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { MODULE_NAME, TYPES } from '@store/common/headerStore.js'
-import BottomSheet from '@components/common/BottomSheet.vue'
 
 const store = useStore()
 const router = useRouter()
