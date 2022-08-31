@@ -77,7 +77,7 @@ onMounted(() => {
     })
 
   if (!refImage.value) {
-    refImage.value = require('@images/icons/profile_mini.svg')
+    refImage.value = require('@images/icons/profile_big_default.svg')
   }
 })
 

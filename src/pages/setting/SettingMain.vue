@@ -2,7 +2,7 @@
   <section class="setting-main">
     <article class="setting-main__profile">
       <div class="setting-main__profile_image">
-        <img src="@images/icons/profile.svg" alt="" />
+        <img src="@images/icons/profile_big_default.svg" alt="" />
         <span class="setting-main__profile_name">펫이랑</span>
       </div>
     </article>
