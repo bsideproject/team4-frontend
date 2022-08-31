@@ -15,10 +15,36 @@
         padding: 20px 0;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+    }
 
-        div {
-            padding: 20px 28px;
+    &__common {
+        padding: 20px 28px;
+        text-align: left;
+    }
+
+    &__floating {
+        h3 {
+            padding: 4px 20px 24px 20px;
             text-align: left;
+            @include ptBold20;
+        }    
+        .icon-area {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 0 auto;
+            
+            a {
+                width: 104px;
+                height: 97px;
+                line-height: 97px;
+            }
+            img {
+                border: 1px solid #F4F4F4;
+            }
+            p {
+                @include ptRegular14;
+            }
         }
     }
 }
