@@ -82,5 +82,6 @@ month.value = getMonth(today.value)
 weeklyList.value = makeWeeklyList(today.value)
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '@styles/main/weeklyCalendar.scss';
 </style>

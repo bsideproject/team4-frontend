@@ -33,15 +33,13 @@
         <p class="item__label">양치하기</p>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-export default {
-}
+export default {}
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+@import '@styles/main/quickMenu.scss';
 </style>

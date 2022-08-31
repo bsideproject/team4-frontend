@@ -33,12 +33,12 @@
 
 
 <script setup>
-import PetProfile from '@/components/common/PetProfile.vue'
-import TabMenu from '@/components/common/TabMenu.vue'
-import WeeklyCalendar from '@/components/common/WeeklyCalendar'
-import QuickMenu from '@/components/checkList/QuickMenu'
-import ListTable from '@/components/checkList/ListTable'
-import FloatingBottomSheet from '@/components/checkList/FloatingBottomSheet.vue'
+import PetProfile from '@/components/main/PetProfile.vue'
+import TabMenu from '@/components/main/TabMenu.vue'
+import WeeklyCalendar from '@/components/main/WeeklyCalendar'
+import QuickMenu from '@/components/main/QuickMenu'
+import ListTable from '@/components/main/ListTable'
+import FloatingBottomSheet from '@/components/main/FloatingBottomSheet.vue'
 
 import { ref } from 'vue'
 import { useStore } from 'vuex'
@@ -52,5 +52,6 @@ const clickFloating = () => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@styles/main/main.scss';
 </style>

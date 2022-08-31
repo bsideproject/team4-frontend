@@ -3,7 +3,7 @@
     <ul class="listTable-cardList">
       <li class="listTable-cardList__card">
         <div class="card__check">
-          <img src="@images/icons/todo.png" alt="">
+          <img src="@images/icons/todo.png" alt="" />
         </div>
         <div class="card__schedule">
           <p class="label">강아지 생일</p>
@@ -12,7 +12,7 @@
       </li>
       <li class="listTable-cardList__card">
         <div class="card__check">
-          <img src="@images/icons/footprint_empty.png" alt="">
+          <img src="@images/icons/footprint_empty.png" alt="" />
         </div>
         <div class="card__schedule">
           <p class="label">약주기</p>
@@ -21,7 +21,7 @@
       </li>
       <li class="listTable-cardList__card">
         <div class="card__check">
-          <img src="@images/icons/footprint_full.png" alt="">
+          <img src="@images/icons/footprint_full.png" alt="" />
         </div>
         <div class="card__schedule">
           <p class="label">목욕시키기</p>
@@ -33,10 +33,9 @@
 </template>
 
 <script>
-export default {
-}
+export default {}
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+@import '@styles/main/listTable.scss';
 </style>

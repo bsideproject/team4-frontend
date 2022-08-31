@@ -1,0 +1,36 @@
+@charset 'utf-8';
+
+.listTable {
+  padding: 0 20px;
+  &-cardList {
+    padding: 32px 0;
+    &__card {
+      border: 1px solid #e7e7e7;
+      border-radius: 4px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+
+      .card__check {
+        border-radius: 100px;
+        background: #f4f4f4;
+        padding: 8px;
+      }
+      .card__schedule {
+        text-align: left;
+        flex: 1 1 0;
+        padding-left: 16px;
+        font-size: 16px;
+        line-height: 19px;
+
+        .label {}
+        .time {
+          color: #a8a8a8;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+}

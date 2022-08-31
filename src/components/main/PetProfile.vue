@@ -4,13 +4,13 @@
       <div class="petProfile-wrapper__item active">
         <p class="item__name">멍멍이</p>
         <div class="item__photo">
-          <img class="item__photo--round" src="@images/pet_02.jpeg" alt="">
+          <img class="item__photo--round" src="@images/pet_02.jpeg" alt="" />
         </div>
       </div>
       <div class="petProfile-wrapper__item">
         <p class="item__name">까꿍이</p>
         <div class="item__photo">
-          <img class="item__photo--round" src="@images/pet_02.jpeg" alt="">
+          <img class="item__photo--round" src="@images/pet_02.jpeg" alt="" />
         </div>
       </div>
     </div>
@@ -35,6 +35,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+@import '@styles/main/petProfile.scss';
 </style>

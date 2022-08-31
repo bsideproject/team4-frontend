@@ -16,5 +16,6 @@ const comingSoon = () => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@styles/main/tabMenu.scss';
 </style>

@@ -1,0 +1,41 @@
+@charset 'utf-8';
+
+.quickMenu {
+  padding: 20px;
+  &-btn {
+    text-align: right;
+    margin-bottom: 8px;
+    &--edit {
+      font-size: 14px;
+      color: #848484;
+    }
+  }
+  &-group {
+    display: flex;
+    justify-content: space-around;
+    &__item {
+      .item__count {
+        background: #f4f4f4;
+        border-radius: 100px;
+        width: 60px;
+        height: 90px;
+
+        &.fulfilled {
+          color: #AEAEAE;
+        }
+
+        &--current {
+          font-size: 28px;
+          font-weight: 700;
+        }
+        &--total {
+          font-size: 16px;
+        }
+      }
+      .item__label {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+.tabMenu {
+  padding: 0 20px;
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 23px;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    background: #f4f4f4;
+    border: 1px solid #000000;
+    margin: auto;
+  }
+
+  &__tab {
+    &.active {
+      font-weight: 700;
+      color: #5794F0;
+    }
+  }
+}
