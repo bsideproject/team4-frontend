@@ -2,7 +2,11 @@
   <section class="bottom-sheet" v-if="isOpen">
     <article class="bottom-sheet__dimmed" @click="clickDimmed"></article>
     <article class="bottom-sheet__content">
-      <div v-for="(item, index) in props.optionList" :key="index">
+      <div
+        class="bottom-sheet__common"
+        v-for="(item, index) in props.optionList"
+        :key="index"
+      >
         <span @click="() => clickItem(item.callback)">{{ item.title }}</span>
       </div>
     </article>

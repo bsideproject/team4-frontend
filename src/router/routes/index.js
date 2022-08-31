@@ -4,13 +4,17 @@ import HEADER_TYPE from '@/constants/headerType.json'
 import LoginRouter from '@routes/login/index.js'
 import SettingRouter from '@routes/setting/index.js'
 import GroupRouter from '@routes/group/index.js'
+import PetRouter from '@routes/pet/index.js'
+import ChecklistRouter from '@routes/checklist/index.js'
 
-const Main = () => import('@/pages/checklist/ChecklistPage')
+const Main = () => import('@/pages/main/Main.vue')
 const LoginPage = () => import('@pages/login/LoginPage.vue')
 const SettingPage = () => import('@pages/setting/SettingPage.vue')
 const Group = () => import('@pages/group/Group.vue')
 const quickNote = () => import('@pages/quickNote/quickNote.vue')
-const CreateProfile = () => import('@pages/profile/CreateProfile.vue')
+// const CreateProfile = () => import('@pages/profile/CreateProfile.vue')
+const PetPage = () => import('@pages/pet/CreatePet.vue')
+const ChecklistPage = () => import('@pages/checklist/ChecklistPage.vue')
 
 export default [
   {
@@ -57,12 +61,31 @@ export default [
     component: quickNote,
   },
   {
-    path: '/profile/create',
-    component: CreateProfile,
+  path: '/pet',
+    component: PetPage,
+    children: PetRouter,
     meta: {
       auth: true,
-      title: '펫 등록하기',
+      title: '그룹 정보',
       headerType: HEADER_TYPE.MORE
     }
+  },
+  {
+  path: '/checklist',
+    component: ChecklistPage,
+    children: ChecklistRouter,
+    meta: {
+      auth: true,
+      headerType: HEADER_TYPE.NONE
+    }
   }
+  // {
+  //   path: '/profile/create',
+  //   component: CreateProfile,
+  //   meta: {
+  //     auth: true,
+  //     title: '펫 등록하기',
+  //     headerType: HEADER_TYPE.MORE
+  //   }
+  // }
 ]

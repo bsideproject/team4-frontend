@@ -3,7 +3,8 @@
     "Login": "Login",
     "Checklist": {
         "Page": "ChecklistPage",
-        "Main": "Main"
+        "Schedule": "Schedule",
+        "Todo": "Todo"
     },
     "Setting": {
         "Page": "SettingPage",
@@ -17,5 +18,10 @@
         "Feedback": "Feedback",
         "Withdraw": "Withdraw"
     },
-    "Group": "Group"
+    "Group": "Group",
+    "Pet": {
+        "Page": "PetPage",
+        "Create": "Create",
+        "Modify": "Modify"
+    }
 }
