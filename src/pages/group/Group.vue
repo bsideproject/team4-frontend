@@ -7,7 +7,7 @@
         :key="index"
       >
         <div class="group__profile">
-          <img src="@images/icons/profile.svg" alt="" />
+          <img src="@images/icons/profile_big_default.svg" alt="" />
           <div class="group__delete" v-if="isDelete" @click="clickDelete"></div>
           <div class="group__grant" v-if="isGrant"></div>
         </div>

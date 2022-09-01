@@ -15,6 +15,7 @@
         padding: 20px 0;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+        z-index: 101;
     }
 
     &__common {
@@ -38,12 +39,12 @@
                 width: 104px;
                 height: 97px;
                 line-height: 97px;
-            }
-            img {
                 border: 1px solid #F4F4F4;
             }
+            
             p {
                 @include ptRegular14;
+                margin-top: 8px;
             }
         }
     }

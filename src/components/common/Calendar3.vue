@@ -1,21 +1,14 @@
 <template>
-  <section class="calendar" v-if="isOpen">
+  <section :class="['calendar', isOpen ? 'show' : '']">
     <article class="calendar__dimmed" @click="clickDimmed"></article>
     <article class="calendar__datepicker">
-      <Datepicker
-        :id="uid"
-        v-model="picked"
-        weekStart="0"
-        locale="ko"
-        :enableTimePicker="false"
-        inline
-        autoApply
-      />
+      <datepicker :id="uid" v-model="picked" :locale="ko" />
     </article>
   </section>
 </template>
 
 <script setup>
+import Datepicker from 'vue3-datepicker'
 import {
   defineProps,
   defineEmits,
@@ -25,6 +18,7 @@ import {
   getCurrentInstance,
   onMounted,
 } from 'vue'
+import { ko } from 'date-fns/locale'
 
 const props = defineProps({
   id: {

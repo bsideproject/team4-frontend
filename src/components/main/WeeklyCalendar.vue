@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import Calendar from '@components/common/Calendar2.vue'
+import Calendar from '@components/common/Calendar.vue'
 import { ref } from 'vue'
 
 const today = ref(new Date())

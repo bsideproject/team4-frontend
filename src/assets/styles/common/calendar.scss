@@ -2,13 +2,7 @@
 
 .calendar {
     &__dimmed {
-        background-color: black;
-        opacity: 0.6;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
+        @include dimmed;
     }
     &__datepicker {
         /** 캘린더1 */
@@ -20,9 +14,9 @@
                 width: $maxWidth;
                 height: 270px;
             }
-            &__input_wrapper {
-                display: none;
-            }
+            // &__input_wrapper {
+            //     display: none;
+            // }
             &__popout {
                 width: 100%;
                 height: 100%;
@@ -32,7 +26,6 @@
         /** 캘린더2 */
         .dp {
             font-style: normal;
-
             &__theme_light {
                 --dp-background-color: #ffffff;
                 --dp-text-color: #212121;
@@ -55,6 +48,7 @@
                 --dp-highlight-color: rgba(25, 118, 210, 0.1);
             }
             &__main {
+                z-index: 101;
                 position: fixed;
                 bottom: 0;
                 left: 0;
@@ -110,10 +104,5 @@
             }
         }
     }
-
     
-}
-
-.show {
-    display: block;
 }

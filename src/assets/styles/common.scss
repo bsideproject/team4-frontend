@@ -35,6 +35,24 @@
     outline: none; 
     -webkit-tap-highlight-color: transparent; 
   }
+
+  input {
+    @include ptRegular16;
+    // height: 47px;
+    border-radius: 4px;
+    border: 1px solid #E7E7E7;
+    &:focus {
+        outline: 2px solid $primaryColor;
+    }
+    &:disabled {
+        background: #E7E7E7;
+    }
+    &::placeholder {
+      color: #AEAEAE;
+    }
+    padding: 16px;
+}
+
 }
 
 .btn-lg {

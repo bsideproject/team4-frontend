@@ -1,14 +1,21 @@
 <template>
-  <section :class="['calendar', isOpen ? 'show' : '']">
+  <section class="calendar" v-if="isOpen">
     <article class="calendar__dimmed" @click="clickDimmed"></article>
     <article class="calendar__datepicker">
-      <datepicker :id="uid" v-model="picked" :locale="ko" />
+      <Datepicker
+        :id="uid"
+        v-model="picked"
+        weekStart="0"
+        locale="ko"
+        :enableTimePicker="false"
+        inline
+        autoApply
+      />
     </article>
   </section>
 </template>
 
 <script setup>
-import Datepicker from 'vue3-datepicker'
 import {
   defineProps,
   defineEmits,
@@ -18,7 +25,7 @@ import {
   getCurrentInstance,
   onMounted,
 } from 'vue'
-import { ko } from 'date-fns/locale'
+import { dateToStringFormat } from '@utils/common/index.js'
 
 const props = defineProps({
   id: {
@@ -58,7 +65,7 @@ watch(
   () => isOpen.value,
   (newValue) => {
     if (newValue) {
-      document.getElementById(uid.value).click()
+      document.getElementById(uid.value)?.click()
     }
   }
 )
@@ -66,7 +73,7 @@ watch(
 watch(
   () => picked.value,
   (newValue) => {
-    emits('change', newValue)
+    emits('change', dateToStringFormat(newValue))
     closeCalendar()
   }
 )

@@ -32,6 +32,23 @@ const _confirm = async (instance, options) => {
   renderComp.render()
 }
 
+const lpad = (value) => {
+    if (value >= 10) {
+        return value;
+    }
+
+    return `0${value}`;
+}
+
+const dateToStringFormat = (source = new Date(), delimiter = '.') => {
+    const year = source.getFullYear();
+    const month = lpad(source.getMonth() + 1);
+    const day = lpad(source.getDate());
+
+    return [year, month, day].join(delimiter);
+}
+
 export {
-    _confirm
+    _confirm,
+    dateToStringFormat
 }

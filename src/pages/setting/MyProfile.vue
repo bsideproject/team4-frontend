@@ -2,7 +2,7 @@
   <section class="my-profile">
     <article class="my-profile__image">
       <div @click="clickEditProfileImage">
-        <img :src="refImage" />
+        <img :src="refImage" @error="onError" />
       </div>
       <input
         id="iptFile"
@@ -75,12 +75,10 @@ onMounted(() => {
     .catch((error) => {
       console.log(error)
     })
-
-  if (!refImage.value) {
-    refImage.value = require('@images/icons/profile_big_default.svg')
-  }
 })
-
+const onError = (e) => {
+  e.target.src = require('@images/icons/profile_big_default.svg')
+}
 const clickEditProfile = () => {
   if (isOnEdit.value) {
     editProfile({ name: refName.value })
