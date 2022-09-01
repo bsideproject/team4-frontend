@@ -17,6 +17,10 @@ router.beforeEach((to, from, next) => {
   store.commit('headerStore/setTitle', title)
   store.commit('headerStore/setHeaderType', headerType)
 
+  const browserTitle = document.title;
+  const serviceName = browserTitle.split('-')[0]?.trim();
+  document.title = title ? `${serviceName} - ${title}` : serviceName
+
   // if (auth) {
   //   const token = getToken()
   //   if (token) {
