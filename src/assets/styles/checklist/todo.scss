@@ -1,0 +1,167 @@
+@charset 'utf-8';
+
+.todo {
+    min-height: $minHeight;
+    &__form {
+        padding: 40px 20px;
+        div {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            label {
+                padding: 8px 0;
+            }    
+        }
+    }
+    &__date-area {
+        position: relative;
+        input {
+            padding: 16px 16px 16px 40px;
+        }
+        
+        span {
+            position: absolute;
+            top: 48px;
+            left: 10px;
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: url('@images/icons/calendar.svg') center center no-repeat;
+        }
+    }
+    &__repeat {
+        display: flex;
+        // justify-content: center;
+        flex-direction: column;
+    }
+    &__repeat-title {
+        position: relative;
+        margin: 0 auto;
+        width: 320px;
+        height: 30px;
+        border: 1px solid $primaryColor;
+        border-radius: 4px;
+        padding: 16px;
+
+        text-align: left;
+        line-height: 30px;
+
+        &::after {
+            position: absolute;
+            top: 20px;
+            right: 16px;
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: url('@images/icons/arrow_up.svg') center center no-repeat;
+        }
+
+        &.on::after {
+        background: url('@images/icons/arrow_down.svg') center center no-repeat;
+        }
+
+        span {
+            margin-right: 8px;
+        }
+    }
+
+    &__repeat-area {
+        @include ptRegular16;
+        margin-top: 40px;
+        height: 150px;
+    }
+
+    &__repeat-tab {
+        margin-bottom: 20px;
+        ul {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #E7E7E7;
+            li {
+                padding: 10px;
+                &.on {
+                    border-bottom: 1px solid $primaryColor;
+                }
+            }
+        }
+    }
+
+    &__tab-none {
+        height: 106px;
+        text-align: center;
+        line-height: 106px;
+        color: #AEAEAE;
+    }
+
+    &__tab-every-day {
+        input {
+            text-align: center;
+        }
+    }
+
+    &__tab-every-week {
+        ul {
+            display: flex;
+            justify-content: center;
+            li {
+                margin: 0 4px 0 4px;
+                width: 20px;
+                height: 20px;
+                background-color: #F4F4F4;
+                padding: 8px;
+            }
+        }
+    }
+
+    &__tab-every-month {
+        div {
+            display: flex;
+            justify-content: left;
+            // flex-direction: row;
+            padding: 8px 20px 0 20px;
+
+            input[type="checkbox"] {
+                width: 20px;
+                height: 20px;
+                margin-right: 8px;
+            }
+        }
+    }
+
+    &__tab-every-year {
+        height: 106px;
+        text-align: center;
+        line-height: 106px;
+    }
+
+
+    
+    &__repeat-complete {
+        width: 120px;
+        height: 32px;
+        border: 1px solid #E7E7E7;
+        border-radius: 100px;
+        line-height: 32px;
+        position: relative;
+        padding-left: 48px;
+        margin-top: 40px;
+
+        &::before {
+            position: absolute;
+            top: 0px;
+            left: 24px;
+            content: '';
+            width: 40px;
+            height: 30px;
+            background: url('@images/icons/profile_s_pet.svg') center center no-repeat;
+        }
+    }
+
+    .bk-bold {
+        @include ptBold16;
+    }
+    .pr-regular {
+        @include ptRegular16;
+        color: $primaryColor;
+    }
+}
