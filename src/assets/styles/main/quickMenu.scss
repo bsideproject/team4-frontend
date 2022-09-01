@@ -15,7 +15,7 @@
     justify-content: space-around;
     &__item {
       .item__count {
-        background: #f4f4f4;
+        background: $backgroundColor;
         border-radius: 100px;
         width: 60px;
         height: 90px;

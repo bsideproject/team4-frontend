@@ -40,12 +40,12 @@
     @include ptRegular16;
     // height: 47px;
     border-radius: 4px;
-    border: 1px solid #E7E7E7;
+    border: 1px solid $borderColor;
     &:focus {
         outline: 2px solid $primaryColor;
     }
     &:disabled {
-        background: #E7E7E7;
+        background: $disabledColor;
     }
     &::placeholder {
       color: #AEAEAE;
@@ -59,14 +59,14 @@
   &-default {
     @include btnLg;
     @include ptBold20;
-    background: #F4F4F4;  
+    background: $backgroundColor;  
     color: #737373;
   }
   
   &-disabled {
     @include btnLg;
     @include ptBold20;
-    background: #F4F4F4;  
+    background: $backgroundColor;  
     color: #CFCFCF;
   }
   &-enabled {
@@ -87,14 +87,14 @@
   &-default {
     @include btnMd;
     @include ptRegular16;
-    background: #F4F4F4;  
+    background: $backgroundColor;  
     color: #737373;
   }
   
   &-disabled {
     @include btnMd;
     @include ptRegular16;
-    background: #F4F4F4;  
+    background: $backgroundColor;  
     color: #CFCFCF;
   }
   &-enabled {

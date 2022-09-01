@@ -3,6 +3,9 @@
 $maxWidth: 360px;
 $minHeight: 800px;
 $primaryColor: #5794F0;
+$backgroundColor: #F4F4F4;
+$borderColor: #E7E7E7;
+$disabledColor: #E7E7E7;
 
 @mixin dimmed {
     position: fixed;

@@ -36,7 +36,7 @@
         height: 80px;
         line-height: 95px;
         border-radius: 8px;
-        background-color: #F4F4F4;
+        background-color: $backgroundColor;
 
         a {
             width: 100%;
@@ -66,7 +66,7 @@
             height: 64px;
             margin: 0px 20px 0px 20px;
             padding: 0px 8px 0px 8px;
-            border-bottom: 1px solid #F4F4F4;
+            border-bottom: 1px solid $borderColor;
 
             a {
                 @include ptBold16;
