@@ -48,4 +48,19 @@
             }
         }
     }
+
+    &__quick {
+        padding: 20px 28px;
+        div {
+            margin: 20px auto;
+            text-align: left
+        }
+        p {
+            @include ptRegular14;
+            color: #AEAEAE;
+        }
+        input {
+            width: 90%;
+        }
+    }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="quickMenu">
     <div class="quickMenu-btn">
-      <a href="/quickNote" class="quickMenu-btn--edit">편집</a>
+      <a href="/checklist/quick" class="quickMenu-btn--edit">편집</a>
     </div>
     <div class="quickMenu-group">
       <div class="quickMenu-group__item">
