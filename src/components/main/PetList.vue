@@ -1,7 +1,7 @@
 <template>
-  <div class="petProfile section">
-    <div class="petProfile-wrapper" v-if="petList.length !== 0">
-      <div class="petProfile-wrapper__item active">
+  <div class="pet-list section">
+    <div class="pet-list-wrapper" v-if="petList.length !== 0">
+      <div class="pet-list-wrapper__item active">
         <p class="item__name">멍멍이</p>
         <div
           class="item__photo"
@@ -10,7 +10,7 @@
           <img class="item__photo--round" src="@images/pet_02.jpeg" alt="" />
         </div>
       </div>
-      <div class="petProfile-wrapper__item">
+      <div class="pet-list-wrapper__item">
         <p class="item__name">까꿍이</p>
         <div class="item__photo">
           <img class="item__photo--round" src="@images/pet_02.jpeg" alt="" />

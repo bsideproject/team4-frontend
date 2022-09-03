@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-.tabMenu {
+.tab-menu {
   padding: 0 20px;
   position: relative;
   left: 0;
@@ -9,17 +9,26 @@
 
   .wrapper {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 12px 0;
     background: $backgroundColor;
     border: 1px solid #000000;
     margin: auto;
+
   }
 
   &__tab {
+    @include ptRegular16;
+
     &.active {
-      font-weight: 700;
+      @include ptBold16;
       color: #5794F0;
     }
+  }
+
+  &__split {
+    background: #CFCFCF;
+    width: 1px;
+    height: 16px;
   }
 }
