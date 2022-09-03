@@ -1,5 +1,5 @@
 <template>
-  <pet-profile />
+  <pet-list />
   <tab-menu />
   <weekly-calendar v-if="petList.length !== 0" />
 
@@ -33,7 +33,7 @@
 
 
 <script setup>
-import PetProfile from '@/components/main/PetProfile.vue'
+import PetList from '@/components/main/PetList.vue'
 import TabMenu from '@/components/main/TabMenu.vue'
 import WeeklyCalendar from '@/components/main/WeeklyCalendar'
 import QuickMenu from '@/components/main/QuickMenu'
