@@ -1,11 +1,11 @@
 <template>
-  <div class="tabMenu">
+  <div class="tab-menu">
     <div class="wrapper">
-      <router-link to="/" class="tabMenu__tab active">
-        <span>체크리스트</span>
-      </router-link>
-      <button class="tabMenu__tab" @click="comingSoon">양육일지</button>
-      <button class="tabMenu__tab" @click="comingSoon">건강일지</button>
+      <router-link to="/" class="tab-menu__tab active">체크리스트</router-link>
+      <span class="tab-menu__split"></span>
+      <a href="#" class="tab-menu__tab" @click="comingSoon">양육일지</a>
+      <span class="tab-menu__split"></span>
+      <a href="#" class="tab-menu__tab" @click="comingSoon">건강일지</a>
     </div>
   </div>
 </template>

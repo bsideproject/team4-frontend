@@ -1,7 +1,7 @@
 <template>
-  <div class="listTable">
-    <ul class="listTable-cardList">
-      <li class="listTable-cardList__card">
+  <div class="list-table">
+    <ul class="list-table-cardList">
+      <li class="list-table-cardList__card">
         <div class="card__check">
           <img src="@images/icons/todo.png" alt="" />
         </div>
@@ -10,7 +10,7 @@
           <p class="time">오후 5:00 ~ 오후 12:00</p>
         </div>
       </li>
-      <li class="listTable-cardList__card">
+      <li class="list-table-cardList__card">
         <div class="card__check">
           <img src="@images/icons/footprint_empty.png" alt="" />
         </div>
@@ -19,7 +19,7 @@
           <p class="time">오후 5:00 ~ 오후 12:00</p>
         </div>
       </li>
-      <li class="listTable-cardList__card">
+      <li class="list-table-cardList__card">
         <div class="card__check">
           <img src="@images/icons/footprint_full.png" alt="" />
         </div>

@@ -2,6 +2,7 @@
   <div class="weeklyCalendar section">
     <div class="weeklyCalendar-monthWrapper">
       <p class="weeklyCalendar-month" @click="clickWeekMonth">{{ month }}월</p>
+      <span class="arrow-down"></span>
       <calendar ref="compCalendar" id="mainCalendar" @change="changeCalendar" />
     </div>
     <div class="weeklyCalendar-dateWrapper">

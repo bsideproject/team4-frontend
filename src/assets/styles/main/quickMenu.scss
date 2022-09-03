@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-.quickMenu {
+.quick-menu {
   padding: 20px;
   &-btn {
     text-align: right;
@@ -19,17 +19,21 @@
         border-radius: 100px;
         width: 60px;
         height: 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         &.fulfilled {
           color: #AEAEAE;
         }
 
         &--current {
-          font-size: 28px;
-          font-weight: 700;
+          @include ppBold28;
+          border-bottom: 1px solid $borderColor;
         }
         &--total {
-          font-size: 16px;
+          @include ppRegular16;
         }
       }
       .item__label {
