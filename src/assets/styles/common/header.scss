@@ -4,6 +4,9 @@
   .bg-primary {
     background: $primaryColor;
   }
+  .bd-bottom {
+    border-bottom: 1px solid $borderColor;
+  }
   
   &-wrapper {
     height: 52px;
@@ -57,6 +60,15 @@
       width: 24px;
       height: 24px;
       background: url('@images/icons/more.svg') center center no-repeat;
+    }
+
+    &__share {
+      position: absolute;
+      right: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/share.svg') center center no-repeat;
     }
   }
 }

@@ -3,7 +3,10 @@
     <div class="petProfile-wrapper" v-if="petList.length !== 0">
       <div class="petProfile-wrapper__item active">
         <p class="item__name">멍멍이</p>
-        <div class="item__photo">
+        <div
+          class="item__photo"
+          @click="router.push({ name: ROUTE.Pet.Profile })"
+        >
           <img class="item__photo--round" src="@images/pet_02.jpeg" alt="" />
         </div>
       </div>
@@ -18,21 +21,15 @@
 </template>
 
 
-<script>
+<script setup>
+import ROUTE from '@constants/route.json'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import '@store/pet/petStore.js'
 
-export default {
-  setup() {
-    const store = useStore()
-    const petList = store.state.petStore.petList
-
-    return {
-      petList,
-      store,
-    }
-  },
-}
+const store = useStore()
+const router = useRouter()
+const petList = store.state.petStore.petList
 </script>
 
 <style lang="scss" scoped>
