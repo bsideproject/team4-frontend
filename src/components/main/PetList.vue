@@ -36,5 +36,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@styles/main/petProfile.scss';
+@import '@styles/main/petList.scss';
 </style>
