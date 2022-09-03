@@ -3,6 +3,7 @@
     "Login": "Login",
     "Checklist": {
         "Page": "ChecklistPage",
+        "Quick": "Quick",
         "Schedule": "Schedule",
         "Todo": "Todo"
     },
