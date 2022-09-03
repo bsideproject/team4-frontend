@@ -20,7 +20,7 @@
       </div>
       <div>
         <div class="setting-main__info_icon">
-          <router-link to="#">
+          <router-link to="/pet/profile">
             <img src="@images/icons/footprint_check.svg" />
           </router-link>
         </div>

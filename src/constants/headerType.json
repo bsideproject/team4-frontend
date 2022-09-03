@@ -2,5 +2,6 @@
     "MAIN": "main",
     "CHECK": "check",
     "NONE": "none",
-    "MORE": "more"
+    "MORE": "more",
+    "SHARE": "share"
 }

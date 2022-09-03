@@ -7,22 +7,40 @@
       <router-link to="/setting" class="header-wrapper__menu" />
     </article>
 
-    <article class="header-wrapper" v-else-if="getHeaderType === 'check'">
+    <article
+      class="header-wrapper bd-bottom"
+      v-else-if="getHeaderType === 'check'"
+    >
       <a @click="goBack" class="header-wrapper__back"></a>
       <div class="header-wrapper__title">{{ getTitle }}</div>
       <button class="header-wrapper__check"></button>
     </article>
 
-    <article class="header-wrapper" v-else-if="getHeaderType === 'more'">
+    <article
+      class="header-wrapper bd-bottom"
+      v-else-if="getHeaderType === 'more'"
+    >
       <a @click="goBack" class="header-wrapper__back"></a>
       <div class="header-wrapper__title">{{ getTitle }}</div>
       <button class="header-wrapper__more" @click="clickMore"></button>
       <bottom-sheet ref="optionBottomSheet" :option-list="getMoreOptionList" />
     </article>
 
-    <article class="header-wrapper" v-else-if="getHeaderType === 'none'">
+    <article
+      class="header-wrapper bd-bottom"
+      v-else-if="getHeaderType === 'none'"
+    >
       <a @click="goBack" class="header-wrapper__back"></a>
       <div class="header-wrapper__title">{{ getTitle }}</div>
+    </article>
+
+    <article
+      class="header-wrapper bd-bottom"
+      v-else-if="getHeaderType === 'share'"
+    >
+      <a @click="goBack" class="header-wrapper__back"></a>
+      <div class="header-wrapper__title">{{ getTitle }}</div>
+      <button class="header-wrapper__share" @click="clickShare"></button>
     </article>
   </section>
 </template>
@@ -52,6 +70,9 @@ const goBack = () => {
 }
 const clickMore = () => {
   optionBottomSheet.value.openBottomSheet()
+}
+const clickShare = () => {
+  router.push({ name: ROUTE.Pet.Share })
 }
 </script>
 

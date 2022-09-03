@@ -1,0 +1,113 @@
+@charset 'utf-8';
+
+.pet-profile {
+    min-height: $minHeight;
+    padding: 0 20px;
+
+    &__represent {
+        margin-top: 24px;
+        border: 1px solid #505050;
+        border-radius: 8px;
+        text-align: right;
+        padding: 8px;
+        overflow: hidden;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img {
+            width: 60px;
+            height: 60px;
+            // border: 1px solid #505050;            
+            border-radius: 50%;
+        }
+        span {
+            margin-left: 8px;
+            position: relative;
+            
+        }
+        div {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &__detail {
+        float: right;
+        padding: 16px;
+        margin-right: 8px;
+        width: 70%;
+        background: $backgroundColor;
+        border-radius: 4px;
+        div {
+            display: flex;
+            justify-content: space-between;
+            span {
+                margin: 4px 0;
+            }
+            span:nth-child(1) {
+                @include ptBold16;
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 14px;
+            }
+            span:nth-child(2) {
+                @include ptRegular12;
+            }
+        }
+    }
+
+    &__others {
+        div {
+            margin-top: 12px;
+        }
+    }
+
+    &__share {
+        padding-top: 12px;
+        div {
+            margin-top: 12px;
+        }
+    }
+
+    .representative {
+        content: '';
+        width: 34px;
+        height: 34px;
+        background: url('@images/icons/representative_pet.svg') center center no-repeat;
+        background-color: $backgroundColor;
+        border-radius: 50%;
+    }
+
+    .edit {
+        @include ptRegular14;
+        background: $backgroundColor;
+        border-radius: 6px;
+        margin: 0 8px;
+        color: #737373;
+        width: 54px;
+        height: 34px;
+    }
+
+    .share {
+        @include ptRegular14;
+        background: $backgroundColor;
+        border-radius: 6px;
+        margin: 0 8px;
+        color: #737373;
+        width: 54px;
+        height: 34px;
+    }
+
+    .share-bedge {
+        margin: 0;
+        position: absolute;
+        top: 0;
+        content: '';
+        width: 24px;
+        height: 24px;
+        background: url('@images/icons/share_group.svg') center center no-repeat;
+    }
+}

@@ -11,9 +11,7 @@ const Main = () => import('@/pages/main/Main.vue')
 const LoginPage = () => import('@pages/login/LoginPage.vue')
 const SettingPage = () => import('@pages/setting/SettingPage.vue')
 const Group = () => import('@pages/group/Group.vue')
-const quickNote = () => import('@pages/quickNote/quickNote.vue')
-// const CreateProfile = () => import('@pages/profile/CreateProfile.vue')
-const PetPage = () => import('@pages/pet/CreatePet.vue')
+const PetPage = () => import('@pages/pet/PetPage.vue')
 const ChecklistPage = () => import('@pages/checklist/ChecklistPage.vue')
 
 export default [
@@ -57,17 +55,12 @@ export default [
     }
   },
   {
-    path: '/quickNote',
-    component: quickNote,
-  },
-  {
   path: '/pet',
     component: PetPage,
     children: PetRouter,
     meta: {
       auth: true,
-      title: '그룹 정보',
-      headerType: HEADER_TYPE.MORE
+      title: '펫 정보',
     }
   },
   {
@@ -79,13 +72,4 @@ export default [
       headerType: HEADER_TYPE.NONE
     }
   }
-  // {
-  //   path: '/profile/create',
-  //   component: CreateProfile,
-  //   meta: {
-  //     auth: true,
-  //     title: '펫 등록하기',
-  //     headerType: HEADER_TYPE.MORE
-  //   }
-  // }
 ]

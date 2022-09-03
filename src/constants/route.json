@@ -23,6 +23,8 @@
     "Pet": {
         "Page": "PetPage",
         "Create": "Create",
-        "Modify": "Modify"
+        "Modify": "Modify",
+        "Profile": "PetProfile",
+        "Share": "PetShare"
     }
 }
