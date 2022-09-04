@@ -2,114 +2,114 @@
 
 $maxWidth: 360px;
 $minHeight: 800px;
-$primaryColor: #5794F0;
-$backgroundColor: #F4F4F4;
-$borderColor: #E7E7E7;
-$disabledColor: #E7E7E7;
+$primaryColor: #5794f0;
+$backgroundColor: #f4f4f4;
+$borderColor: #e7e7e7;
+$disabledColor: #e7e7e7;
 
 @mixin dimmed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: 0.7;
-    z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.7;
+  z-index: 99;
 }
 
 @mixin btnMd {
-    width: 136px;
-    height: 51px;
-    border-radius: 4px;
+  width: 136px;
+  height: 51px;
+  border-radius: 4px;
 }
 
 @mixin btnLg {
-    width: 320px;
-    height: 56px;
-    border-radius: 4px;
+  width: 320px;
+  height: 56px;
+  border-radius: 4px;
 }
 
 @mixin ptBold28 {
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 33px;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 33px;
 }
 
 @mixin ptBold24 {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 29px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
 }
 
 @mixin ptBold20 {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 @mixin ptBold16 {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
 }
 
 @mixin ppBold28 {
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 42px;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 42px;
 }
 
 @mixin ppBold24 {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 36px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
 }
 
 @mixin ppBold20 {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 30px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 @mixin ppBold16 {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 @mixin ptRegular16 {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
 }
 
 @mixin ptRegular14 {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 @mixin ptRegular12 {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
 }
 
 @mixin ppRegular16 {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 @mixin ppRegular14 {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 21px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
 }
 
 @mixin ppRegular12 {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 18px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
 }

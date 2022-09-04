@@ -1,9 +1,8 @@
-
 import { createVNode, render } from 'vue'
 
 const renderComponent = ({ el, appContext, component, props }) => {
   let vnode = createVNode(component, props)
-  
+
   return {
     render() {
       vnode.appContext = { ...appContext }
@@ -12,7 +11,7 @@ const renderComponent = ({ el, appContext, component, props }) => {
         vnode = undefined
       }
       render(vnode, el)
-    }
+    },
   }
 }
 
@@ -25,7 +24,6 @@ const _confirm = async (instance, options) => {
     component: (await import('@/components/common/Confirm.vue')).default,
     props: {
       options,
-      
     },
   })
 
@@ -33,22 +31,19 @@ const _confirm = async (instance, options) => {
 }
 
 const lpad = (value) => {
-    if (value >= 10) {
-        return value;
-    }
+  if (value >= 10) {
+    return value
+  }
 
-    return `0${value}`;
+  return `0${value}`
 }
 
 const dateToStringFormat = (source = new Date(), delimiter = '.') => {
-    const year = source.getFullYear();
-    const month = lpad(source.getMonth() + 1);
-    const day = lpad(source.getDate());
+  const year = source.getFullYear()
+  const month = lpad(source.getMonth() + 1)
+  const day = lpad(source.getDate())
 
-    return [year, month, day].join(delimiter);
+  return [year, month, day].join(delimiter)
 }
 
-export {
-    _confirm,
-    dateToStringFormat
-}
+export { _confirm, dateToStringFormat }

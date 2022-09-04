@@ -14,7 +14,6 @@
     background: $backgroundColor;
     border: 1px solid #000000;
     margin: auto;
-
   }
 
   &__tab {
@@ -22,12 +21,12 @@
 
     &.active {
       @include ptBold16;
-      color: #5794F0;
+      color: #5794f0;
     }
   }
 
   &__split {
-    background: #CFCFCF;
+    background: #cfcfcf;
     width: 1px;
     height: 16px;
   }

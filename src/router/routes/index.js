@@ -21,8 +21,8 @@ export default [
     component: Main,
     meta: {
       auth: true,
-      headerType: HEADER_TYPE.MAIN
-    }
+      headerType: HEADER_TYPE.MAIN,
+    },
   },
   {
     path: '/login',
@@ -31,8 +31,8 @@ export default [
     meta: {
       auth: false,
       title: '로그인',
-      headerType: HEADER_TYPE.NONE
-    }
+      headerType: HEADER_TYPE.NONE,
+    },
   },
   {
     path: '/setting',
@@ -41,8 +41,8 @@ export default [
     meta: {
       auth: true,
       title: '설정',
-      headerType: HEADER_TYPE.NONE
-    }
+      headerType: HEADER_TYPE.NONE,
+    },
   },
   {
     path: '/group',
@@ -51,25 +51,25 @@ export default [
     meta: {
       auth: true,
       title: '그룹 정보',
-      headerType: HEADER_TYPE.MORE
-    }
+      headerType: HEADER_TYPE.MORE,
+    },
   },
   {
-  path: '/pet',
+    path: '/pet',
     component: PetPage,
     children: PetRouter,
     meta: {
       auth: true,
       title: '펫 정보',
-    }
+    },
   },
   {
-  path: '/checklist',
+    path: '/checklist',
     component: ChecklistPage,
     children: ChecklistRouter,
     meta: {
       auth: true,
-      headerType: HEADER_TYPE.NONE
-    }
-  }
+      headerType: HEADER_TYPE.NONE,
+    },
+  },
 ]

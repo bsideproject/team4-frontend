@@ -47,21 +47,7 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {
-      "vue/multi-word-component-names": [
-        "error",
-        {
-          "ignores": [
-            "App",
-            "Header",
-            "Footer",
-            "Login",
-            "Gnb",
-            "Calendar"
-          ]
-        }
-      ]
-    }
+    "rules": {}
   },
   "browserslist": [
     "> 1%",

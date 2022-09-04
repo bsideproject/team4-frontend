@@ -5,6 +5,4 @@ const makeModuleTypes = (types = []) => {
   }, {})
 }
 
-export {
-    makeModuleTypes
-}
+export { makeModuleTypes }

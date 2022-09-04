@@ -7,7 +7,7 @@
   .bd-bottom {
     border-bottom: 1px solid $borderColor;
   }
-  
+
   &-wrapper {
     height: 52px;
     position: relative;
@@ -36,24 +36,24 @@
     }
 
     &__back {
-       position: absolute;
-       left: 16px;
-       content: '';
-       width: 24px;
-       height: 24px;
-       background: url('@images/icons/back.svg') center center no-repeat;
-     }
- 
-     &__check {
-       position: absolute;
-       right: 16px;
-       content: '';
-       width: 24px;
-       height: 24px;
-       background: url('@images/icons/check.svg') center center no-repeat;
-     }
+      position: absolute;
+      left: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/back.svg') center center no-repeat;
+    }
 
-     &__more {
+    &__check {
+      position: absolute;
+      right: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/check.svg') center center no-repeat;
+    }
+
+    &__more {
       position: absolute;
       right: 16px;
       content: '';
@@ -72,4 +72,3 @@
     }
   }
 }
-  

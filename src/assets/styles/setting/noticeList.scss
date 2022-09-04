@@ -18,7 +18,10 @@
             position: absolute;
             top: 35px;
             right: 9px;
-            content: '>';
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: url('@images/icons/arrow_right.svg') center center no-repeat;
         }
     }
 

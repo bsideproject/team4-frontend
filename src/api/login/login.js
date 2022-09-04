@@ -1,4 +1,4 @@
-import axios from "@/api/axios/index.js";
+import axios from '@/api/axios/index.js'
 
 const login = (data) => {
   console.log('login api', data)
@@ -6,6 +6,4 @@ const login = (data) => {
   return axios.post('/api/login', data)
 }
 
-export {
-  login
-}
+export { login }

@@ -8,7 +8,8 @@
   text-align: center;
 }
 
-*, body {
+*,
+body {
   margin: 0;
   padding: 0;
   // font-family: Poppins, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
@@ -29,11 +30,13 @@
     list-style: none;
   }
 
-  a, a:hover, a:visited { 
-    text-decoration: none; 
-    color: #111; 
-    outline: none; 
-    -webkit-tap-highlight-color: transparent; 
+  a,
+  a:hover,
+  a:visited {
+    text-decoration: none;
+    color: #111;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   input {
@@ -42,44 +45,43 @@
     border-radius: 4px;
     border: 1px solid $borderColor;
     &:focus {
-        outline: 2px solid $primaryColor;
+      outline: 2px solid $primaryColor;
     }
     &:disabled {
-        background: $disabledColor;
+      background: $disabledColor;
     }
     &::placeholder {
-      color: #AEAEAE;
+      color: #aeaeae;
     }
     padding: 16px;
-}
-
+  }
 }
 
 .btn-lg {
   &-default {
     @include btnLg;
     @include ptBold20;
-    background: $backgroundColor;  
+    background: $backgroundColor;
     color: #737373;
   }
-  
+
   &-disabled {
     @include btnLg;
     @include ptBold20;
-    background: $backgroundColor;  
-    color: #CFCFCF;
+    background: $backgroundColor;
+    color: #cfcfcf;
   }
   &-enabled {
     @include btnLg;
     @include ptBold20;
-    background: #5794F0;
-    color: #FBFBFB;
+    background: #5794f0;
+    color: #fbfbfb;
   }
   &-pressed {
     @include btnLg;
     @include ptBold20;
-    background: #2773E4;
-    color: #FBFBFB;
+    background: #2773e4;
+    color: #fbfbfb;
   }
 }
 
@@ -87,38 +89,33 @@
   &-default {
     @include btnMd;
     @include ptRegular16;
-    background: $backgroundColor;  
+    background: $backgroundColor;
     color: #737373;
   }
-  
+
   &-disabled {
     @include btnMd;
     @include ptRegular16;
-    background: $backgroundColor;  
-    color: #CFCFCF;
+    background: $backgroundColor;
+    color: #cfcfcf;
   }
   &-enabled {
     @include btnMd;
     @include ptRegular16;
-    background: #5794F0;
-    color: #FBFBFB;
+    background: #5794f0;
+    color: #fbfbfb;
   }
   &-pressed {
     @include btnMd;
     @include ptRegular16;
-    background: #2773E4;
-    color: #FBFBFB;
+    background: #2773e4;
+    color: #fbfbfb;
   }
 }
 
 .hide {
   display: none;
 }
-
-
-
-
-
 
 .footer {
   padding: 20px 0;
