@@ -5,8 +5,8 @@ const instance = axios.create({
   baseURL: process.env.VUE_APP_API_URL,
   timeout: 5000,
   headers: {
-    'Content-Type': 'application/json;charset=utf-8'
-  }
+    'Content-Type': 'application/json;charset=utf-8',
+  },
 })
 
 instance.interceptors.request.use(
@@ -29,15 +29,12 @@ instance.interceptors.request.use(
   }
 )
 
-
 instance.interceptors.response.use(
   function (response) {
-
     return Promise.resolve(response)
   },
 
   function (error) {
-
     return Promise.reject(error)
   }
 )

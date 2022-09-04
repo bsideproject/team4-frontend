@@ -1,22 +1,22 @@
 @charset 'utf-8';
 
 .notice-detail {
-    min-height: $minHeight;
-    padding-top: 16px;
-    text-align: left;
+  min-height: $minHeight;
+  padding-top: 16px;
+  text-align: left;
 
-    &__title {
-        @include ptBold16;
-        padding: 0 20px 0 20px;
-    }
-    &__date {
-        @include ppRegular12;
-        padding: 8px 20px 12px 20px;
-        color: #CFCFCF;
-        border-bottom: 1px solid $borderColor;
-    }
-    &__content {
-        @include ptRegular14;
-        padding: 12px 20px 0 20px;
-    }
+  &__title {
+    @include ptBold16;
+    padding: 0 20px 0 20px;
+  }
+  &__date {
+    @include ppRegular12;
+    padding: 8px 20px 12px 20px;
+    color: #cfcfcf;
+    border-bottom: 1px solid $borderColor;
+  }
+  &__content {
+    @include ptRegular14;
+    padding: 12px 20px 0 20px;
+  }
 }

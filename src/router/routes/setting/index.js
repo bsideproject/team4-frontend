@@ -9,54 +9,54 @@ const Feedback = () => import('@pages/setting/Feedback.vue')
 const Withdraw = () => import('@pages/setting/Withdraw.vue')
 
 export default [
-    {
-        path: '',
-        name: ROUTE.Setting.Main,
-        component: SettingMain,
+  {
+    path: '',
+    name: ROUTE.Setting.Main,
+    component: SettingMain,
+  },
+  {
+    path: 'profile',
+    name: ROUTE.Setting.Profile,
+    component: MyProfile,
+  },
+  {
+    path: 'licence',
+    name: ROUTE.Setting.Licence,
+    component: Licence,
+    meta: {
+      title: '라이선스',
     },
-    {
-        path: 'profile',
-        name: ROUTE.Setting.Profile,
-        component: MyProfile,
+  },
+  {
+    path: 'notice',
+    name: ROUTE.Setting.Notice.List,
+    component: NoticeList,
+    meta: {
+      title: '공지사항',
     },
-    {
-        path: 'licence',
-        name: ROUTE.Setting.Licence,
-        component: Licence,
-        meta: {
-            title: '라이선스'
-        }
+  },
+  {
+    path: 'notice/detail/:no',
+    name: ROUTE.Setting.Notice.Detail,
+    component: NoticeDetail,
+    meta: {
+      title: '공지사항',
     },
-    {
-        path: 'notice',
-        name: ROUTE.Setting.Notice.List,
-        component: NoticeList,
-        meta: {
-            title: '공지사항'
-        }
+  },
+  {
+    path: 'feedback',
+    name: ROUTE.Setting.Feedback,
+    component: Feedback,
+    meta: {
+      title: '피드백',
     },
-    {
-        path: 'notice/detail/:no',
-        name: ROUTE.Setting.Notice.Detail,
-        component: NoticeDetail,
-        meta: {
-            title: '공지사항'
-        }
+  },
+  {
+    path: 'withdraw',
+    name: ROUTE.Setting.Withdraw,
+    component: Withdraw,
+    meta: {
+      title: '회원탈퇴',
     },
-    {
-        path: 'feedback',
-        name: ROUTE.Setting.Feedback,
-        component: Feedback,
-        meta: {
-            title: '피드백'
-        }
-    },
-    {
-        path: 'withdraw',
-        name: ROUTE.Setting.Withdraw,
-        component: Withdraw,
-        meta: {
-            title: '회원탈퇴'
-        }
-    },
+  },
 ]

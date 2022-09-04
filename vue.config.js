@@ -19,32 +19,32 @@ module.exports = defineConfig({
         '@api': path.join(__dirname, 'src/api'),
         '@routes': path.join(__dirname, 'src/router/routes'),
         '@pages': path.join(__dirname, 'src/pages'),
-        '@store': path.join(__dirname, 'src/store/modules')
-      }
-    }
-  },  
+        '@store': path.join(__dirname, 'src/store/modules'),
+      },
+    },
+  },
   css: {
     loaderOptions: {
       sass: {
         additionalData: `
           @import "@/assets/styles/mixins.scss";
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   devServer: {
     port: process.env.VUE_APP_BASE_PORT,
     proxy: {
       '^/api': {
         target: process.env.VUE_APP_API_URL,
-        changeOrigin: true
-      }
-    }
+        changeOrigin: true,
+      },
+    },
   },
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     // 파일 경로 대소문자 플러그인 제거
     config.plugins.delete('case-sensitive-paths')
-  }
+  },
 })
 
 /**

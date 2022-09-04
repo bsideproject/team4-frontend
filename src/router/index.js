@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from 'vue-router';
+import { createWebHistory, createRouter } from 'vue-router'
 import routes from './routes/index.js'
 import store from '../store/index.js'
 // import { getToken } from '@utils/login/index.js'
@@ -7,7 +7,7 @@ import store from '../store/index.js'
 export const router = createRouter({
   history: createWebHistory(),
   routes,
-});
+})
 
 router.beforeEach((to, from, next) => {
   console.log('beforeEach', to)
@@ -17,8 +17,8 @@ router.beforeEach((to, from, next) => {
   store.commit('headerStore/setTitle', title)
   store.commit('headerStore/setHeaderType', headerType)
 
-  const browserTitle = document.title;
-  const serviceName = browserTitle.split('-')[0]?.trim();
+  const browserTitle = document.title
+  const serviceName = browserTitle.split('-')[0]?.trim()
   document.title = title ? `${serviceName} - ${title}` : serviceName
 
   // if (auth) {

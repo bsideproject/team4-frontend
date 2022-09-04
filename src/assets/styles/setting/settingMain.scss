@@ -73,8 +73,11 @@
 
                 &::after {
                     position: absolute;
-                    right: 28px;
-                    content: '>';
+                    right: 28px; 
+                    content: '';
+                    width: 24px;
+                    height: 24px;
+                    background: url('@images/icons/arrow_right.svg') center center no-repeat;
                 }
             }
         }

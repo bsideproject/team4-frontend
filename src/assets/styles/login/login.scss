@@ -1,61 +1,63 @@
 @charset 'utf-8';
 
 .login {
-    min-height: $minHeight;
-    
-    margin: auto;
-    text-align: center;
+  min-height: $minHeight;
 
-    &__logo {
-        vertical-align: middle;
-        padding-top: 122px;
-        img {
-            width: 303px;
-            height: 119px;
-        }
+  margin: auto;
+  text-align: center;
+
+  &__logo {
+    vertical-align: middle;
+    padding-top: 122px;
+    img {
+      width: 303px;
+      height: 119px;
     }
+  }
 
-    &__sns {
-        display: flex;        
-        justify-content: center;
-        flex-direction: column;
-        padding-top: 102px;
-        button {
-            width: 320px;
-            height: 56px;
-            margin: 0 20px 16px 20px;
-            padding: 8px 16px;
-            border-radius: 2px;
-            box-sizing: border-box;
-            gap: 4px;
-            position: relative;
+  &__sns {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 102px;
+    button {
+      width: 320px;
+      height: 56px;
+      margin: 0 20px 16px 20px;
+      padding: 8px 16px;
+      border-radius: 2px;
+      box-sizing: border-box;
+      gap: 4px;
+      position: relative;
 
-            &.kakao {
-                border: 0;
-                background-color: #f5CA0F;
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: 8px;
-                    left: 16px;
-                    width: 40px;
-                    height: 40px;
-                    background: url('@images/icons/login_kakao.svg') center center no-repeat;
-                }
-            }
-
-            &.google {
-                border: 1px solid #000000;
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: 8px;
-                    left: 16px;
-                    width: 40px;
-                    height: 40px;
-                    background: url('@images/icons/login_google.svg') center center no-repeat;
-                }
-            }
+      &.kakao {
+        border: 0;
+        background-color: #f5ca0f;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 8px;
+          left: 16px;
+          width: 40px;
+          height: 40px;
+          background: url('@images/icons/login_kakao.svg') center center
+            no-repeat;
         }
+      }
+
+      &.google {
+        border: 1px solid #000000;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 8px;
+          left: 16px;
+          width: 40px;
+          height: 40px;
+          background: url('@images/icons/login_google.svg') center center
+            no-repeat;
+        }
+      }
     }
+  }
 }

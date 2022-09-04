@@ -2,7 +2,7 @@
 
 .pet-list {
   padding: 24px 20px 48px;
-  background: #5794F0;
+  background: #5794f0;
   color: #ffffff;
 
   &-wrapper {
@@ -32,7 +32,7 @@
         position: relative;
         &::before {
           content: '';
-          background-image: url("@images/star.png");
+          background-image: url('@images/star.png');
           background-repeat: no-repeat;
           background-size: 100%;
           position: absolute;
@@ -49,4 +49,3 @@
     }
   }
 }
-

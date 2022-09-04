@@ -1,9 +1,9 @@
 @charset 'utf-8';
 
 .gnb {
-    &__category {
-        padding: 10px 0;
-        display: flex;
-        justify-content: space-around;
-    }    
+  &__category {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+  }
 }
