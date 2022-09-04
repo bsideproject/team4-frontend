@@ -55,7 +55,7 @@ const getGroupList = computed(
 )
 
 onMounted(() => {
-  store.dispatch(`${MN_GROUP}/${TY_GROUP.selectGroupList}`)
+  store.dispatch(`${MN_GROUP}/${TY_GROUP.getGroupList}`)
   store.commit(`${MN_HEADER}/${TY_HEADER.setMoreOptionList}`, [
     {
       title: '그룹장 변경하기',

@@ -65,7 +65,7 @@ const getQuickRecordList = computed(
 )
 
 onMounted(() => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.selectQuickRecordList}`)
+  store.dispatch(`${MODULE_NAME}/${TYPES.actQuickRecordList}`)
 })
 
 const clickQuickRecordContent = (quickId) => {
