@@ -42,7 +42,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { selectProfile, editProfile } from '@api/setting/myProfile.js'
+import { getUser, putUser } from '@api/setting/myProfile.js'
 
 const info = {
   id: '',
@@ -57,7 +57,7 @@ const refImage = ref('')
 const isOnEdit = ref(false)
 
 onMounted(() => {
-  selectProfile()
+  getUser()
     .then((res) => {
       console.log(res)
       const data = res.data
@@ -81,7 +81,7 @@ const onError = (e) => {
 }
 const clickEditProfile = () => {
   if (isOnEdit.value) {
-    editProfile({ name: refName.value })
+    putUser({ name: refName.value })
   }
 }
 const keydownName = () => {

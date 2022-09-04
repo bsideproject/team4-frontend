@@ -1,11 +1,23 @@
 import axios from '@/api/axios/index.js'
 
-const selectProfile = () => {
+const getUser = () => {
   return axios.get('/api/v1/user')
 }
-
-const editProfile = (data) => {
-  return axios.put('/api/v1/user', data)
+const putUser = (data) => {
+  return axios.get('/api/v1/user', data)
+}
+const deleteUser = () => {
+  return axios.get('/api/v1/user')
+}
+const postUserImage = (data) => {
+  return axios.get('/api/v1/user/image', data)
+}
+const deletetUserImage = () => {
+  return axios.delete('/api/v1/user/image')
 }
 
-export { selectProfile, editProfile }
+// const editProfile = (data) => {
+//   return axios.put('/api/v1/user', data)
+// }
+
+export { getUser, putUser, deleteUser, postUserImage, deletetUserImage }
