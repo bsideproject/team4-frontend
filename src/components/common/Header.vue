@@ -22,7 +22,11 @@
     >
       <a @click="goBack" class="header-wrapper__back"></a>
       <div class="header-wrapper__title">{{ getTitle }}</div>
-      <button class="header-wrapper__more" @click="clickMore"></button>
+      <button
+        class="header-wrapper__more"
+        @click="clickMore"
+        v-if="getMoreOptionList.length"
+      ></button>
       <bottom-sheet ref="optionBottomSheet" :option-list="getMoreOptionList" />
     </article>
 

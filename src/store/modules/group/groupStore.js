@@ -1,4 +1,8 @@
-import { getGroupMemberList } from '@api/group/group.js'
+import {
+  getGroupMemberList,
+  deleteGroupMember,
+  putGroupManager,
+} from '@api/group/group.js'
 import { makeModuleTypes } from '@utils/store/index.js'
 
 const MODULE_NAME = 'groupStore'
@@ -7,18 +11,15 @@ const TYPES = makeModuleTypes([
   'getGroupList',
   'actGroupList',
   'setGroupList',
+
+  'actDeleteGroupMember',
+  'actPutGroupManager',
 ])
 
 const module = {
   namespaced: true,
   state: {
-    groupList: [
-      //   {
-      //     "userId": 번호,
-      //     "name": "이름",
-      //     "role": "권한"
-      // }
-    ],
+    groupList: [],
   },
   getters: {
     [TYPES.getGroupList](state) {
@@ -57,6 +58,12 @@ const module = {
         .catch((error) => {
           console.log(error)
         })
+    },
+    [TYPES.actDeleteGroupMember](context, payload) {
+      deleteGroupMember(payload)
+    },
+    [TYPES.actPutGroupManager](context, payload) {
+      putGroupManager(payload)
     },
   },
   mutations: {

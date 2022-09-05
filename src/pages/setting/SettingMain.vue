@@ -2,8 +2,8 @@
   <section class="setting-main">
     <article class="setting-main__profile">
       <div class="setting-main__profile_image">
-        <img src="@images/icons/profile_big_default.svg" alt="" />
-        <span class="setting-main__profile_name">펫이랑</span>
+        <img :src="getUser.image" alt="" @error="onError" />
+        <span class="setting-main__profile_name">{{ getUser.name }}</span>
       </div>
     </article>
 
@@ -63,13 +63,28 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { removeToken } from '@utils/login/index.js'
+import { useStore } from 'vuex'
+import { computed, onMounted } from '@vue/runtime-core'
+import { MODULE_NAME, TYPES } from '@store/user/userStore.js'
 
+const store = useStore()
 const router = useRouter()
+
+const onError = (e) => {
+  console.log(e)
+  e.target.src = require('@images/icons/profile_big_default.svg')
+}
 
 const clickLogout = () => {
   removeToken()
   router.replace({ name: ROUTE.Login })
 }
+
+const getUser = computed(() => store.getters[`${MODULE_NAME}/${TYPES.getUser}`])
+
+onMounted(() => {
+  store.dispatch(`${MODULE_NAME}/${TYPES.actUser}`)
+})
 </script>
 
 <style lang="scss" scoped>
