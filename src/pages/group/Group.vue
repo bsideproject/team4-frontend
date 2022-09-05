@@ -8,11 +8,19 @@
       >
         <div class="group__profile">
           <img src="@images/icons/profile_big_default.svg" alt="" />
-          <div class="group__delete" v-if="isDelete" @click="clickDelete"></div>
-          <div class="group__grant" v-if="isGrant"></div>
+          <div
+            class="group__export"
+            v-if="isExport"
+            @click="() => clickExport(item)"
+          ></div>
+          <div
+            class="group__grant"
+            v-if="isGrant"
+            @click="() => clickGrant(item)"
+          ></div>
         </div>
 
-        <span :class="item.role === 'ROLE_MANAGER' ? 'bdge' : ''">{{
+        <span :class="item.role === ROLE.MANAGER ? 'bdge' : ''">{{
           item.name
         }}</span>
       </div>
@@ -43,43 +51,56 @@ import {
   MODULE_NAME as MN_HEADER,
   TYPES as TY_HEADER,
 } from '@store/common/headerStore.js'
+import {
+  MODULE_NAME as MN_USER,
+  TYPES as TY_USER,
+} from '@store/user/userStore.js'
 import { _confirm } from '@/utils/common'
+import ROLE from '@constants/role.json'
 
 const store = useStore()
 const instance = getCurrentInstance()
-const isDelete = ref(false)
+const isExport = ref(false)
 const isGrant = ref(false)
 
 const getGroupList = computed(
   () => store.getters[`${MN_GROUP}/${TY_GROUP.getGroupList}`]
 )
-
+const getUser = computed(() => store.getters[`${MN_USER}/${TY_USER.getUser}`])
 onMounted(() => {
-  store.dispatch(`${MN_GROUP}/${TY_GROUP.getGroupList}`)
-  store.commit(`${MN_HEADER}/${TY_HEADER.setMoreOptionList}`, [
-    {
-      title: '그룹장 변경하기',
-      callback: () => {
-        alert('그룹장 변경하기')
+  store.dispatch(`${MN_USER}/${TY_USER.actUser}`)
+  store.dispatch(`${MN_GROUP}/${TY_GROUP.actGroupList}`)
+
+  if (getUser.value.role === ROLE.MANAGER) {
+    store.commit(`${MN_HEADER}/${TY_HEADER.setMoreOptionList}`, [
+      {
+        title: '그룹장 변경하기',
+        callback: () => {
+          isExport.value = false
+          isGrant.value = true
+        },
       },
-    },
-    {
-      title: '내보내기',
-      callback: () => {
-        isDelete.value = true
+      {
+        title: '내보내기',
+        callback: () => {
+          isGrant.value = false
+          isExport.value = true
+        },
       },
-    },
-    {
-      title: '그룹 삭제하기',
-      callback: () => {
-        alert('그룹 삭제하기')
+      {
+        title: '그룹 삭제하기',
+        callback: () => {
+          alert('그룹 삭제하기')
+        },
       },
-    },
-  ])
+    ])
+  }
 })
 
 const inviteURL = 'http://localhost:5000/family/invite'
 const clickInvite = () => {
+  isExport.value = false
+  isGrant.value = false
   if (navigator.share) {
     window.navigator.share({
       title: '펫하루 그룹 초대',
@@ -98,21 +119,39 @@ const clickInvite = () => {
       })
   }
 }
-
-const clickDelete = () => {
+const clickGrant = (member) => {
   _confirm(instance, {
-    text: "'동생2'님을 내보내시겠습니까?<br />'동생2'님이 남긴 글은 삭제되지않습니다.",
+    text: `'${member.name}'님을 그룹장으로<br />변경하시겠습니까?`,
     ok: {
-      label: '내보내기',
+      label: '네',
       callback: () => {
-        alert('내보내라')
+        store.dispatch(`${MN_GROUP}/${TY_GROUP.actPutGroupManager}`, {
+          userId: member.userId,
+        })
       },
     },
     cancel: {
       label: '아니오',
     },
   })
-  isDelete.value = false
+  isGrant.value = false
+}
+const clickExport = (member) => {
+  _confirm(instance, {
+    text: `'${member.name}'님을 내보내시겠습니까?<br />'${member.name}'님이 남긴 글은 삭제되지않습니다.`,
+    ok: {
+      label: '내보내기',
+      callback: () => {
+        store.dispatch(`${MN_GROUP}/${TY_GROUP.actDeleteGroupMember}`, {
+          userId: member.userId,
+        })
+      },
+    },
+    cancel: {
+      label: '아니오',
+    },
+  })
+  isExport.value = false
 }
 </script>
 

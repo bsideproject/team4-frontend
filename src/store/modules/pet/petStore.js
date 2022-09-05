@@ -7,6 +7,8 @@ const TYPES = makeModuleTypes([
   'getPetList',
   'actPetList',
   'setPetList',
+
+  'actPostPet',
 ])
 
 const module = {
@@ -32,7 +34,11 @@ const module = {
       console.log('petList', petList)
       // context.commt(TYPES.setPetList, petList)
 
-      context.commit(TYPES.setPetList, [1])
+      context.commit(TYPES.setPetList, [])
+    },
+    [TYPES.actPostPet](context, payload) {
+      console.log(context, payload)
+      postPet(payload).then((res) => console.log(res))
     },
   },
   mutations: {

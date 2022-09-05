@@ -2,7 +2,7 @@
   <section class="my-profile">
     <article class="my-profile__image">
       <div @click="clickEditProfileImage">
-        <img :src="refImage" @error="onError" />
+        <img :src="form.image" @error="onError" />
       </div>
       <input
         id="iptFile"
@@ -17,16 +17,11 @@
       <form>
         <div>
           <label for="name">이름</label>
-          <input
-            type="text"
-            id="name"
-            v-model="refName"
-            @keydown="keydownName"
-          />
+          <input type="text" id="name" v-model="form.name" />
         </div>
         <div>
           <label for="email">이메일</label>
-          <input type="text" id="email" disabled v-model="refEmail" />
+          <input type="text" id="email" disabled v-model="form.email" />
         </div>
       </form>
 
@@ -41,56 +36,47 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-import { getUser, putUser } from '@api/setting/myProfile.js'
+import { computed, onMounted, reactive, ref, toRefs, watch } from 'vue'
+import { MODULE_NAME, TYPES } from '@store/user/userStore.js'
+import { useStore } from 'vuex'
 
-const info = {
+const store = useStore()
+
+const isOnEdit = ref(false)
+
+const form = reactive({
   id: '',
   name: '',
   email: '',
   image: '',
-}
-const refId = ref('')
-const refName = ref('')
-const refEmail = ref('')
-const refImage = ref('')
-const isOnEdit = ref(false)
-
-onMounted(() => {
-  getUser()
-    .then((res) => {
-      console.log(res)
-      const data = res.data
-
-      info.id = data.id
-      info.name = data.name
-      info.email = data.email
-      info.image = data.image
-
-      refId.value = data.id
-      refName.value = data.name
-      refEmail.value = data.email
-      refImage.value = data.image
-    })
-    .catch((error) => {
-      console.log(error)
-    })
 })
+toRefs(form)
+const getUser = computed(() => store.getters[`${MODULE_NAME}/${TYPES.getUser}`])
+onMounted(() => {
+  store.dispatch(`${MODULE_NAME}/${TYPES.actUser}`)
+
+  Object.assign(form, getUser.value)
+})
+watch(
+  () => form,
+  (newValue) => {
+    if (newValue.name && newValue.name !== getUser.value.name) {
+      isOnEdit.value = true
+    } else {
+      isOnEdit.value = false
+    }
+  },
+  { deep: true }
+)
 const onError = (e) => {
   e.target.src = require('@images/icons/profile_big_default.svg')
 }
 const clickEditProfile = () => {
   if (isOnEdit.value) {
-    putUser({ name: refName.value })
+    store.dispatch(`${MODULE_NAME}/${TYPES.actPutUser}`, form)
   }
 }
-const keydownName = () => {
-  if (refName.value && info.id !== refName.value) {
-    isOnEdit.value = true
-  } else {
-    isOnEdit.value = false
-  }
-}
+
 const clickEditProfileImage = () => {
   document.getElementById('iptFile').click()
 }
@@ -98,7 +84,7 @@ const changeProfileImage = (e) => {
   const file = e.target.files[0]
   const reader = new FileReader()
   reader.onload = (e) => {
-    refImage.value = e.target.result
+    form.image = e.target.result
   }
 
   reader.readAsDataURL(file)

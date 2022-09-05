@@ -75,7 +75,7 @@
           <input
             type="text"
             id="age"
-            maxlength="10"
+            maxlength="2"
             v-model="form.age"
             placeholder="나이를 입력해주세요."
           />
@@ -113,11 +113,13 @@
       ref="birthCalendar"
       id="birthCalendar"
       @change="changeBirthCalendar"
+      :max-date="new Date()"
     />
     <calendar
       ref="adoptCalendar"
       id="adoptCalendar"
       @change="changeAdoptCalendar"
+      :max-date="new Date()"
     />
   </section>
 </template>
@@ -125,7 +127,10 @@
 <script setup>
 import Calendar from '@components/common/Calendar.vue'
 import { reactive, ref, toRefs, watch } from 'vue'
+import { MODULE_NAME, TYPES } from '@store/pet/petStore.js'
+import { useStore } from 'vuex'
 
+const store = useStore()
 const isOnEdit = ref(false)
 const birthCalendar = ref(null)
 const adoptCalendar = ref(null)
@@ -157,7 +162,6 @@ const changeProfileImage = (e) => {
 }
 
 const clickBirthYmd = () => {
-  console.log(birthCalendar)
   birthCalendar.value.openCalendar()
 }
 const clickAdoptYmd = () => {
@@ -175,12 +179,12 @@ const clickEditProfile = () => {
   /**
    * 펫 등록 API 호출
    */
+  store.dispatch(`${MODULE_NAME}/${TYPES.actPostPet}`, form)
 }
 
 watch(
   () => form,
   (newForm) => {
-    console.log(Object.entries(newForm))
     isOnEdit.value = Object.entries(newForm)
       .filter((f) => f[0] !== 'image')
       .every((f) => f[1])
