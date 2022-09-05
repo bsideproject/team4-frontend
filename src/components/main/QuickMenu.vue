@@ -4,39 +4,39 @@
       <a href="/checklist/quick" class="quick-menu-btn--edit">편집</a>
     </div>
     <div class="quick-menu-group">
-      <div class="quick-menu-group__item">
+      <div
+        class="quick-menu-group__item"
+        v-for="(item, index) in getQuickRecordList"
+        :key="index"
+        @click="() => clickQuickRecordCount(item.quickId)"
+      >
         <div class="item__count">
-          <p class="item__count--current">10</p>
-          <p class="item__count--total">11</p>
+          <p class="item__count--current">{{ item.count }}</p>
+          <p class="item__count--total">{{ item.total }}</p>
         </div>
-        <p class="item__label">사료주기</p>
-      </div>
-      <div class="quick-menu-group__item">
-        <div class="item__count">
-          <p class="item__count--current">1</p>
-          <p class="item__count--total">2</p>
-        </div>
-        <p class="item__label">간식주기</p>
-      </div>
-      <div class="quick-menu-group__item">
-        <div class="item__count fulfilled">
-          <p class="item__count--current">3</p>
-          <p class="item__count--total">3</p>
-        </div>
-        <p class="item__label">산책하기</p>
-      </div>
-      <div class="quick-menu-group__item">
-        <div class="item__count fulfilled">
-          <p class="item__count--current">1</p>
-          <p class="item__count--total">1</p>
-        </div>
-        <p class="item__label">양치하기</p>
+        <p class="item__label">{{ item.name }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { onMounted, computed } from 'vue'
+import { useStore } from 'vuex'
+import { MODULE_NAME, TYPES } from '@store/checklist/quickRecordStore'
+
+const store = useStore()
+
+const getQuickRecordList = computed(
+  () => store.getters[`${MODULE_NAME}/${TYPES.getQuickRecordList}`]
+)
+onMounted(() => {
+  store.dispatch(`${MODULE_NAME}/${TYPES.actQuickRecordList}`)
+})
+
+const clickQuickRecordCount = (quickId) => {
+  store.dispatch(`${MODULE_NAME}/${TYPES.actCountQuickRecord}`, quickId)
+}
 </script>
 
 <style lang="scss" scoped>

@@ -9,7 +9,7 @@
         </div>
         <div>
           <p>1일 실행횟수</p>
-          <input type="text" v-model="form.count" />
+          <input type="text" v-model="form.total" />
         </div>
         <div>
           <p>메모</p>
@@ -39,7 +39,7 @@ const isOnEdit = ref(false)
 const isOpen = ref(false)
 const form = reactive({
   name: '',
-  count: 0,
+  total: 0,
   explanation: '',
 })
 
@@ -49,7 +49,7 @@ watch(
   () => props.detail,
   (newValue) => {
     form.name = newValue.name
-    form.count = newValue.count
+    form.total = newValue.total
     form.explanation = newValue.explanation
   },
   { deep: true }
@@ -57,10 +57,10 @@ watch(
 watch(
   () => form,
   (newValue) => {
-    const { name, count, explanation } = props.detail
+    const { name, total, explanation } = props.detail
     if (
       newValue.name !== name ||
-      newValue.count !== count ||
+      newValue.total !== total ||
       newValue.explanation !== explanation
     ) {
       isOnEdit.value = true
@@ -83,7 +83,7 @@ const closeBottomSheet = () => {
 }
 const clearBottomSheet = () => {
   form.name = ''
-  form.count = 0
+  form.total = 0
   form.explanation = ''
 }
 const clickSaveQuickRecord = () => {

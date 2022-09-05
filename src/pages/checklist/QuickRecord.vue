@@ -16,34 +16,10 @@
           @click="() => clickQuickRecordContent(item.quickId)"
         >
           <p class="font-bold">{{ item.name }}</p>
-          <p class="font-primary">1일 {{ item.count }}번</p>
+          <p class="font-primary">1일 {{ item.total }}번</p>
           <p>{{ item.explanation }}</p>
         </div>
       </div>
-      <!-- <div class="quick-record__item">
-        <span class="quick-record__icon"></span>
-        <div class="quick-record__content">
-          <p class="font-bold">간식주기</p>
-          <p class="font-primary">1일 3번</p>
-          <p>맛있는 사료 하루에 몇번 주기</p>
-        </div>
-      </div>
-      <div class="quick-record__item">
-        <span class="quick-record__icon"></span>
-        <div class="quick-record__content">
-          <p class="font-bold">양치주기</p>
-          <p class="font-primary">1일 3번</p>
-          <p>맛있는 사료 하루에 몇번 주기</p>
-        </div>
-      </div>
-      <div class="quick-record__item">
-        <span class="quick-record__icon"></span>
-        <div class="quick-record__content">
-          <p class="font-bold">산책하기</p>
-          <p class="font-primary">1일 3번</p>
-          <p>맛있는 사료 하루에 몇번 주기</p>
-        </div>
-      </div> -->
     </article>
     <quick-record-bottom-sheet ref="quickRecordBottomSheet" :detail="detail" />
   </section>
@@ -53,7 +29,7 @@
 import QuickRecordBottomSheet from '@/components/checkList/QuickRecordBottomSheet.vue'
 import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
-import { MODULE_NAME, TYPES } from '@store/checklist/checklistStore.js'
+import { MODULE_NAME, TYPES } from '@store/checklist/quickRecordStore.js'
 
 const store = useStore()
 const quickRecordBottomSheet = ref(null)

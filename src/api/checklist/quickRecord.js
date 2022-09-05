@@ -13,7 +13,7 @@ const putQuickRecordOrder = (data) => {
 }
 
 const putQuickRecordCount = (quickId) => {
-  return axios.put(`/api/v1/quick/${quickId}`)
+  return axios.put(`/api/v1/quick/count/${quickId}`)
 }
 
 export {
