@@ -1,0 +1,126 @@
+@charset 'utf-8';
+
+@import 'fonts.scss';
+
+#app {
+  max-width: 420px;
+  margin: auto;
+  text-align: center;
+}
+
+*,
+body {
+  margin: 0;
+  padding: 0;
+  // font-family: Poppins, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-family: Poppins, Pretendard, sans-serif;
+  font-style: normal;
+  font-size: 16px;
+
+  a {
+    display: inline-block;
+  }
+
+  button {
+    background: transparent;
+    border-style: none;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  a,
+  a:hover,
+  a:visited {
+    text-decoration: none;
+    color: #111;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  input {
+    @include ptRegular16;
+    // height: 47px;
+    border-radius: 4px;
+    border: 1px solid $borderColor;
+    &:focus {
+      outline: 2px solid $primaryColor;
+    }
+    &:disabled {
+      background: $disabledColor;
+    }
+    &::placeholder {
+      color: #aeaeae;
+    }
+    padding: 16px;
+  }
+}
+
+.btn-lg {
+  &-default {
+    @include btnLg;
+    @include ptBold20;
+    background: $backgroundColor;
+    color: #737373;
+  }
+
+  &-disabled {
+    @include btnLg;
+    @include ptBold20;
+    background: $backgroundColor;
+    color: #cfcfcf;
+  }
+  &-enabled {
+    @include btnLg;
+    @include ptBold20;
+    background: #5794f0;
+    color: #fbfbfb;
+  }
+  &-pressed {
+    @include btnLg;
+    @include ptBold20;
+    background: #2773e4;
+    color: #fbfbfb;
+  }
+}
+
+.btn-md {
+  &-default {
+    @include btnMd;
+    @include ptRegular16;
+    background: $backgroundColor;
+    color: #737373;
+  }
+
+  &-disabled {
+    @include btnMd;
+    @include ptRegular16;
+    background: $backgroundColor;
+    color: #cfcfcf;
+  }
+  &-enabled {
+    @include btnMd;
+    @include ptRegular16;
+    background: #5794f0;
+    color: #fbfbfb;
+  }
+  &-pressed {
+    @include btnMd;
+    @include ptRegular16;
+    background: #2773e4;
+    color: #fbfbfb;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.footer {
+  padding: 20px 0;
+  p {
+    font-size: 12px;
+    color: gray;
+  }
+}

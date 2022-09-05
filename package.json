@@ -1,0 +1,62 @@
+{
+  "name": "petharu",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve-local": "vue-cli-service serve --mode local",
+    "serve-dev": "vue-cli-service serve --mode dev",
+    "serve-prod": "vue-cli-service serve --mode prod",
+    "build-local": "vue-cli-service build --mode local",
+    "build-dev": "vue-cli-service build --mode dev",
+    "build-prod": "vue-cli-service build --mode prod",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@vuepic/vue-datepicker": "^3.4.5",
+    "axios": "^0.27.2",
+    "core-js": "^3.8.3",
+    "node-sass": "^7.0.1",
+    "sass-loader": "^13.0.2",
+    "vue": "^3.2.36",
+    "vue-axios": "^3.4.1",
+    "vue-router": "^4.1.3",
+    "vue3-datepicker": "^0.3.4",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "globals": {
+      "ROUTE": false
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
+}

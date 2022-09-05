@@ -1,0 +1,48 @@
+@charset 'utf-8';
+
+.weeklyCalendar {
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  // padding: 16px 0;
+
+  &-monthWrapper {
+    margin-right: 20px;
+    p {
+      font-weight: bold;
+      font-size: 24px;
+    }
+    position: relative;
+  }
+  .arrow-down {
+    position: absolute;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    bottom: 4;
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: url('@images/icons/arrow_down.svg') center center no-repeat;
+  }
+  &-dateWrapper {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 24px;
+
+    &__date {
+      .date__day {
+        @include ptRegular14;
+        margin-bottom: 8px;
+      }
+      .date__num {
+        @include ppRegular16;
+      }
+
+      &.active {
+        color: #5794f0;
+      }
+    }
+  }
+}

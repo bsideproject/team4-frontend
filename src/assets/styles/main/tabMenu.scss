@@ -1,0 +1,33 @@
+@charset 'utf-8';
+
+.tab-menu {
+  padding: 0 20px;
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 23px;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 12px 0;
+    background: $backgroundColor;
+    border: 1px solid #000000;
+    margin: auto;
+  }
+
+  &__tab {
+    @include ptRegular16;
+
+    &.active {
+      @include ptBold16;
+      color: #5794f0;
+    }
+  }
+
+  &__split {
+    background: #cfcfcf;
+    width: 1px;
+    height: 16px;
+  }
+}

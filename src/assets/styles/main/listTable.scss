@@ -1,0 +1,64 @@
+@charset 'utf-8';
+
+.list-table {
+  padding: 0 20px;
+  &-cardList {
+    padding: 32px 0;
+    &__card {
+      border: 1px solid $disabledColor;
+      border-radius: 4px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+
+      .card__check {
+        border-radius: 50%;
+        background: $backgroundColor;
+        // padding: 8px;
+        position: relative;
+        width: 40px;
+        height: 40px;
+
+        .schedule {
+          position: absolute;
+          top: 20%;
+          left: 20%;
+          content: '';
+          width: 24px;
+          height: 24px;
+          background: url('@images/icons/todo.svg') center center no-repeat;
+        }
+
+        .footprint {
+          position: absolute;
+          top: 20%;
+          left: 20%;
+          content: '';
+          width: 24px;
+          height: 24px;
+          background: url('@images/icons/footprint_uncheck.svg') center center
+            no-repeat;
+        }
+
+        .checked {
+          background: url('@images/icons/footprint_check.svg') center center
+            no-repeat;
+        }
+      }
+      .card__schedule {
+        text-align: left;
+        flex: 1 1 0;
+        padding-left: 16px;
+        font-size: 16px;
+        line-height: 19px;
+
+        .time {
+          color: #a8a8a8;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+}

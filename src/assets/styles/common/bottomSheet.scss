@@ -1,0 +1,66 @@
+@charset 'utf-8';
+
+.bottom-sheet {
+  &__dimmed {
+    @include dimmed;
+  }
+
+  &__content {
+    @include ptRegular14;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 20px 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    z-index: 101;
+  }
+
+  &__common {
+    padding: 20px 28px;
+    text-align: left;
+  }
+
+  &__floating {
+    h3 {
+      padding: 4px 20px 24px 20px;
+      text-align: left;
+      @include ptBold20;
+    }
+    .icon-area {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      margin: 0 auto;
+
+      a {
+        width: 104px;
+        height: 97px;
+        line-height: 97px;
+        border: 1px solid $borderColor;
+      }
+
+      p {
+        @include ptRegular14;
+        margin-top: 8px;
+      }
+    }
+  }
+
+  &__quick {
+    padding: 20px 28px;
+    div {
+      margin: 20px auto;
+      text-align: left;
+    }
+    p {
+      @include ptRegular14;
+      color: #aeaeae;
+    }
+    input {
+      width: 90%;
+    }
+  }
+}

@@ -1,0 +1,74 @@
+@charset 'utf-8';
+
+.header {
+  .bg-primary {
+    background: $primaryColor;
+  }
+  .bd-bottom {
+    border-bottom: 1px solid $borderColor;
+  }
+
+  &-wrapper {
+    height: 52px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__logo {
+      img {
+        width: 90px;
+        height: 36px;
+      }
+    }
+
+    &__title {
+      @include ptBold16;
+    }
+
+    &__menu {
+      position: absolute;
+      right: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/menu.svg') center center no-repeat;
+    }
+
+    &__back {
+      position: absolute;
+      left: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/back.svg') center center no-repeat;
+    }
+
+    &__check {
+      position: absolute;
+      right: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/check.svg') center center no-repeat;
+    }
+
+    &__more {
+      position: absolute;
+      right: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/more.svg') center center no-repeat;
+    }
+
+    &__share {
+      position: absolute;
+      right: 16px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/share.svg') center center no-repeat;
+    }
+  }
+}

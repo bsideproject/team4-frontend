@@ -1,0 +1,109 @@
+@charset 'utf-8';
+
+.calendar {
+  &__dimmed {
+    @include dimmed;
+  }
+  &__datepicker {
+    /** 캘린더1 */
+    .v3dp {
+      &__datepicker {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: $maxWidth;
+        height: 270px;
+      }
+      // &__input_wrapper {
+      //     display: none;
+      // }
+      &__popout {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    /** 캘린더2 */
+    .dp {
+      font-style: normal;
+      &__theme_light {
+        --dp-background-color: #ffffff;
+        --dp-text-color: #212121;
+        --dp-hover-color: #f3f3f3;
+        --dp-hover-text-color: #212121;
+        --dp-hover-icon-color: #959595;
+        --dp-primary-color: #5794f0;
+        --dp-primary-text-color: #f8f5f5;
+        --dp-secondary-color: #c0c4cc;
+        --dp-border-color: #ddd;
+        --dp-menu-border-color: #ddd;
+        --dp-border-color-hover: #aaaeb7;
+        --dp-disabled-color: #f6f6f6;
+        --dp-scroll-bar-background: #f3f3f3;
+        --dp-scroll-bar-color: #959595;
+        --dp-success-color: #76d275;
+        --dp-success-color-disabled: #a3d9b1;
+        --dp-icon-color: #959595;
+        --dp-danger-color: #ff6f60;
+        --dp-highlight-color: rgba(25, 118, 210, 0.1);
+      }
+      &__main {
+        z-index: 101;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
+      &__menu {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      &__calendar_wrap {
+        margin-top: 16px;
+      }
+      &__calendar_header > :first-child,
+      &__calendar_header > :last-child {
+        color: red;
+      }
+      &__calendar_header_separator {
+        display: none;
+      }
+      &__instance_calendar {
+        padding: 20px 38px;
+      }
+      &__active_date {
+        border-radius: 30px;
+      }
+      &__month_year_row {
+        padding: 0 40px;
+      }
+      &__month_year_select:nth-child(2) {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+      }
+      &__month_year_select:nth-child(3) {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+      }
+      &__calendar_row {
+        margin: 3px 0;
+      }
+      &__calendar_header,
+      &__calendar {
+        width: 100%;
+      }
+      &__calendar_header_item {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+      }
+      &__cell_inner {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+}

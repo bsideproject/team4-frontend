@@ -1,0 +1,124 @@
+@charset 'utf-8';
+
+/**
+    Pretendard
+*/
+// @font-face {
+//     font-family: 'Pretendard';
+//     font-weight: 900;
+//     font-display: swap;
+//     src: local('Pretendard Black'), url('@fonts/Pretendard-Black.woff2') format('woff2'), url('@fonts/Pretendard-Black.woff') format('woff');
+//     unicode-range: U+AC00-D7A3, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+// }
+
+// @font-face {
+//     font-family: 'Pretendard';
+//     font-weight: 800;
+//     font-display: swap;
+//     src: local('Pretendard ExtraBold'), url('@fonts/Pretendard-ExtraBold.woff2') format('woff2'), url('@fonts/Pretendard-ExtraBold.woff') format('woff');
+//     unicode-range: U+AC00-D7A3, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+// }
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: swap;
+  src: local('Pretendard Bold'),
+    url('@fonts/Pretendard-Bold.woff2') format('woff2'),
+    url('@fonts/Pretendard-Bold.woff') format('woff');
+  unicode-range: U+AC00-D7A3, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+}
+
+// @font-face {
+//     font-family: 'Pretendard';
+//     font-weight: 600;
+//     font-display: swap;
+//     src: local('Pretendard SemiBold'), url('@fonts/Pretendard-SemiBold.woff2') format('woff2'), url('@fonts/Pretendard-SemiBold.woff') format('woff');
+//     unicode-range: U+AC00-D7A3, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+// }
+
+// @font-face {
+//     font-family: 'Pretendard';
+//     font-weight: 500;
+//     font-display: swap;
+//     src: local('Pretendard Medium'), url('@fonts/Pretendard-Medium.woff2') format('woff2'), url('@fonts/Pretendard-Medium.woff') format('woff');
+//     unicode-range: U+AC00-D7A3, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+// }
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-display: swap;
+  src: local('Pretendard Regular'),
+    url('@fonts/Pretendard-Regular.woff2') format('woff2'),
+    url('@fonts/Pretendard-Regular.woff') format('woff');
+  unicode-range: U+AC00-D7A3, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+}
+
+// @font-face {
+//     font-family: 'Pretendard';
+//     font-weight: 300;
+//     font-display: swap;
+//     src: local('Pretendard Light'), url('@fonts/Pretendard-Light.woff2') format('woff2'), url('@fonts/Pretendard-Light.woff') format('woff');
+//     unicode-range: U+AC00-D7A3, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+// }
+
+// @font-face {
+//     font-family: 'Pretendard';
+//     font-weight: 200;
+//     font-display: swap;
+//     src: local('Pretendard ExtraLight'), url('@fonts/Pretendard-ExtraLight.woff2') format('woff2'), url('@fonts/Pretendard-ExtraLight.woff') format('woff');
+//     unicode-range: U+AC00-D7A3, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+// }
+
+// @font-face {
+//     font-family: 'Pretendard';
+//     font-weight: 100;
+//     font-display: swap;
+//     src: local('Pretendard Thin'), url('@fonts/Pretendard-Thin.woff2') format('woff2'), url('@fonts/Pretendard-Thin.woff') format('woff');
+//     unicode-range: U+AC00-D7A3, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+// }
+
+/** 
+    Poppins
+*/
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 700;
+  font-display: swap;
+  src: local('Poppins Bold'), url('@fonts/Poppins-Bold.ttf') format('truetype');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
+
+// @font-face {
+//     font-family: 'Poppins';
+//     font-weight: 100;
+//     font-display: swap;
+//     src: local('Poppins Light'), url('@fonts/Poppins-Light.ttf') format('truetype');
+//     // unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+// }
+
+// @font-face {
+//     font-family: 'Poppins';
+//     font-weight: 100;
+//     font-display: swap;
+//     src: local('Poppins Medium'), url('@fonts/Poppins-Medium.ttf') format('truetype');
+//     // unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+// }
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 400;
+  font-display: swap;
+  src: local('Poppins Regular'),
+    url('@fonts/Poppins-Regular.ttf') format('truetype');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
+
+// @font-face {
+//     font-family: 'Poppins';
+//     font-weight: 100;
+//     font-display: swap;
+//     src: local('Poppins SemiBold'), url('@fonts/Poppins-SemiBold.ttf') format('truetype');
+//     // unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+// }

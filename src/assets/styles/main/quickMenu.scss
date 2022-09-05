@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+.quick-menu {
+  padding: 20px;
+  &-btn {
+    text-align: right;
+    margin-bottom: 8px;
+    &--edit {
+      font-size: 14px;
+      color: #848484;
+    }
+  }
+  &-group {
+    display: flex;
+    justify-content: space-around;
+    &__item {
+      .item__count {
+        background: $backgroundColor;
+        border-radius: 100px;
+        width: 60px;
+        height: 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &.fulfilled {
+          color: #aeaeae;
+        }
+
+        &--current {
+          @include ppBold28;
+          border-bottom: 1px solid $borderColor;
+        }
+        &--total {
+          @include ppRegular16;
+        }
+      }
+      .item__label {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+    }
+  }
+}

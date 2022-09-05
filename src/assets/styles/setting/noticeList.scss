@@ -1,0 +1,38 @@
+@charset 'utf-8';
+
+.notice-list {
+    min-height: $minHeight;
+    padding-top: 16px;
+
+    &__item {
+        position: relative;
+        // width: 320px;
+        height: 81px;
+        margin: 0 20px 0 20px;
+        text-align: left;
+        padding-left: 8px;
+        line-height: 20px;
+        border-bottom: 1px solid $borderColor;
+
+        &::after {
+            position: absolute;
+            top: 35px;
+            right: 9px;
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: url('@images/icons/arrow_right.svg') center center no-repeat;
+        }
+    }
+
+    &__title {
+        @include ptBold16;
+        padding: 20px 0 8px 0;
+    }
+
+    &__date {
+        @include ptRegular12;
+        color: #CFCFCF;
+    }
+
+}

@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+.quick-record {
+  min-height: $minHeight;
+  padding: 32px 20px 0 20px;
+
+  &__title {
+    text-align: left;
+    margin-bottom: 32px;
+  }
+
+  &__item {
+    position: relative;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__icon {
+    margin-right: 20px;
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: url('@images/icons/drag.svg') center center no-repeat;
+  }
+
+  &__content {
+    padding: 16px;
+    text-align: left;
+    border: 1px solid $borderColor;
+    border-radius: 4px;
+    flex-grow: 2;
+    p {
+      margin: 4px 0;
+    }
+    .font-bold {
+      @include ptBold16;
+    }
+    .font-primary {
+      @include ptRegular14;
+      color: $primaryColor;
+    }
+  }
+}
