@@ -29,4 +29,12 @@ export default [
       title: '할 일',
     },
   },
+  // {
+  //   path: 'todo/:todoId',
+  //   name: ROUTE.Checklist.Todo,
+  //   component: Todo,
+  //   meta: {
+  //     title: '할 일',
+  //   },
+  // },
 ]

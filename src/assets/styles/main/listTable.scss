@@ -14,9 +14,38 @@
       margin-bottom: 16px;
 
       .card__check {
-        border-radius: 100px;
+        border-radius: 50%;
         background: $backgroundColor;
-        padding: 8px;
+        // padding: 8px;
+        position: relative;
+        width: 40px;
+        height: 40px;
+
+        .schedule {
+          position: absolute;
+          top: 20%;
+          left: 20%;
+          content: '';
+          width: 24px;
+          height: 24px;
+          background: url('@images/icons/todo.svg') center center no-repeat;
+        }
+
+        .footprint {
+          position: absolute;
+          top: 20%;
+          left: 20%;
+          content: '';
+          width: 24px;
+          height: 24px;
+          background: url('@images/icons/footprint_uncheck.svg') center center
+            no-repeat;
+        }
+
+        .checked {
+          background: url('@images/icons/footprint_check.svg') center center
+            no-repeat;
+        }
       }
       .card__schedule {
         text-align: left;
@@ -25,8 +54,6 @@
         font-size: 16px;
         line-height: 19px;
 
-        .label {
-        }
         .time {
           color: #a8a8a8;
           margin-top: 4px;

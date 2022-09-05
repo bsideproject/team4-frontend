@@ -1,6 +1,6 @@
 <template>
   <div class="pet-list section">
-    <div class="pet-list-wrapper" v-if="petList.length !== 0">
+    <div class="pet-list-wrapper" v-if="props.petList.length">
       <div class="pet-list-wrapper__item active">
         <p class="item__name">멍멍이</p>
         <div
@@ -23,13 +23,16 @@
 
 <script setup>
 import ROUTE from '@constants/route.json'
-import { useStore } from 'vuex'
+import { defineProps } from 'vue'
 import { useRouter } from 'vue-router'
 import '@store/pet/petStore.js'
-
-const store = useStore()
+const props = defineProps({
+  petList: {
+    type: Array,
+    required: false,
+  },
+})
 const router = useRouter()
-const petList = store.state.petStore.petList
 </script>
 
 <style lang="scss" scoped>

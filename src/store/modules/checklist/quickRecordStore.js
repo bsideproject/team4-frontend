@@ -1,12 +1,16 @@
-// import { selectGroupList } from '@api/group/group.js'
+import {
+  getQuickRecordList,
+  putQuickRecordCount,
+} from '@api/checklist/quickRecord.js'
 import { makeModuleTypes } from '@utils/store/index.js'
 
-const MODULE_NAME = 'checklistStore'
+const MODULE_NAME = 'quickRecordStore'
 const TYPES = makeModuleTypes([
   'quickRecordList',
   'getQuickRecordList',
   'actQuickRecordList',
   'setQuickRecordList',
+  'actCountQuickRecord',
 ])
 
 const module = {
@@ -21,20 +25,21 @@ const module = {
   },
   actions: {
     [TYPES.actQuickRecordList](context, payload) {
+      getQuickRecordList()
       context.commit(TYPES.setQuickRecordList, [
         {
           quickId: '1',
           name: '퀵기록명1',
-          count: 3,
-          total: 1,
+          count: 1,
+          total: 3,
           explanation: '퀵기록 설명1',
           order: 1,
         },
         {
           quickId: '2',
           name: '퀵기록명2',
-          count: 3,
-          total: 2,
+          count: 2,
+          total: 3,
           explanation: '퀵기록 설명2',
           order: 2,
         },
@@ -49,12 +54,18 @@ const module = {
         {
           quickId: '4',
           name: '퀵기록명4',
-          count: 3,
-          total: 1,
+          count: 4,
+          total: 4,
           explanation: '퀵기록 설명4',
           order: 4,
         },
       ])
+    },
+    [TYPES.actCountQuickRecord](context, payload) {
+      console.log(payload)
+      putQuickRecordCount(payload).then((res) => {
+        console.log(res)
+      })
     },
   },
   mutations: {
