@@ -181,9 +181,13 @@ const clickEditProfile = () => {
   /**
    * 펫 등록 API 호출
    */
-  const result = store.dispatch(`${MODULE_NAME}/${TYPES.actPostPet}`, form)
-  result.then((r) => console.log('r', r))
-  console.log('result', result)
+  store
+    .dispatch(`${MODULE_NAME}/${TYPES.actPostPet}`, form)
+    .then((isSuccess) => {
+      if (isSuccess) {
+        router.push({ name: ROUTE.Main })
+      }
+    })
 }
 
 watch(
