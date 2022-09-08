@@ -12,4 +12,12 @@ const getPet = (petId) => {
   return axios.get(`/api/v1/pets/${petId}`)
 }
 
-export { postPet, getPetList, getPet }
+const putMainPet = (data) => {
+  return axios.put('/api/v1/pets/mainPet', data)
+}
+
+const postSharePet = (petId) => {
+  return axios.post(`/api/v1/pets/${petId}/share`)
+}
+
+export { postPet, getPetList, getPet, putMainPet, postSharePet }
