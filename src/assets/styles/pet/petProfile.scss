@@ -6,8 +6,7 @@
 
   &__represent {
     margin-top: 24px;
-    border: 1px solid #505050;
-    border-radius: 8px;
+
     text-align: right;
     padding: 8px;
     overflow: hidden;
@@ -81,6 +80,16 @@
     border-radius: 50%;
   }
 
+  .representative-color {
+    background: url('@images/icons/representative_pet_color.svg') center center
+      no-repeat;
+    content: '';
+    width: 34px;
+    height: 34px;
+    background-color: $backgroundColor;
+    border-radius: 50%;
+  }
+
   .edit {
     @include ptRegular14;
     background: $backgroundColor;
@@ -109,5 +118,17 @@
     width: 24px;
     height: 24px;
     background: url('@images/icons/share_group.svg') center center no-repeat;
+  }
+
+  .detail {
+    border: 1px solid #505050;
+    border-radius: 8px;
+  }
+
+  .show {
+    display: block;
+  }
+  .hide {
+    display: none;
   }
 }

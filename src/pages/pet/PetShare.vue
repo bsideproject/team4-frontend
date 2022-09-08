@@ -1,24 +1,31 @@
 <template>
   <section class="pet-profile">
     <article class="pet-profile__share">
-      <div class="pet-profile__info">
+      <div
+        class="pet-profile__info"
+        v-for="(item, index) in getPetList"
+        :key="index"
+      >
         <div>
           <img src="@images/icons/profile_s_pet.svg" />
-          <span>멍멍이<span class="share-bedge"></span></span>
+          <span
+            >{{ item.name
+            }}<span
+              class="share-bedge"
+              v-if="item.shareScope === SHARE.FAMILY"
+            ></span
+          ></span>
         </div>
         <div>
-          <button class="representative"></button>
-          <button class="share">공유</button>
-        </div>
-      </div>
-      <div class="pet-profile__info">
-        <div>
-          <img src="@images/icons/profile_s_pet.svg" />
-          <span>아지</span>
-        </div>
-        <div>
-          <button class="representative"></button>
-          <button class="share">공유</button>
+          <button
+            :class="[
+              'representative',
+              item.isMain ? 'representative-color' : '',
+            ]"
+          ></button>
+          <button class="share" @click="() => clickSharePet(item.petId)">
+            공유
+          </button>
         </div>
       </div>
     </article>
@@ -26,6 +33,24 @@
 </template>
 
 <script setup>
+import SHARE from '@constants/share.json'
+import { MODULE_NAME, TYPES } from '@store/pet/petStore.js'
+import { computed, onMounted } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+
+const getPetList = computed(
+  () => store.getters[`${MODULE_NAME}/${TYPES.getPetList}`]
+)
+
+onMounted(() => {
+  store.dispatch(`${MODULE_NAME}/${TYPES.actPetList}`)
+})
+
+const clickSharePet = (petId) => {
+  store.dispatch(`${MODULE_NAME}/${TYPES.actPostSharePet}`, petId)
+}
 </script>
 
 <style lang="scss" scoped>
