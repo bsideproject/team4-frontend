@@ -86,9 +86,8 @@ const module = {
     [TYPES.actPostPet](context, payload) {
       console.log(context, payload)
       return postPet(payload).then((res) => {
-        const { code, message, data } = res.data?.data
-        if (code == 201) {
-          alert(message)
+        const { code } = res.data
+        if (code === '201') {
           return true
         } else {
           return false
