@@ -25,41 +25,11 @@ const module = {
   },
   actions: {
     [TYPES.actQuickRecordList](context, payload) {
-      getQuickRecordList()
-      context.commit(TYPES.setQuickRecordList, [
-        {
-          quickId: '1',
-          name: '퀵기록명1',
-          count: 1,
-          total: 3,
-          explanation: '퀵기록 설명1',
-          order: 1,
-        },
-        {
-          quickId: '2',
-          name: '퀵기록명2',
-          count: 2,
-          total: 3,
-          explanation: '퀵기록 설명2',
-          order: 2,
-        },
-        {
-          quickId: '3',
-          name: '퀵기록명3',
-          count: 3,
-          total: 3,
-          explanation: '퀵기록 설명3',
-          order: 3,
-        },
-        {
-          quickId: '4',
-          name: '퀵기록명4',
-          count: 4,
-          total: 4,
-          explanation: '퀵기록 설명4',
-          order: 4,
-        },
-      ])
+      getQuickRecordList(payload).then((res) => {
+        const { quickDetailList } = res.data?.data
+
+        context.commit(TYPES.setQuickRecordList, quickDetailList || {})
+      })
     },
     [TYPES.actCountQuickRecord](context, payload) {
       console.log(payload)

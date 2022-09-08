@@ -24,28 +24,37 @@
 
 <script setup>
 import Calendar from '@components/common/Calendar.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { MODULE_NAME, TYPES } from '@store/common/headerStore.js'
+import { useStore } from 'vuex'
 
 const today = ref(new Date())
 const compCalendar = ref(null)
 const week = ['일', '월', '화', '수', '목', '금', '토']
 const weeklyList = ref([])
 const month = ref(null)
+const store = useStore()
+watch(
+  () => today.value,
+  (newValue) => {
+    store.commit(`${MODULE_NAME}/${TYPES.setWeeklyCalendarDate}`, newValue)
+  }
+)
 
 const clickWeekMonth = () => {
   compCalendar.value.openCalendar()
 }
 const clickWeekDay = (index) => {
-  const d = today.value
+  const d = new Date(today.value)
   d.setDate(d.getDate() + (index - 3))
   setWeeklyDate(d)
 }
 const changeCalendar = (value) => {
-  setWeeklyDate(value)
+  setWeeklyDate(new Date(value))
 }
 const setWeeklyDate = (date) => {
   today.value = date
-  month.value = date.getMonth() + 1
+  month.value = getMonth(date)
   weeklyList.value = makeWeeklyList(date)
 }
 const getMonth = (date) => {
@@ -64,10 +73,13 @@ const getDayNum = (date, i) => {
   d.setDate(d.getDate() + i)
   return d.getDate()
 }
+const getDay = (date) => {
+  return new Date(date).getDay()
+}
 const makeWeeklyList = (date) => {
   const before = []
   const after = []
-  const today = date.getDay()
+  const today = getDay(date)
   for (let i = 1; i <= 3; i++) {
     before.push({ day: getDayName(today - i), num: getDayNum(date, i * -1) })
     after.push({ day: getDayName(today + i), num: getDayNum(date, i) })

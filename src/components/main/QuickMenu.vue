@@ -8,9 +8,11 @@
         class="quick-menu-group__item"
         v-for="(item, index) in getQuickRecordList"
         :key="index"
-        @click="() => clickQuickRecordCount(item.quickId)"
       >
-        <div class="item__count">
+        <div
+          :class="['item__count', isDisabled(item.quickId) ? 'disabled' : '']"
+          @click="() => clickQuickRecordCount(item.quickId)"
+        >
           <p class="item__count--current">{{ item.count }}</p>
           <p class="item__count--total">{{ item.total }}</p>
         </div>
@@ -21,21 +23,50 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, watch } from 'vue'
 import { useStore } from 'vuex'
-import { MODULE_NAME, TYPES } from '@store/checklist/quickRecordStore'
+import {
+  MODULE_NAME as MN_QUICK,
+  TYPES as TY_QUICK,
+} from '@store/checklist/quickRecordStore'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@store/common/headerStore'
+import { dateToStringFormat } from '@utils/common/index.js'
 
 const store = useStore()
-
+const getWeeklyCalendarDate = computed(
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getWeeklyCalendarDate}`]
+)
 const getQuickRecordList = computed(
-  () => store.getters[`${MODULE_NAME}/${TYPES.getQuickRecordList}`]
+  () => store.getters[`${MN_QUICK}/${TY_QUICK.getQuickRecordList}`]
 )
 onMounted(() => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.actQuickRecordList}`)
+  actQuickRecordList(getWeeklyCalendarDate.value)
 })
 
+watch(
+  () => getWeeklyCalendarDate.value,
+  (newValue) => actQuickRecordList(newValue)
+)
+const actQuickRecordList = (date) => {
+  store.dispatch(
+    `${MN_QUICK}/${TY_QUICK.actQuickRecordList}`,
+    dateToStringFormat(date, '.')
+  )
+}
 const clickQuickRecordCount = (quickId) => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.actCountQuickRecord}`, quickId)
+  if (isDisabled(quickId)) {
+    return false
+  }
+  store.dispatch(`${MN_QUICK}/${TY_QUICK.actCountQuickRecord}`, quickId)
+}
+const isDisabled = (quickId) => {
+  const { total, count } = getQuickRecordList.value.find(
+    (q) => q.quickId === quickId
+  )
+  return total === count
 }
 </script>
 

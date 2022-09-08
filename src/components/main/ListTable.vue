@@ -35,22 +35,46 @@
 <script setup>
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import { MODULE_NAME, TYPES } from '@store/checklist/todoStore.js'
-import { computed, onMounted } from '@vue/runtime-core'
+import {
+  MODULE_NAME as MN_TODO,
+  TYPES as TY_TODO,
+} from '@store/checklist/todoStore.js'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@store/common/headerStore.js'
+import { computed, onMounted, watch } from 'vue'
+import { dateToStringFormat } from '@utils/common/index.js'
 
 const store = useStore()
 const router = useRouter()
 
+const getWeeklyCalendarDate = computed(
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getWeeklyCalendarDate}`]
+)
 const getTodoList = computed(
-  () => store.getters[`${MODULE_NAME}/${TYPES.getTodoList}`]
+  () => store.getters[`${MN_TODO}/${TY_TODO.getTodoList}`]
 )
 
 onMounted(() => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.actTodoList}`)
+  actTodoList(getWeeklyCalendarDate.value)
 })
 
+watch(
+  () => getWeeklyCalendarDate.value,
+  (newValue) => {
+    actTodoList(newValue)
+  }
+)
+
+const actTodoList = (date) => {
+  store.dispatch(
+    `${MN_TODO}/${TY_TODO.actTodoList}`,
+    dateToStringFormat(date, '-')
+  )
+}
 const clickTodoChecked = (todoId) => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.actCheckedTodo}`, todoId)
+  store.dispatch(`${MN_TODO}/${TY_TODO.actCheckedTodo}`, todoId)
 }
 const clickTodoDetail = (todoId) => {
   router.push(`/checklist/todo?id=${todoId}`)

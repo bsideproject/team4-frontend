@@ -1,7 +1,7 @@
 import axios from '@/api/axios/index.js'
 
-const getQuickRecordList = () => {
-  return axios.get('/api/v1/quick')
+const getQuickRecordList = (date) => {
+  return axios.get(`/api/v1/quick/${date}`)
 }
 
 const putQuickRecord = (quickId) => {

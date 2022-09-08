@@ -39,29 +39,10 @@ const module = {
   },
   actions: {
     [TYPES.actTodoList](context, payload) {
-      getTodoList().then((res) => {
-        console.log(res)
+      getTodoList(payload).then((res) => {
+        const { checklistDetailList } = res.data?.data
+        context.commit(TYPES.setTodoList, checklistDetailList || [])
       })
-      // context.commit(TYPES.setTodoList, )
-
-      context.commit(TYPES.setTodoList, [
-        {
-          checklistId: 3,
-          title: '반복 매일 할일 제목',
-          explanation: '반복 매일 할일',
-          date: [2022, 7, 1],
-          done: false,
-          repeated: true,
-        },
-        {
-          checklistId: 4,
-          title: '매주 토요일 반복 할일',
-          explanation: '매주 토요일 할일',
-          date: [2022, 7, 1],
-          done: true,
-          repeated: true,
-        },
-      ])
     },
     [TYPES.actTodo](context, payload) {
       // getTodo(payload)
