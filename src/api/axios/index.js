@@ -11,7 +11,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   function (config) {
-    console.log('axios request interceptor', config)
+    // console.log('axios request interceptor', config)
 
     const authorization = getAuthorization()
     if (authorization) {

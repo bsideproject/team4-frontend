@@ -39,36 +39,50 @@ const module = {
   },
   actions: {
     [TYPES.actTodoList](context, payload) {
-      getTodoList(payload).then((res) => {
-        const { checklistDetailList } = res.data?.data
-        context.commit(TYPES.setTodoList, checklistDetailList || [])
+      return getTodoList(payload).then((res) => {
+        const { code, message, data } = res.data
+        if (code === '401') {
+          const { checklistDetailList } = data
+          context.commit(TYPES.setTodoList, checklistDetailList || [])
+        } else {
+          throw new Error(message)
+        }
       })
     },
     [TYPES.actTodo](context, payload) {
-      // getTodo(payload)
-      context.commit(TYPES.setTodo, {
-        checklistId: 4,
-        title: '매달 6/25일 반복할일',
-        explanation: '매달 25일 반복 할일입니다',
-        date: [2022, 6, 4],
-        isDone: false,
-        isRepeated: true,
-        repeatDetail: {
-          eventPeriod: 'monthly',
-          eventDate: 'MONDAY',
-          eventMonth: null,
-          eventDay: '',
-          eventWeek: 2,
-          startedAt: [2022, 6, 1],
-          endedAt: null,
-        },
+      return getTodo(payload).then((res) => {
+        const { code, message, data } = res.data
+        if (code === '405') {
+          context.commit(TYPES.setTodo, data)
+        } else {
+          throw new Error(message)
+        }
       })
     },
     [TYPES.actCheckedTodo](context, payload) {
-      putCheckedTodo(payload)
+      return putCheckedTodo(payload).then((res) => {
+        const { code, message } = res.data
+        if (code === '411') {
+          /**
+           * TODO: 성공시 처리
+           */
+          console.log(res)
+        } else {
+          throw new Error(message)
+        }
+      })
     },
     [TYPES.actSaveTodo](context, payload) {
-      postTodo(payload)
+      return postTodo(payload).then((res) => {
+        const { code, message } = res.data
+        if (code === '403') {
+          /**
+           * TODO: 성공시 처리
+           */
+        } else {
+          throw new Error(message)
+        }
+      })
     },
   },
   mutations: {

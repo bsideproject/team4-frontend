@@ -1,7 +1,7 @@
 import axios from '@/api/axios/index.js'
 
-const getGroupMemberList = () => {
-  return axios.get('/api/v1/family')
+const getGroupMemberList = (familyId) => {
+  return axios.get(`/api/v1/family/${familyId}`)
 }
 
 const deleteGroup = () => {

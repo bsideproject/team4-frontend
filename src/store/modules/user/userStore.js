@@ -24,25 +24,16 @@ const module = {
   },
   actions: {
     [TYPES.actUser](context, payload) {
-      const user = getUser()
+      getUser()
         .then((res) => {
-          console.log('getUser', res)
+          const { code, data } = res.data
+          if (code === '152') {
+            context.commit(TYPES.setUser, data)
+          }
         })
         .catch((err) => {
           console.log(err)
         })
-
-      console.log('user', user)
-      context.commit(TYPES.setUser, {
-        id: 2,
-        name: '송레10',
-        email: 'sir950123@gmail.com',
-        mainPetId: null,
-        role: 'ROLE_MANAGER',
-        familyId: null,
-        deleted: false,
-        image: '',
-      })
     },
     [TYPES.actPutUser](context, payload) {
       console.log(context, payload)

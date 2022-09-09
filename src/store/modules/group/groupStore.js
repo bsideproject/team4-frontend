@@ -28,32 +28,11 @@ const module = {
   },
   actions: {
     [TYPES.actGroupList](context, payload) {
-      context.commit(TYPES.setGroupList, [
-        {
-          userId: 1,
-          name: '엄마',
-          image: '',
-          role: 'ROLE_MANAGER',
-        },
-        {
-          userId: 2,
-          name: '아빠',
-          image: '',
-          role: 'ROLE_USER',
-        },
-        {
-          userId: 3,
-          name: '동생',
-          image: '',
-          role: 'ROLE_USER',
-        },
-      ])
       getGroupMemberList(payload)
         .then((res) => {
           console.log(res)
 
-          // const groupList = res.data?.data?.familyMemberList
-          // context.commit(TYPES.setGroupList, groupList || [])
+          context.commit(TYPES.setGroupList, [])
         })
         .catch((error) => {
           console.log(error)

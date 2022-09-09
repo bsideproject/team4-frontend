@@ -124,3 +124,13 @@ body {
     color: gray;
   }
 }
+
+.v-toast__item {
+  width: 80%;
+}
+.v-toast__item--success {
+  background-color: $primaryColor !important;
+}
+.v-toast__icon {
+  display: none !important;
+}

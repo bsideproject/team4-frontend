@@ -27,7 +27,7 @@
                 'representative',
                 item.isMain ? 'representative-color' : '',
               ]"
-              @click="(e) => clickRepresentative(item.petId)"
+              @click="(e) => clickRepresentative(item)"
             ></button>
             <button class="edit" @click="() => clickEdit(item.edit)">
               편집
@@ -67,6 +67,9 @@
         </div>
       </div>
     </article>
+    <article class="pet-profile__create">
+      <button class="btn-lg-enabled" @click="clickCreatePet">등록하기</button>
+    </article>
   </section>
 </template>
 
@@ -74,10 +77,12 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toast-notification'
 import { MODULE_NAME, TYPES } from '@store/pet/petStore.js'
 
 const store = useStore()
 const router = useRouter()
+const toast = useToast()
 const detailId = ref('')
 
 const getPetList = computed(
@@ -100,15 +105,30 @@ watch(
 const clickPet = (petId) => {
   detailId.value = petId
 }
-const clickRepresentative = (petId) => {
-  if (petId === getMainPetId.value) {
+const clickRepresentative = (pet) => {
+  if (pet.petId === getMainPetId.value) {
     return false
   }
 
-  store.dispatch(`${MODULE_NAME}/${TYPES.actPutMainPet}`, { mainPetId: petId })
+  store
+    .dispatch(`${MODULE_NAME}/${TYPES.actPutMainPet}`, {
+      mainPetId: pet.petId,
+    })
+    .then(() => {
+      toast.clear()
+      toast.open({
+        type: 'success',
+        message: `'${pet.name}'가 대표 펫으로 설정되었습니다.`,
+        position: 'bottom',
+      })
+    })
 }
+
 const clickEdit = (petId) => {
   router.push({ name: ROUTE.Pet.Modify, params: { petId } })
+}
+const clickCreatePet = () => {
+  router.push({ name: ROUTE.Pet.Create })
 }
 </script>
 

@@ -2,7 +2,13 @@
   <section class="setting-main">
     <article class="setting-main__profile">
       <div class="setting-main__profile_image">
-        <img :src="getUser.image" alt="" @error="onError" />
+        <img
+          :src="
+            getUser.userImageUr ||
+            require('@images/icons/profile_big_default.svg')
+          "
+          alt=""
+        />
         <span class="setting-main__profile_name">{{ getUser.name }}</span>
       </div>
     </article>
