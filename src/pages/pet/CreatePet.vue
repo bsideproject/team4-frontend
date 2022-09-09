@@ -130,9 +130,11 @@ import { reactive, ref, toRefs, watch } from 'vue'
 import { MODULE_NAME, TYPES } from '@store/pet/petStore.js'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toast-notification'
 
 const store = useStore()
 const router = useRouter()
+const toast = useToast()
 const isOnEdit = ref(false)
 const birthCalendar = ref(null)
 const adoptCalendar = ref(null)
@@ -181,13 +183,15 @@ const clickEditProfile = () => {
   /**
    * 펫 등록 API 호출
    */
-  store
-    .dispatch(`${MODULE_NAME}/${TYPES.actPostPet}`, form)
-    .then((isSuccess) => {
-      if (isSuccess) {
-        router.push({ name: ROUTE.Main })
-      }
+  store.dispatch(`${MODULE_NAME}/${TYPES.actPostPet}`, form).then(() => {
+    toast.clear()
+    toast.open({
+      type: 'success',
+      message: '펫이 생성되었습니다.',
+      position: 'bottom',
     })
+    router.push({ name: ROUTE.Main })
+  })
 }
 
 watch(

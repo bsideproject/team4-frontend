@@ -27,8 +27,8 @@
     </article>
     <article class="group__empty" v-else>
       <div class="group__empty_title">
-        <span>아직 구성원이 없어요! :()</span>
-        <span>초대해볼까요?</span>
+        <p>아직 구성원이 없어요! :(</p>
+        <p>초대해볼까요?</p>
       </div>
       <div class="group__empty_image">
         <img src="@images/png/group_illust.png" alt="" />
@@ -69,7 +69,11 @@ const getGroupList = computed(
 const getUser = computed(() => store.getters[`${MN_USER}/${TY_USER.getUser}`])
 onMounted(() => {
   store.dispatch(`${MN_USER}/${TY_USER.actUser}`)
-  store.dispatch(`${MN_GROUP}/${TY_GROUP.actGroupList}`)
+
+  const familyId = getUser.value.familyId
+  if (familyId) {
+    store.dispatch(`${MN_GROUP}/${TY_GROUP.actGroupList}`, familyId)
+  }
 
   if (getUser.value.role === ROLE.MANAGER) {
     store.commit(`${MN_HEADER}/${TY_HEADER.setMoreOptionList}`, [
