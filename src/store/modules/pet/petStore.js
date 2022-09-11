@@ -4,11 +4,19 @@ import {
   getPet,
   putMainPet,
   postSharePet,
+  putPet,
+  putDeactivatePet,
+  deletePet,
 } from '@api/pet/pet.js'
 import { makeModuleTypes } from '@utils/store/index.js'
 
 const MODULE_NAME = 'petStore'
 const TYPES = makeModuleTypes([
+  'pet',
+  'getPet',
+  'actPet',
+  'setPet',
+
   'mainPetId',
   'getMainPetId',
   'setMainPetId',
@@ -25,16 +33,24 @@ const TYPES = makeModuleTypes([
   'actPostPet',
   'actPutMainPet',
   'actPostSharePet',
+
+  'actPutPet',
+  'actPutDeactivatePet',
+  'actDeletePet',
 ])
 
 const module = {
   namespaced: true,
   state: {
+    pet: {},
     mainPetId: '',
     totalPetNumber: 0,
     petList: [],
   },
   getters: {
+    [TYPES.getPet](state) {
+      return state.pet
+    },
     [TYPES.getPetList](state) {
       return state.petList
     },
@@ -46,6 +62,17 @@ const module = {
     },
   },
   actions: {
+    [TYPES.actPet](context, payload) {
+      return getPet(payload).then((res) => {
+        const { code, message, data } = res.data
+
+        if (code === '202') {
+          context.commit(TYPES.setPet, data)
+        } else {
+          throw new Error(message)
+        }
+      })
+    },
     [TYPES.actPetList](context, payload) {
       return getPetList()
         .then((res) => {
@@ -99,8 +126,46 @@ const module = {
         }
       })
     },
+    [TYPES.actPutPet](context, payload) {
+      return putPet(payload).then((res) => {
+        const { code, message, data } = res.data
+
+        if (code === '204') {
+          context.commit(TYPES.setPet, data)
+        } else {
+          throw new Error(message)
+        }
+      })
+    },
+    [TYPES.actPutDeactivatePet](context, payload) {
+      return putDeactivatePet(payload).then((res) => {
+        const { code, message } = res.data
+        if (code === '205') {
+          /**
+           * TODO 펫 기록 중지 성공시
+           */
+        } else {
+          throw new Error(message)
+        }
+      })
+    },
+    [TYPES.actDeletePet](context, payload) {
+      return deletePet(payload).then((res) => {
+        const { code, message } = res.data
+
+        if (code === '207') {
+          context.commit(TYPES.setPet, {})
+          context.dispatch(TYPES.getPetList)
+        } else {
+          throw new Error(message)
+        }
+      })
+    },
   },
   mutations: {
+    [TYPES.setPet](state, payload) {
+      state.pet = payload
+    },
     [TYPES.setPetList](state, payload) {
       state.petList = payload
     },

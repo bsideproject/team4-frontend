@@ -106,7 +106,7 @@
         :class="[isOnEdit ? 'btn-lg-enabled' : 'btn-lg-disabled']"
         @click="clickEditProfile"
       >
-        완료
+        완료하기
       </button>
     </article>
     <calendar

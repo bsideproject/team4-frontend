@@ -20,4 +20,25 @@ const postSharePet = (petId) => {
   return axios.post(`/api/v1/pets/${petId}/share`)
 }
 
-export { postPet, getPetList, getPet, putMainPet, postSharePet }
+const putPet = (data) => {
+  return axios.put(`/api/v1/pets/${data.petId}`, data)
+}
+
+const putDeactivatePet = (petId) => {
+  return axios.put(`/api/v1/pets/${petId}/deactivate`)
+}
+
+const deletePet = (petId) => {
+  return axios.delete(`/api/v1/pets/${petId}`)
+}
+
+export {
+  postPet,
+  getPetList,
+  getPet,
+  putMainPet,
+  postSharePet,
+  putPet,
+  putDeactivatePet,
+  deletePet,
+}

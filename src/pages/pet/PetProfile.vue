@@ -29,7 +29,7 @@
               ]"
               @click="(e) => clickRepresentative(item)"
             ></button>
-            <button class="edit" @click="() => clickEdit(item.edit)">
+            <button class="edit" @click="() => clickEdit(item.petId)">
               편집
             </button>
           </div>
