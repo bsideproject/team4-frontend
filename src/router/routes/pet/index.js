@@ -13,15 +13,15 @@ export default [
     component: CreatePet,
     meta: {
       title: '펫 등록하기',
-      headerType: HEADER_TYPE.MORE,
+      headerType: HEADER_TYPE.NONE,
     },
   },
   {
-    path: 'modify',
+    path: 'modify/:petId',
     name: ROUTE.Pet.Modify,
     component: ModifyPet,
     meta: {
-      title: '펫 등록하기',
+      title: '펫 프로필 수정',
       headerType: HEADER_TYPE.MORE,
     },
   },
