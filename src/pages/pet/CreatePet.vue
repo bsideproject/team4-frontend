@@ -27,15 +27,15 @@
           />
         </div>
         <div class="field-area">
-          <label for="sex">성별*</label>
+          <label for="gender">성별*</label>
           <div class="radio-area">
             <label for="female">여자</label>
             <input
               type="radio"
               id="female"
-              name="sex"
-              v-model="form.sex"
-              value="F"
+              name="gender"
+              v-model="form.gender"
+              value="FEMALE"
             />
           </div>
           <div class="radio-area">
@@ -43,19 +43,19 @@
             <input
               type="radio"
               id="male"
-              name="sex"
-              v-model="form.sex"
-              value="M"
+              name="gender"
+              v-model="form.gender"
+              value="MALE"
             />
           </div>
         </div>
         <div class="field-area">
-          <label for="kind">품종</label>
+          <label for="breed">품종</label>
           <input
             type="text"
-            id="kind"
+            id="breed"
             maxlength="20"
-            v-model="form.kind"
+            v-model="form.breed"
             placeholder="품종을 입력해주세요."
           />
         </div>
@@ -63,10 +63,10 @@
           <label for="birthday">생일</label>
           <input
             id="birthday"
-            v-model="form.birthYmd"
+            v-model="form.birthday"
             readonly
             placeholder="0000.00.00"
-            @click="clickBirthYmd"
+            @click="clickBirthday"
           />
         </div>
 
@@ -75,28 +75,28 @@
           <input
             type="text"
             id="age"
-            maxlength="10"
+            maxlength="2"
             v-model="form.age"
             placeholder="나이를 입력해주세요."
           />
         </div>
         <div class="field-area date-area">
-          <label for="adoptYmd">입양 날짜</label>
+          <label for="adoptionDate">입양 날짜</label>
           <input
-            id="adoptYmd"
-            v-model="form.adoptYmd"
+            id="adoptionDate"
+            v-model="form.adoptionDate"
             readonly
             placeholder="0000.00.00"
-            @click="clickAdoptYmd"
+            @click="clickAdoptionDate"
           />
         </div>
         <div class="field-area">
-          <label for="petNumber">동물등록번호</label>
+          <label for="animalRegistrationNumber">동물등록번호</label>
           <input
             type="text"
-            id="petNumber"
+            id="animalRegistrationNumber"
             maxlength="20"
-            v-model="form.petNumber"
+            v-model="form.animalRegistrationNumber"
             placeholder="등록번호를 입력해주세요."
           />
         </div>
@@ -106,18 +106,20 @@
         :class="[isOnEdit ? 'btn-lg-enabled' : 'btn-lg-disabled']"
         @click="clickEditProfile"
       >
-        완료
+        완료하기
       </button>
     </article>
     <calendar
       ref="birthCalendar"
       id="birthCalendar"
       @change="changeBirthCalendar"
+      :max-date="new Date()"
     />
     <calendar
       ref="adoptCalendar"
       id="adoptCalendar"
       @change="changeAdoptCalendar"
+      :max-date="new Date()"
     />
   </section>
 </template>
@@ -125,19 +127,26 @@
 <script setup>
 import Calendar from '@components/common/Calendar.vue'
 import { reactive, ref, toRefs, watch } from 'vue'
+import { MODULE_NAME, TYPES } from '@store/pet/petStore.js'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toast-notification'
 
+const store = useStore()
+const router = useRouter()
+const toast = useToast()
 const isOnEdit = ref(false)
 const birthCalendar = ref(null)
 const adoptCalendar = ref(null)
 const form = reactive({
   image: '',
   name: '',
-  sex: '',
-  kind: '',
-  birthYmd: '',
+  gender: '',
+  breed: '',
+  birthday: '',
   age: '',
-  adoptYmd: '',
-  petNumber: '',
+  adoptionDate: '',
+  animalRegistrationNumber: '',
 })
 
 const onError = (e) => {
@@ -156,18 +165,17 @@ const changeProfileImage = (e) => {
   reader.readAsDataURL(file)
 }
 
-const clickBirthYmd = () => {
-  console.log(birthCalendar)
+const clickBirthday = () => {
   birthCalendar.value.openCalendar()
 }
-const clickAdoptYmd = () => {
+const clickAdoptionDate = () => {
   adoptCalendar.value.openCalendar()
 }
 const changeBirthCalendar = (value) => {
-  form.birthYmd = value
+  form.birthday = value
 }
 const changeAdoptCalendar = (value) => {
-  form.adoptYmd = value
+  form.adoptionDate = value
 }
 
 const clickEditProfile = () => {
@@ -175,14 +183,22 @@ const clickEditProfile = () => {
   /**
    * 펫 등록 API 호출
    */
+  store.dispatch(`${MODULE_NAME}/${TYPES.actPostPet}`, form).then(() => {
+    toast.clear()
+    toast.open({
+      type: 'success',
+      message: '펫이 생성되었습니다.',
+      position: 'bottom',
+    })
+    router.push({ name: ROUTE.Main })
+  })
 }
 
 watch(
   () => form,
   (newForm) => {
-    console.log(Object.entries(newForm))
     isOnEdit.value = Object.entries(newForm)
-      .filter((f) => f[0] !== 'image')
+      .filter((f) => f[0] === 'name' || f[0] === 'gender')
       .every((f) => f[1])
   },
   { deep: true }

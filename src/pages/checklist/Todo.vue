@@ -181,10 +181,12 @@ import { dateToStringFormat, getWeekNumber } from '@utils/common/index.js'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { MODULE_NAME, TYPES } from '@store/checklist/todoStore.js'
+import { useToast } from 'vue-toast-notification'
 
 const route = useRoute()
 const router = useRouter()
 const store = useStore()
+const toast = useToast()
 const compCalendar = ref(null)
 const compRepeatEndedCalendar = ref(null)
 const isRepeatEnded = ref(false)
@@ -374,7 +376,18 @@ const clickSaveTodo = () => {
 
   console.log(todo)
 
-  store.dispatch(`${MODULE_NAME}/${TYPES.actSaveTodo}`, todo)
+  store
+    .dispatch(`${MODULE_NAME}/${TYPES.actSaveTodo}`, todo)
+    .then((isSuccess) => {
+      if (isSuccess) {
+        toast.clear()
+        toast.open({
+          type: 'success',
+          message: '할 일이 저장되었습니다.',
+          position: 'bottom',
+        })
+      }
+    })
 
   // router.push({ name: ROUTE.Main })
 }

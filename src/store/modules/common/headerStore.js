@@ -10,14 +10,19 @@ const TYPES = makeModuleTypes([
   'setHeaderType',
   'moreOptionList',
   'getMoreOptionList',
-  'setMoreOptionList'
+  'setMoreOptionList',
+
+  'weeklyCalendarDate',
+  'getWeeklyCalendarDate',
+  'setWeeklyCalendarDate',
 ])
 const module = {
   namespaced: true,
   state: {
     title: '',
     headerType: '',
-    moreOptionList: []
+    moreOptionList: [],
+    weeklyCalendarDate: new Date(),
   },
   getters: {
     [TYPES.getTitle](state) {
@@ -28,7 +33,10 @@ const module = {
     },
     [TYPES.getMoreOptionList](state) {
       return state.moreOptionList
-    }
+    },
+    [TYPES.getWeeklyCalendarDate](state) {
+      return state.weeklyCalendarDate
+    },
   },
   mutations: {
     [TYPES.setTitle](state, payload) {
@@ -39,12 +47,11 @@ const module = {
     },
     [TYPES.setMoreOptionList](state, payload) {
       state.moreOptionList = payload
-    }
-  }
+    },
+    [TYPES.setWeeklyCalendarDate](state, payload) {
+      state.weeklyCalendarDate = payload
+    },
+  },
 }
 
-export {
-  module,
-  MODULE_NAME,
-  TYPES
-}
+export { module, MODULE_NAME, TYPES }

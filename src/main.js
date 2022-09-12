@@ -23,4 +23,6 @@ app.component('Datepicker', Datepicker)
 import BottomSheet from '@components/common/BottomSheet.vue'
 app.component('BottomSheet', BottomSheet)
 
+import 'vue-toast-notification/dist/theme-sugar.css'
+
 app.mount('#app')

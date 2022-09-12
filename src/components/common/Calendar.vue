@@ -10,6 +10,7 @@
         :enableTimePicker="false"
         inline
         autoApply
+        :maxDate="maxDate"
       />
     </article>
   </section>
@@ -39,6 +40,10 @@ const props = defineProps({
   },
   change: {
     type: Function,
+  },
+  maxDate: {
+    type: Date,
+    default: null,
   },
 })
 const emits = defineEmits(['change'])
