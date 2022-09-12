@@ -6,10 +6,10 @@
   color: #ffffff;
 
   &-wrapper {
-    display: flex;
+    // display: flex;
     gap: 20px;
-    justify-content: left;
-    align-items: center;
+    // justify-content: left;
+    // align-items: center;
     &__item {
       .item__name {
         margin-bottom: 5px;
@@ -48,5 +48,11 @@
         position: relative;
       }
     }
+  }
+  .swiper {
+    z-index: 0;
+  }
+  .swiper-wrapper {
+    z-index: 0;
   }
 }
