@@ -1,6 +1,6 @@
 import { createVNode, render } from 'vue'
 
-const renderComponent = ({ el, appContext, component, props }) => {
+const renderComponent = ({ el, appContext, component, props }: any) => {
   let vnode = createVNode(component, props)
 
   return {
@@ -15,7 +15,7 @@ const renderComponent = ({ el, appContext, component, props }) => {
   }
 }
 
-const _confirm = async (instance, options) => {
+const _confirm = async (instance: any, options: any) => {
   const el = instance.root.refs['main']
   const appContext = instance.appContext
   const renderComp = renderComponent({
@@ -30,7 +30,7 @@ const _confirm = async (instance, options) => {
   renderComp.render()
 }
 
-const lpad = (value) => {
+const lpad = (value: any) => {
   if (value >= 10) {
     return value
   }
@@ -57,7 +57,7 @@ const getWeekNumber = (dateFrom = new Date()) => {
   const weekDay = startOfMonth.getDay() // 0: Sun ~ 6: Sat
 
   // ((요일 - 1) + 해당 날짜) / 7일로 나누기 = N 주차
-  return parseInt((weekDay - 1 + currentDate) / 7) + 1
+  return (weekDay - 1 + currentDate) / 7 + 1
 }
 
 export { _confirm, dateToStringFormat, getWeekNumber }

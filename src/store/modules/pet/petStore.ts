@@ -7,37 +7,64 @@ import {
   putPet,
   putDeactivatePet,
   deletePet,
-} from '@api/pet/pet.js'
-import { makeModuleTypes } from '@utils/store/index.js'
+} from '@/api/pet/pet.js'
 
 const MODULE_NAME = 'petStore'
-const TYPES = makeModuleTypes([
-  'pet',
-  'getPet',
-  'actPet',
-  'setPet',
+enum TYPES {
+  pet = 'pet',
+  getPet = 'getPet',
+  actPet = 'actPet',
+  setPet = 'setPet',
 
-  'mainPetId',
-  'getMainPetId',
-  'setMainPetId',
+  mainPetId = 'mainPetId',
+  getMainPetId = 'getMainPetId',
+  setMainPetId = 'setMainPetId',
 
-  'totalPetNumber',
-  'getTotalPetNumber',
-  'setTotalPetNumber',
+  totalPetNumber = 'totalPetNumber',
+  getTotalPetNumber = 'getTotalPetNumber',
+  setTotalPetNumber = 'setTotalPetNumber',
 
-  'petList',
-  'getPetList',
-  'actPetList',
-  'setPetList',
+  petList = 'petList',
+  getPetList = 'getPetList',
+  actPetList = 'actPetList',
+  setPetList = 'setPetList',
 
-  'actPostPet',
-  'actPutMainPet',
-  'actPostSharePet',
+  actPostPet = 'actPostPet',
+  actPutMainPet = 'actPutMainPet',
+  actPostSharePet = 'actPostSharePet',
 
-  'actPutPet',
-  'actPutDeactivatePet',
-  'actDeletePet',
-])
+  actPutPet = 'actPutPet',
+  actPutDeactivatePet = 'actPutDeactivatePet',
+  actDeletePet = 'actDeletePet',
+}
+
+// const TYPES = makeModuleTypes([
+//   'pet',
+//   'getPet',
+//   'actPet',
+//   'setPet',
+
+//   'mainPetId',
+//   'getMainPetId',
+//   'setMainPetId',
+
+//   'totalPetNumber',
+//   'getTotalPetNumber',
+//   'setTotalPetNumber',
+
+//   'petList',
+//   'getPetList',
+//   'actPetList',
+//   'setPetList',
+
+//   'actPostPet',
+//   'actPutMainPet',
+//   'actPostSharePet',
+
+//   'actPutPet',
+//   'actPutDeactivatePet',
+//   'actDeletePet',
+// ])
 
 const module = {
   namespaced: true,
@@ -48,22 +75,22 @@ const module = {
     petList: [],
   },
   getters: {
-    [TYPES.getPet](state) {
+    [TYPES.getPet](state: any) {
       return state.pet
     },
-    [TYPES.getPetList](state) {
+    [TYPES.getPetList](state: any) {
       return state.petList
     },
-    [TYPES.getMainPetId](state) {
+    [TYPES.getMainPetId](state: any) {
       return state.mainPetId
     },
-    [TYPES.getTotalPetNumber](state) {
+    [TYPES.getTotalPetNumber](state: any) {
       return state.totalPetNumber
     },
   },
   actions: {
-    [TYPES.actPet](context, payload) {
-      return getPet(payload).then((res) => {
+    [TYPES.actPet](context: any, payload: any) {
+      return getPet(payload).then((res: any) => {
         const { code, message, data } = res.data
 
         if (code === '202') {
@@ -73,9 +100,9 @@ const module = {
         }
       })
     },
-    [TYPES.actPetList](context, payload) {
+    [TYPES.actPetList](context: any, payload: any) {
       return getPetList()
-        .then((res) => {
+        .then((res: any) => {
           const { code, message, data } = res.data
 
           if (code === '203') {
@@ -86,30 +113,30 @@ const module = {
             context.commit(
               TYPES.setPetList,
               petList
-                ?.map((pet) => {
+                ?.map((pet: any) => {
                   pet.isMain = pet.petId === mainPetId
                   return pet
                 })
-                .sort((a, b) => b.isMain - a.isMain) || []
+                .sort((a: any, b: any) => b.isMain - a.isMain) || []
             )
           } else {
             throw new Error(message)
           }
         })
-        .catch((err) => {
+        .catch((err:any) => {
           console.log(err)
         })
     },
-    [TYPES.actPostPet](context, payload) {
-      return postPet(payload).then((res) => {
+    [TYPES.actPostPet](context: any, payload: any) {
+      return postPet(payload).then((res: any) => {
         const { code, message } = res.data
         if (code !== '201') {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPutMainPet](context, payload) {
-      return putMainPet(payload).then((res) => {
+    [TYPES.actPutMainPet](context: any, payload: any) {
+      return putMainPet(payload).then((res: any) => {
         const { code, message } = res.data
         if (code === '209') {
           context.dispatch(TYPES.actPetList)
@@ -118,16 +145,16 @@ const module = {
         }
       })
     },
-    [TYPES.actPostSharePet](context, payload) {
-      return postSharePet(payload).then((res) => {
+    [TYPES.actPostSharePet](context: any, payload: any) {
+      return postSharePet(payload).then((res: any) => {
         const { code } = res.data
         if (code !== '208') {
           context.dispatch(TYPES.actPetList)
         }
       })
     },
-    [TYPES.actPutPet](context, payload) {
-      return putPet(payload).then((res) => {
+    [TYPES.actPutPet](context: any, payload: any) {
+      return putPet(payload).then((res: any) => {
         const { code, message, data } = res.data
 
         if (code === '204') {
@@ -137,8 +164,8 @@ const module = {
         }
       })
     },
-    [TYPES.actPutDeactivatePet](context, payload) {
-      return putDeactivatePet(payload).then((res) => {
+    [TYPES.actPutDeactivatePet](context: any, payload: any) {
+      return putDeactivatePet(payload).then((res: any) => {
         const { code, message } = res.data
         if (code === '205') {
           /**
@@ -149,8 +176,8 @@ const module = {
         }
       })
     },
-    [TYPES.actDeletePet](context, payload) {
-      return deletePet(payload).then((res) => {
+    [TYPES.actDeletePet](context: any, payload: any) {
+      return deletePet(payload).then((res: any) => {
         const { code, message } = res.data
 
         if (code === '207') {
@@ -163,16 +190,16 @@ const module = {
     },
   },
   mutations: {
-    [TYPES.setPet](state, payload) {
+    [TYPES.setPet](state: any, payload: any) {
       state.pet = payload
     },
-    [TYPES.setPetList](state, payload) {
+    [TYPES.setPetList](state: any, payload: any) {
       state.petList = payload
     },
-    [TYPES.setMainPetId](state, payload) {
+    [TYPES.setMainPetId](state: any, payload: any) {
       state.mainPetId = payload
     },
-    [TYPES.setTotalPetNumber](state, payload) {
+    [TYPES.setTotalPetNumber](state: any, payload: any) {
       state.totalPetNumber = payload
     },
   },

@@ -3,25 +3,41 @@ import {
   putCheckedTodo,
   getTodo,
   postTodo,
-} from '@api/checklist/todo.js'
-import { makeModuleTypes } from '@/utils/store'
+} from '@/api/checklist/todo.js'
+// import { makeModuleTypes } from '@/utils/store.js'
 
 const MODULE_NAME = 'todoStore'
-const TYPES = makeModuleTypes([
-  'todoList',
-  'getTodoList',
-  'actTodoList',
-  'setTodoList',
 
-  'todo',
-  'getTodo',
-  'actTodo',
-  'setTodo',
+enum TYPES {
+  todoList = 'todoList',
+  getTodoList = 'getTodoList',
+  actTodoList = 'actTodoList',
+  setTodoList= 'setTodoList',
 
-  'actSaveTodo',
+  todo = 'todo',
+  getTodo = 'getTodo',
+  actTodo = 'actTodo',
+  setTodo = 'setTodo',
 
-  'actCheckedTodo',
-])
+  actSaveTodo = 'actSaveTodo',
+
+  actCheckedTodo = 'actCheckedTodo',
+}
+// const TYPES = makeModuleTypes([
+//   'todoList',
+//   'getTodoList',
+//   'actTodoList',
+//   'setTodoList',
+
+//   'todo',
+//   'getTodo',
+//   'actTodo',
+//   'setTodo',
+
+//   'actSaveTodo',
+
+//   'actCheckedTodo',
+// ])
 
 const module = {
   namespaced: true,
@@ -30,16 +46,16 @@ const module = {
     todo: {},
   },
   getters: {
-    [TYPES.getTodoList](state) {
+    [TYPES.getTodoList](state: any) {
       return state.todoList
     },
-    [TYPES.getTodo](state) {
+    [TYPES.getTodo](state: any) {
       return state.todo
     },
   },
   actions: {
-    [TYPES.actTodoList](context, payload) {
-      return getTodoList(payload).then((res) => {
+    [TYPES.actTodoList](context: any, payload: any) {
+      return getTodoList(payload).then((res: any) => {
         const { code, message, data } = res.data
         if (code === '401') {
           const { checklistDetailList } = data
@@ -49,8 +65,8 @@ const module = {
         }
       })
     },
-    [TYPES.actTodo](context, payload) {
-      return getTodo(payload).then((res) => {
+    [TYPES.actTodo](context: any, payload: any) {
+      return getTodo(payload).then((res: any) => {
         const { code, message, data } = res.data
         if (code === '405') {
           context.commit(TYPES.setTodo, data)
@@ -59,21 +75,20 @@ const module = {
         }
       })
     },
-    [TYPES.actCheckedTodo](context, payload) {
-      return putCheckedTodo(payload).then((res) => {
+    [TYPES.actCheckedTodo](context: any, payload: any) {
+      return putCheckedTodo(payload).then((res: any) => {
         const { code, message } = res.data
         if (code === '411') {
           /**
            * TODO: 성공시 처리
            */
-          console.log(res)
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actSaveTodo](context, payload) {
-      return postTodo(payload).then((res) => {
+    [TYPES.actSaveTodo](context: any, payload: any) {
+      return postTodo(payload).then((res: any) => {
         const { code, message } = res.data
         if (code === '403') {
           /**
@@ -86,10 +101,10 @@ const module = {
     },
   },
   mutations: {
-    [TYPES.setTodoList](state, payload) {
+    [TYPES.setTodoList](state: any, payload: any) {
       state.todoList = payload
     },
-    [TYPES.setTodo](state, payload) {
+    [TYPES.setTodo](state: any, payload: any) {
       state.todo = payload
     },
   },
