@@ -2,9 +2,10 @@
   <section></section>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import ROUTE from '@/constants/route'
 import { useRoute, useRouter } from 'vue-router'
-import { setToken } from '@utils/login/index.js'
+import { setToken } from '@/utils/login/index'
 const route = useRoute()
 const router = useRouter()
 

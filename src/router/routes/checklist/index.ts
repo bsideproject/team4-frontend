@@ -1,4 +1,4 @@
-import ROUTE from '@/constants/route.json'
+import ROUTE from '@/constants/route'
 
 const QuickRecord = () => import('@/pages/checklist/QuickRecord.vue')
 const Schedule = () => import('@/pages/checklist/Schedule.vue')
@@ -7,7 +7,7 @@ const Todo = () => import('@/pages/checklist/Todo.vue')
 export default [
   {
     path: 'quick',
-    name: ROUTE.Checklist.QuickRecord,
+    // name: ROUTE.Checklist.QuickRecord,
     component: QuickRecord,
     meta: {
       title: '퀵기록 관리',

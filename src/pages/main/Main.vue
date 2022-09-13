@@ -42,7 +42,7 @@ import FloatingBottomSheet from '@/components/main/FloatingBottomSheet.vue'
 
 import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
-import { MODULE_NAME as MN_PET, TYPES as TY_PET } from '@store/pet/petStore.js'
+import { MODULE_NAME as MN_PET, TYPES as TY_PET } from '@/store/modules/pet/petStore'
 
 const store = useStore()
 const floatingBottomSheet = ref(null)

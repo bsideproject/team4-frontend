@@ -78,7 +78,8 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toast-notification'
-import { MODULE_NAME, TYPES } from '@store/pet/petStore.js'
+import { MODULE_NAME, TYPES } from '@/store/modules/pet/petStore'
+import ROUTE from '@/constants/route'
 
 const store = useStore()
 const router = useRouter()

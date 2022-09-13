@@ -1,14 +1,14 @@
 import { createVNode, render } from 'vue'
 
 const renderComponent = ({ el, appContext, component, props }: any) => {
-  let vnode = createVNode(component, props)
+  const vnode = createVNode(component, props)
 
   return {
     render() {
       vnode.appContext = { ...appContext }
-      vnode.props.destroy = () => {
+      vnode!.props!.destroy = () => {
         render(null, el)
-        vnode = undefined
+        // vnode = undefined
       }
       render(vnode, el)
     },

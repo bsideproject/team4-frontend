@@ -1,7 +1,7 @@
 import {
   getQuickRecordList,
   putQuickRecordCount,
-} from '@/api/checklist/quickRecord.js'
+} from '@/api/checklist/quickRecord'
 // import { makeModuleTypes } from '@/utils/store/index.js'
 
 const MODULE_NAME = 'quickRecordStore'

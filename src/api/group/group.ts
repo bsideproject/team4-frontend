@@ -1,4 +1,4 @@
-import axios from '@/api/axios/index.js'
+import axios from '@/api/axios/index'
 
 const getGroupMemberList = (familyId: string) => {
   return axios.get(`/api/v1/family/${familyId}`)

@@ -3,7 +3,7 @@ import {
   putCheckedTodo,
   getTodo,
   postTodo,
-} from '@/api/checklist/todo.js'
+} from '@/api/checklist/todo'
 // import { makeModuleTypes } from '@/utils/store.js'
 
 const MODULE_NAME = 'todoStore'

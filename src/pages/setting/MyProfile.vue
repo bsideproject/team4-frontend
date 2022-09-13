@@ -37,7 +37,7 @@
 
 <script setup>
 import { computed, onMounted, reactive, ref, toRefs, watch } from 'vue'
-import { MODULE_NAME, TYPES } from '@store/user/userStore.js'
+import { MODULE_NAME, TYPES } from '@/store/modules/user/userStore'
 import { useStore } from 'vuex'
 
 const store = useStore()

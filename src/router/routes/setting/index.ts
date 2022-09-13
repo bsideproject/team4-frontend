@@ -1,4 +1,4 @@
-import ROUTE from '@/constants/route.json'
+import ROUTE from '@/constants/route'
 
 const SettingMain = () => import('@pages/setting/SettingMain.vue')
 const MyProfile = () => import('@pages/setting/MyProfile.vue')

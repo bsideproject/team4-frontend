@@ -1,15 +1,15 @@
-import axios from '@/api/axios/index.js'
+import axios from '@/api/axios/index'
 
 const getUser = () => {
   return axios.get('/api/v1/users')
 }
-const putUser = (data) => {
+const putUser = (data: any) => {
   return axios.get('/api/v1/users', data)
 }
 const deleteUser = () => {
   return axios.get('/api/v1/users')
 }
-const postUserImage = (data) => {
+const postUserImage = (data: any) => {
   return axios.get('/api/v1/users/image', data)
 }
 const deletetUserImage = () => {

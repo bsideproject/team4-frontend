@@ -33,7 +33,7 @@
 
 
 <script setup>
-import ROUTE from '@constants/route.json'
+import ROUTE from '@/constants/route'
 import { defineProps } from 'vue'
 import { useRouter } from 'vue-router'
 

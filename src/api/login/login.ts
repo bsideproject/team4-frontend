@@ -1,6 +1,6 @@
-import axios from '@/api/axios/index.js'
+import axios from '@/api/axios/index'
 
-const login = (data) => {
+const login = (data: any) => {
   console.log('login api', data)
 
   return axios.post('/api/login', data)

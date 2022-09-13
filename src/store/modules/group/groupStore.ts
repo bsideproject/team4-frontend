@@ -2,7 +2,7 @@ import {
   getGroupMemberList,
   deleteGroupMember,
   putGroupManager,
-} from '@/api/group/group.js'
+} from '@/api/group/group'
 // import { makeModuleTypes } from '@utils/store/index.js'
 
 const MODULE_NAME = 'groupStore'

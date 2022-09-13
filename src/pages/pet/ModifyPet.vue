@@ -125,17 +125,17 @@
 </template>
 
 <script setup>
-import Calendar from '@components/common/Calendar.vue'
+import Calendar from '@/components/common/Calendar.vue'
 import { computed, onMounted, reactive, ref, toRefs, watch } from 'vue'
-import { MODULE_NAME as MN_PET, TYPES as TY_PET } from '@store/pet/petStore.js'
+import { MODULE_NAME as MN_PET, TYPES as TY_PET } from '@/store/modules/pet/petStore'
 import {
   MODULE_NAME as MN_HEADER,
   TYPES as TY_HEADER,
-} from '@store/common/headerStore.js'
+} from '@/store/modules/common/headerStore'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 import { useToast } from 'vue-toast-notification'
-import { formatISO } from 'date-fns'
+import ROUTE from '@/constants/route'
 
 const store = useStore()
 const router = useRouter()

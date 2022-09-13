@@ -23,9 +23,9 @@
 </template>
 
 <script setup>
-import Calendar from '@components/common/Calendar.vue'
+import Calendar from '@/components/common/Calendar.vue'
 import { ref, watch } from 'vue'
-import { MODULE_NAME, TYPES } from '@store/common/headerStore.js'
+import { MODULE_NAME, TYPES } from '@/store/modules/common/headerStore'
 import { useStore } from 'vuex'
 
 const today = ref(new Date())

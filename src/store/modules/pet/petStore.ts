@@ -7,7 +7,7 @@ import {
   putPet,
   putDeactivatePet,
   deletePet,
-} from '@/api/pet/pet.js'
+} from '@/api/pet/pet'
 
 const MODULE_NAME = 'petStore'
 enum TYPES {
