@@ -1,5 +1,8 @@
-const makeModuleTypes = (types = []) => {
-  return types.reduce((acc, type) => {
+interface ModuleType {
+  [key: string]: string,
+}
+const makeModuleTypes = (types: Array<string>) => {
+  return types.reduce((acc: ModuleType, type: string) => {
     acc[type] = type
     return acc
   }, {})

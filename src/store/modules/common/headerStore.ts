@@ -1,36 +1,24 @@
-// import { makeModuleTypes } from '@/utils/store/index.js'
+import { makeModuleTypes } from '@/utils/store/index'
 
 const MODULE_NAME = 'headerStore'
-enum TYPES {
-  title = 'title',
-  getTitle = 'getTitle',
-  setTitle = 'setTitle',
-  headerType = 'headerType',
-  getHeaderType = 'getHeaderType',
-  setHeaderType = 'setHeaderType',
-  moreOptionList = 'moreOptionList',
-  getMoreOptionList = 'getMoreOptionList',
-  setMoreOptionList = 'setMoreOptionList',
 
-  weeklyCalendarDate = 'weeklyCalendarDate',
-  getWeeklyCalendarDate = 'getWeeklyCalendarDate',
-  setWeeklyCalendarDate = 'setWeeklyCalendarDate',
-}
-// const TYPES = makeModuleTypes([
-//   'title',
-//   'getTitle',
-//   'setTitle',
-//   'headerType',
-//   'getHeaderType',
-//   'setHeaderType',
-//   'moreOptionList',
-//   'getMoreOptionList',
-//   'setMoreOptionList',
+const TYPES = makeModuleTypes([
+  'title',
+  'getTitle',
+  'setTitle',
+  'headerType',
+  'getHeaderType',
+  'setHeaderType',
+  'moreOptionList',
+  'getMoreOptionList',
+  'setMoreOptionList',
 
-//   'weeklyCalendarDate',
-//   'getWeeklyCalendarDate',
-//   'setWeeklyCalendarDate',
-// ])
+  'weeklyCalendarDate',
+  'getWeeklyCalendarDate',
+  'setWeeklyCalendarDate',
+])
+type TYPES = typeof TYPES[keyof typeof TYPES]
+
 const module = {
   namespaced: true,
   state: {

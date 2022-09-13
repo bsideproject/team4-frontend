@@ -1,36 +1,17 @@
 import { getUser, putUser } from '@/api/setting/myProfile'
-// import { makeModuleTypes } from '@utils/store/index.js'
+import { makeModuleTypes } from '@/utils/store/index'
 
 const MODULE_NAME = 'userStore'
-const TYPES = {
-  user : 'user',
-  getUser : 'getUser',
-  actUser : 'actUser',
-  setUser : 'setUser',
+const TYPES = makeModuleTypes([
+  'user',
+  'getUser',
+  'actUser',
+  'setUser',
 
-  actPutUser : 'actPutUser',
-  actDeleteUser : 'actDeleteUser',
-} as const;
+  'actPutUser',
+  'actDeleteUser',
+])
 type TYPES = typeof TYPES[keyof typeof TYPES]; 
-
-// enum TYPES {
-//   user = 'user',
-//   getUser = 'getUser',
-//   actUser = 'actUser',
-//   setUser = 'setUser',
-
-//   actPutUser = 'actPutUser',
-//   actDeleteUser = 'actDeleteUser',
-// }
-// const TYPES = makeModuleTypes([
-//   'user',
-//   'getUser',
-//   'actUser',
-//   'setUser',
-
-//   'actPutUser',
-//   'actDeleteUser',
-// ])
 
 const module = {
   namespaced: true,

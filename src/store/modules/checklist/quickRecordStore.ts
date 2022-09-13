@@ -2,25 +2,18 @@ import {
   getQuickRecordList,
   putQuickRecordCount,
 } from '@/api/checklist/quickRecord'
-// import { makeModuleTypes } from '@/utils/store/index.js'
+import { makeModuleTypes } from '@/utils/store/index'
 
 const MODULE_NAME = 'quickRecordStore'
 
-enum TYPES {
-  quickRecordList = 'quickRecordList',
-  getQuickRecordList = 'getQuickRecordList',
-  actQuickRecordList = 'actQuickRecordList',
-  setQuickRecordList = 'setQuickRecordList',
-  actCountQuickRecord = 'actCountQuickRecord',
-}
-
-// const TYPES2: object = makeModuleTypes([
-//   'quickRecordList',
-//   'getQuickRecordList',
-//   'actQuickRecordList',
-//   'setQuickRecordList',
-//   'actCountQuickRecord',
-// ])
+const TYPES = makeModuleTypes([
+  'quickRecordList',
+  'getQuickRecordList',
+  'actQuickRecordList',
+  'setQuickRecordList',
+  'actCountQuickRecord',
+])
+type TYPES = typeof TYPES[keyof typeof TYPES]
 
 const module = {
   namespaced: true,
@@ -28,7 +21,7 @@ const module = {
     quickRecordList: [],
   },
   getters: {
-    [TYPES.getQuickRecordList](state: any){
+    [TYPES.getQuickRecordList](state: any) {
       return state.quickRecordList
     },
   },

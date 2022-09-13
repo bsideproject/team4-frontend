@@ -9,62 +9,38 @@ import {
   deletePet,
 } from '@/api/pet/pet'
 
+import { makeModuleTypes } from '@/utils/store/index'
+
 const MODULE_NAME = 'petStore'
-enum TYPES {
-  pet = 'pet',
-  getPet = 'getPet',
-  actPet = 'actPet',
-  setPet = 'setPet',
 
-  mainPetId = 'mainPetId',
-  getMainPetId = 'getMainPetId',
-  setMainPetId = 'setMainPetId',
+const TYPES = makeModuleTypes([
+  'pet',
+  'getPet',
+  'actPet',
+  'setPet',
 
-  totalPetNumber = 'totalPetNumber',
-  getTotalPetNumber = 'getTotalPetNumber',
-  setTotalPetNumber = 'setTotalPetNumber',
+  'mainPetId',
+  'getMainPetId',
+  'setMainPetId',
 
-  petList = 'petList',
-  getPetList = 'getPetList',
-  actPetList = 'actPetList',
-  setPetList = 'setPetList',
+  'totalPetNumber',
+  'getTotalPetNumber',
+  'setTotalPetNumber',
 
-  actPostPet = 'actPostPet',
-  actPutMainPet = 'actPutMainPet',
-  actPostSharePet = 'actPostSharePet',
+  'petList',
+  'getPetList',
+  'actPetList',
+  'setPetList',
 
-  actPutPet = 'actPutPet',
-  actPutDeactivatePet = 'actPutDeactivatePet',
-  actDeletePet = 'actDeletePet',
-}
+  'actPostPet',
+  'actPutMainPet',
+  'actPostSharePet',
 
-// const TYPES = makeModuleTypes([
-//   'pet',
-//   'getPet',
-//   'actPet',
-//   'setPet',
-
-//   'mainPetId',
-//   'getMainPetId',
-//   'setMainPetId',
-
-//   'totalPetNumber',
-//   'getTotalPetNumber',
-//   'setTotalPetNumber',
-
-//   'petList',
-//   'getPetList',
-//   'actPetList',
-//   'setPetList',
-
-//   'actPostPet',
-//   'actPutMainPet',
-//   'actPostSharePet',
-
-//   'actPutPet',
-//   'actPutDeactivatePet',
-//   'actDeletePet',
-// ])
+  'actPutPet',
+  'actPutDeactivatePet',
+  'actDeletePet',
+])
+type TYPES = typeof TYPES[keyof typeof TYPES]
 
 const module = {
   namespaced: true,

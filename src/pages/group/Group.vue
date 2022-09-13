@@ -56,7 +56,7 @@ import {
   TYPES as TY_USER,
 } from '@/store/modules/user/userStore'
 import { _confirm } from '@/utils/common'
-import ROLE from '@constants/role.json'
+import ROLE from '@/constants/role'
 
 const store = useStore()
 const instance = getCurrentInstance()

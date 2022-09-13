@@ -3,27 +3,19 @@ import {
   deleteGroupMember,
   putGroupManager,
 } from '@/api/group/group'
-// import { makeModuleTypes } from '@utils/store/index.js'
+import { makeModuleTypes } from '@/utils/store/index'
 
 const MODULE_NAME = 'groupStore'
-enum TYPES {
-  groupList = 'groupList',
-  getGroupList = 'getGroupList',
-  actGroupList = 'actGroupList',
-  setGroupList = 'setGroupList',
+const TYPES = makeModuleTypes([
+  'groupList',
+  'getGroupList',
+  'actGroupList',
+  'setGroupList',
 
-  actDeleteGroupMember = 'actDeleteGroupMember',
-  actPutGroupManager = 'actPutGroupManager',
-}
-// const TYPES = makeModuleTypes([
-//   'groupList',
-//   'getGroupList',
-//   'actGroupList',
-//   'setGroupList',
-
-//   'actDeleteGroupMember',
-//   'actPutGroupManager',
-// ])
+  'actDeleteGroupMember',
+  'actPutGroupManager',
+])
+type TYPES = typeof TYPES[keyof typeof TYPES]
 
 const module = {
   namespaced: true,

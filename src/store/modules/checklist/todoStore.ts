@@ -4,40 +4,26 @@ import {
   getTodo,
   postTodo,
 } from '@/api/checklist/todo'
-// import { makeModuleTypes } from '@/utils/store.js'
+import { makeModuleTypes } from '@/utils/store/index'
 
 const MODULE_NAME = 'todoStore'
 
-enum TYPES {
-  todoList = 'todoList',
-  getTodoList = 'getTodoList',
-  actTodoList = 'actTodoList',
-  setTodoList= 'setTodoList',
+const TYPES = makeModuleTypes([
+  'todoList',
+  'getTodoList',
+  'actTodoList',
+  'setTodoList',
 
-  todo = 'todo',
-  getTodo = 'getTodo',
-  actTodo = 'actTodo',
-  setTodo = 'setTodo',
+  'todo',
+  'getTodo',
+  'actTodo',
+  'setTodo',
 
-  actSaveTodo = 'actSaveTodo',
+  'actSaveTodo',
 
-  actCheckedTodo = 'actCheckedTodo',
-}
-// const TYPES = makeModuleTypes([
-//   'todoList',
-//   'getTodoList',
-//   'actTodoList',
-//   'setTodoList',
-
-//   'todo',
-//   'getTodo',
-//   'actTodo',
-//   'setTodo',
-
-//   'actSaveTodo',
-
-//   'actCheckedTodo',
-// ])
+  'actCheckedTodo',
+])
+type TYPES = typeof TYPES[keyof typeof TYPES]
 
 const module = {
   namespaced: true,
