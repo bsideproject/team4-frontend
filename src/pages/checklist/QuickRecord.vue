@@ -10,7 +10,7 @@
         v-for="(item, index) in getQuickRecordList"
         :key="index"
       >
-        <span class="quick-record__icon"></span>
+        <!-- <span class="quick-record__icon"></span> -->
         <div
           class="quick-record__content"
           @click="() => clickQuickRecordContent(item.quickId)"
@@ -27,23 +27,43 @@
 
 <script setup>
 import QuickRecordBottomSheet from '@/components/checkList/QuickRecordBottomSheet.vue'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
-import { MODULE_NAME, TYPES } from '@/store/modules/checklist/quickRecordStore'
+import {
+  MODULE_NAME as MN_QUICK,
+  TYPES as TY_QUICK,
+} from '@/store/modules/checklist/quickRecordStore'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@/store/modules/common/headerStore'
+import { dateToStringFormat } from '@/utils/common/index'
 
 const store = useStore()
 const quickRecordBottomSheet = ref(null)
 
 const detail = ref({})
 
+const getWeeklyCalendarDate = computed(
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getWeeklyCalendarDate}`]
+)
 const getQuickRecordList = computed(
-  () => store.getters[`${MODULE_NAME}/${TYPES.getQuickRecordList}`]
+  () => store.getters[`${MN_QUICK}/${TY_QUICK.getQuickRecordList}`]
 )
 
 onMounted(() => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.actQuickRecordList}`)
+  actQuickRecordList(getWeeklyCalendarDate.value)
 })
-
+watch(
+  () => getWeeklyCalendarDate.value,
+  (newValue) => actQuickRecordList(newValue)
+)
+const actQuickRecordList = (date) => {
+  store.dispatch(
+    `${MN_QUICK}/${TY_QUICK.actQuickRecordList}`,
+    dateToStringFormat(date, '.')
+  )
+}
 const clickQuickRecordContent = (quickId) => {
   detail.value = getQuickRecordList.value.find((l) => l.quickId === quickId)
   quickRecordBottomSheet.value.openBottomSheet()

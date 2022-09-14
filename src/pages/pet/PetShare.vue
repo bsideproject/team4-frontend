@@ -17,12 +17,7 @@
           ></span>
         </div>
         <div>
-          <button
-            :class="[
-              'representative',
-              item.isMain ? 'representative-color' : '',
-            ]"
-          ></button>
+          <button v-if="item.isMain" class="representative-color"></button>
           <button class="share" @click="() => clickSharePet(item.petId)">
             공유
           </button>

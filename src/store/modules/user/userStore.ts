@@ -32,21 +32,25 @@ const module = {
   },
   actions: {
     [TYPES.actUser](context: any) {
-      getUser()
+      return getUser()
         .then((res: AxiosResponse<Success>) => {
           const { code, data } = res.data
           if (code === '152') {
             context.commit(TYPES.setUser, data)
           }
         })
-        .catch((err: any) => {
-          console.log(err)
-        })
     },
     [TYPES.actPutUser](context: any, payload: User) {
-      putUser(payload).then((res: AxiosResponse<Success>) => console.log('putUser', res))
+      return putUser(payload)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message, data } = res.data
 
-      // context.commit(TYPES.setUser, )
+          if (code === '153') {
+            context.commit(TYPES.setUser, data)
+          } else {
+            throw new Error(message)
+          }
+        })
     },
   },
   mutations: {
