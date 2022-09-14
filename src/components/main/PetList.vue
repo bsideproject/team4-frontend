@@ -3,7 +3,7 @@
     <div class="pet-list-wrapper" v-if="props.petList.length">
       <swiper
         :slides-per-view="4"
-        :space-between="30"
+        :space-between="10"
         @swiper="onSwiper"
         @slideChange="onSlideChange"
       >
@@ -33,7 +33,7 @@
 
 
 <script setup>
-import ROUTE from '@constants/route.json'
+import ROUTE from '@/constants/route'
 import { defineProps } from 'vue'
 import { useRouter } from 'vue-router'
 

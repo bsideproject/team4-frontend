@@ -12,6 +12,11 @@
     // align-items: center;
     &__item {
       .item__name {
+        @include ptRegular14;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-break: break-all;
         margin-bottom: 5px;
       }
       .item__photo {
@@ -30,6 +35,7 @@
     }
     &__item.active {
       .item__name {
+        padding: 0 0 0 14px;
         position: relative;
         &::before {
           content: '';
@@ -40,7 +46,7 @@
           width: 12px;
           height: 12px;
           left: 0;
-          bottom: 4px;
+          bottom: 2px;
         }
       }
       .item__image {

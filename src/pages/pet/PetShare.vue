@@ -17,12 +17,7 @@
           ></span>
         </div>
         <div>
-          <button
-            :class="[
-              'representative',
-              item.isMain ? 'representative-color' : '',
-            ]"
-          ></button>
+          <button v-if="item.isMain" class="representative-color"></button>
           <button class="share" @click="() => clickSharePet(item.petId)">
             공유
           </button>
@@ -33,8 +28,8 @@
 </template>
 
 <script setup>
-import SHARE from '@constants/share.json'
-import { MODULE_NAME, TYPES } from '@store/pet/petStore.js'
+import SHARE from '@/constants/share'
+import { MODULE_NAME, TYPES } from '@/store/modules/pet/petStore'
 import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 

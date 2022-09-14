@@ -175,12 +175,12 @@
 </template>
 
 <script setup>
-import Calendar from '@components/common/Calendar.vue'
+import Calendar from '@/components/common/Calendar.vue'
 import { computed, onMounted, reactive, ref, toRefs, watch } from 'vue'
-import { dateToStringFormat, getWeekNumber } from '@utils/common/index.js'
+import { dateToStringFormat, getWeekNumber } from '@/utils/common/index'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { MODULE_NAME, TYPES } from '@store/checklist/todoStore.js'
+import { MODULE_NAME, TYPES } from '@/store/modules/checklist/todoStore'
 import { useToast } from 'vue-toast-notification'
 
 const route = useRoute()

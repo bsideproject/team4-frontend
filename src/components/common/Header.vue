@@ -49,16 +49,16 @@
   </section>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import { MODULE_NAME, TYPES } from '@store/common/headerStore.js'
+import { MODULE_NAME, TYPES } from '@/store/modules/common/headerStore'
+import ROUTE from '@/constants/route'
 
 const store = useStore()
 const router = useRouter()
 const optionBottomSheet = ref(null)
-
 const getTitle = computed(
   () => store.getters[`${MODULE_NAME}/${TYPES.getTitle}`]
 )
@@ -73,7 +73,7 @@ const goBack = () => {
   router.back()
 }
 const clickMore = () => {
-  optionBottomSheet.value.openBottomSheet()
+  optionBottomSheet?.value?.openBottomSheet()
 }
 const clickShare = () => {
   router.push({ name: ROUTE.Pet.Share })

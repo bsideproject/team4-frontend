@@ -1,11 +1,11 @@
-import ROUTE from '@/constants/route.json'
-import HEADER_TYPE from '@/constants/headerType.json'
+import ROUTE from '@/constants/route'
+import HEADER_TYPE from '@/constants/headerType'
 
-import LoginRouter from '@routes/login/index.js'
-import SettingRouter from '@routes/setting/index.js'
-import GroupRouter from '@routes/group/index.js'
-import PetRouter from '@routes/pet/index.js'
-import ChecklistRouter from '@routes/checklist/index.js'
+import LoginRouter from '@/router/routes/login/index'
+import SettingRouter from '@/router/routes/setting/index'
+import GroupRouter from '@/router/routes/group/index'
+import PetRouter from '@/router/routes/pet/index'
+import ChecklistRouter from '@/router/routes/checklist/index'
 
 const Main = () => import('@/pages/main/Main.vue')
 const LoginPage = () => import('@pages/login/LoginPage.vue')

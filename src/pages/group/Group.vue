@@ -46,17 +46,17 @@ import { useStore } from 'vuex'
 import {
   MODULE_NAME as MN_GROUP,
   TYPES as TY_GROUP,
-} from '@store/group/groupStore.js'
+} from '@/store/modules/group/groupStore'
 import {
   MODULE_NAME as MN_HEADER,
   TYPES as TY_HEADER,
-} from '@store/common/headerStore.js'
+} from '@/store/modules/common/headerStore'
 import {
   MODULE_NAME as MN_USER,
   TYPES as TY_USER,
-} from '@store/user/userStore.js'
+} from '@/store/modules/user/userStore'
 import { _confirm } from '@/utils/common'
-import ROLE from '@constants/role.json'
+import ROLE from '@/constants/role'
 
 const store = useStore()
 const instance = getCurrentInstance()

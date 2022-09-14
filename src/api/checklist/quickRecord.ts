@@ -1,18 +1,18 @@
-import axios from '@/api/axios/index.js'
+import axios from '@/api/axios/index'
 
-const getQuickRecordList = (date) => {
+const getQuickRecordList = (date: string) => {
   return axios.get(`/api/v1/quick/${date}`)
 }
 
-const putQuickRecord = (quickId) => {
+const putQuickRecord = (quickId: number) => {
   return axios.put(`/api/v1/quick/${quickId}`)
 }
 
-const putQuickRecordOrder = (data) => {
+const putQuickRecordOrder = (data: any) => {
   return axios.put('/api/v1/quick', data)
 }
 
-const putQuickRecordCount = (quickId) => {
+const putQuickRecordCount = (quickId: number) => {
   return axios.put(`/api/v1/quick/count/${quickId}`)
 }
 

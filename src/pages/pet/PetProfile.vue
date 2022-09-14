@@ -50,19 +50,19 @@
           </div>
           <div v-if="item.birthday">
             <span>생일</span>
-            <span>2020.08.20</span>
+            <span>{{ item.birthday }}</span>
           </div>
           <div v-if="item.age">
             <span>나이</span>
-            <span>2살</span>
+            <span>{{ item.age }}살</span>
           </div>
           <div v-if="item.adoptionDate">
             <span>입양 날짜</span>
-            <span>2020.09.02</span>
+            <span>{{ item.adoptionDate }}</span>
           </div>
           <div v-if="item.animalRegistrationNumber">
             <span>동물등록번호</span>
-            <span>1234567</span>
+            <span>{{ item.animalRegistrationNumber }}</span>
           </div>
         </div>
       </div>
@@ -78,7 +78,8 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toast-notification'
-import { MODULE_NAME, TYPES } from '@store/pet/petStore.js'
+import { MODULE_NAME, TYPES } from '@/store/modules/pet/petStore'
+import ROUTE from '@/constants/route'
 
 const store = useStore()
 const router = useRouter()

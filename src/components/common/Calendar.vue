@@ -26,7 +26,7 @@ import {
   getCurrentInstance,
   onMounted,
 } from 'vue'
-import { dateToStringFormat } from '@utils/common/index.js'
+import { dateToStringFormat } from '@/utils/common/index'
 
 const props = defineProps({
   id: {

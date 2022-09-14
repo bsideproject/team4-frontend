@@ -1,5 +1,5 @@
-import ROUTE from '@/constants/route.json'
-import HEADER_TYPE from '@/constants/headerType.json'
+import ROUTE from '@/constants/route'
+import HEADER_TYPE from '@/constants/headerType'
 
 const CreatePet = () => import('@/pages/pet/CreatePet.vue')
 const ModifyPet = () => import('@/pages/pet/ModifyPet.vue')

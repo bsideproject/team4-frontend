@@ -6,16 +6,18 @@
   <comp-footer />
 </template>
 
-<script>
+<script lang="ts" setup>
+// import { defineComponent } from 'vue'
 import CompHeader from '@/components/common/Header.vue'
 import CompFooter from '@/components/common/Footer.vue'
 
-export default {
-  components: {
-    CompHeader,
-    CompFooter,
-  },
-}
+// export default defineComponent({
+//   name: 'App',
+//   components: {
+//     CompHeader,
+//     CompFooter,
+//   },
+// })
 </script>
 
 <style lang="scss">

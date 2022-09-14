@@ -1,21 +1,34 @@
 import { createVNode, render } from 'vue'
 
-const renderComponent = ({ el, appContext, component, props }) => {
-  let vnode = createVNode(component, props)
+const renderComponent = ({ el, appContext, component, props }: any) => {
+  const vnode = createVNode(component, props)
 
   return {
     render() {
       vnode.appContext = { ...appContext }
-      vnode.props.destroy = () => {
-        render(null, el)
-        vnode = undefined
+      if (vnode.props != undefined) {
+        vnode.props.destroy = () => {
+          render(null, el)
+          // vnode = undefined
+        }
+        render(vnode, el)
       }
-      render(vnode, el)
     },
   }
 }
 
-const _confirm = async (instance, options) => {
+interface Options {
+  text: string, 
+  ok: {
+    label: string,
+    callback: () => void
+  }, 
+  cancel: {
+    label: string
+  }
+}
+
+const _confirm = async (instance: any, options: Options) => {
   const el = instance.root.refs['main']
   const appContext = instance.appContext
   const renderComp = renderComponent({
@@ -30,7 +43,7 @@ const _confirm = async (instance, options) => {
   renderComp.render()
 }
 
-const lpad = (value) => {
+const lpad = (value: string | number) => {
   if (value >= 10) {
     return value
   }
@@ -57,7 +70,7 @@ const getWeekNumber = (dateFrom = new Date()) => {
   const weekDay = startOfMonth.getDay() // 0: Sun ~ 6: Sat
 
   // ((요일 - 1) + 해당 날짜) / 7일로 나누기 = N 주차
-  return parseInt((weekDay - 1 + currentDate) / 7) + 1
+  return (weekDay - 1 + currentDate) / 7 + 1
 }
 
 export { _confirm, dateToStringFormat, getWeekNumber }
