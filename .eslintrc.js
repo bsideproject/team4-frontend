@@ -8,16 +8,15 @@ module.exports = {
     ROUTE: false,
   },
   extends: [
+    'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/typescript',
   ],
   parserOptions: {
-    // ecmaVersion: 12,
-    // sourceType: 'module',
     parser: '@typescript-eslint/parser',
   },
-  plugins: ['vue'],
+  plugins: ['vue', '@typescript-eslint'],
   rules: {
     indent: ['error', 2],
     'no-trailing-spaces': 0,
