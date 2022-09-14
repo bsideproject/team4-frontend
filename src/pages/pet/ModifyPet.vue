@@ -127,7 +127,10 @@
 <script setup>
 import Calendar from '@/components/common/Calendar.vue'
 import { computed, onMounted, reactive, ref, toRefs, watch } from 'vue'
-import { MODULE_NAME as MN_PET, TYPES as TY_PET } from '@/store/modules/pet/petStore'
+import {
+  MODULE_NAME as MN_PET,
+  TYPES as TY_PET,
+} from '@/store/modules/pet/petStore'
 import {
   MODULE_NAME as MN_HEADER,
   TYPES as TY_HEADER,
@@ -175,7 +178,7 @@ onMounted(async () => {
               message: '펫이 삭제되었습니다.',
               position: 'bottom',
             })
-            router.push({ name: ROUTE.Pet.Profile })
+            router.replace({ name: ROUTE.Pet.Profile })
           })
       },
     },
@@ -194,7 +197,7 @@ onMounted(async () => {
               message: '펫의 기록이 중지되었습니다.',
               position: 'bottom',
             })
-            router.push({ name: ROUTE.Pet.Profile })
+            router.replace({ name: ROUTE.Pet.Profile })
           })
       },
     },
@@ -261,7 +264,7 @@ const clickEditProfile = () => {
       message: '펫 프로필이 수정되었습니다.',
       position: 'bottom',
     })
-    router.push({ name: ROUTE.Pet.Profile })
+    router.replace({ name: ROUTE.Pet.Profile })
   })
 }
 

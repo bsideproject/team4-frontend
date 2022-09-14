@@ -75,9 +75,10 @@
           <input
             type="text"
             id="age"
-            maxlength="2"
+            maxlength="4"
             v-model="form.age"
             placeholder="나이를 입력해주세요."
+            @input="onlyNumber"
           />
         </div>
         <div class="field-area date-area">
@@ -95,9 +96,10 @@
           <input
             type="text"
             id="animalRegistrationNumber"
-            maxlength="20"
+            maxlength="15"
             v-model="form.animalRegistrationNumber"
             placeholder="등록번호를 입력해주세요."
+            @input="onlyNumber"
           />
         </div>
       </form>
@@ -178,6 +180,9 @@ const changeBirthCalendar = (value) => {
 const changeAdoptCalendar = (value) => {
   form.adoptionDate = value
 }
+const onlyNumber = (e) => {
+  e.target.value = e.target.value.replace(/[^0-9]/g, '')
+}
 
 const clickEditProfile = () => {
   console.log(form)
@@ -191,7 +196,7 @@ const clickEditProfile = () => {
       message: '펫이 생성되었습니다.',
       position: 'bottom',
     })
-    router.push({ name: ROUTE.Main })
+    router.replace({ name: ROUTE.Main })
   })
 }
 

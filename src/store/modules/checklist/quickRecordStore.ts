@@ -14,6 +14,7 @@ const TYPES = makeModuleTypes([
   'actQuickRecordList',
   'setQuickRecordList',
   'actCountQuickRecord',
+  'setCountOne'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -40,16 +41,30 @@ const module = {
       })
     },
     [TYPES.actCountQuickRecord](context: any, payload: number) {
-      console.log(payload)
-      putQuickRecordCount(payload).then((res: AxiosResponse<Success>) => {
-        console.log(res)
-      })
+      return putQuickRecordCount(payload)
+        .then((res: AxiosResponse<Success>) => {
+          const {code, message, data } = res.data
+
+          if (code === '309') {
+            context.commit(TYPES.setCountOne, data?.quickId)
+          } else {
+            throw new Error(message)
+          }
+        })
     },
   },
   mutations: {
     [TYPES.setQuickRecordList](state: State, payload: Array<QuickRecord>) {
       state.quickRecordList = payload
     },
+    [TYPES.setCountOne](state: State, payload: number) {
+      state.quickRecordList = state.quickRecordList.map(qr => {
+        if (qr.quickId === payload) {
+          qr.count++;
+        }
+        return qr
+      })
+    }
   },
 }
 

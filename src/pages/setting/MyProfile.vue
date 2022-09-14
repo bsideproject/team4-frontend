@@ -39,9 +39,10 @@
 import { computed, onMounted, reactive, ref, toRefs, watch } from 'vue'
 import { MODULE_NAME, TYPES } from '@/store/modules/user/userStore'
 import { useStore } from 'vuex'
+import { useToast } from 'vue-toast-notification'
 
 const store = useStore()
-
+const toast = useToast()
 const isOnEdit = ref(false)
 
 const form = reactive({
@@ -51,9 +52,11 @@ const form = reactive({
   image: '',
 })
 toRefs(form)
+
 const getUser = computed(() => store.getters[`${MODULE_NAME}/${TYPES.getUser}`])
-onMounted(() => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.actUser}`)
+
+onMounted(async () => {
+  await store.dispatch(`${MODULE_NAME}/${TYPES.actUser}`)
 
   Object.assign(form, getUser.value)
 })
@@ -73,7 +76,15 @@ const onError = (e) => {
 }
 const clickEditProfile = () => {
   if (isOnEdit.value) {
-    store.dispatch(`${MODULE_NAME}/${TYPES.actPutUser}`, form)
+    store.dispatch(`${MODULE_NAME}/${TYPES.actPutUser}`, form).then(() => {
+      isOnEdit.value = false
+      toast.clear()
+      toast.open({
+        type: 'success',
+        message: '내 정보가 수정되었습니다.',
+        position: 'bottom',
+      })
+    })
   }
 }
 
