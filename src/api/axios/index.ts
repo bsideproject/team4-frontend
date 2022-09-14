@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getAuthorization } from '@utils/login/index.js'
+import { getAuthorization } from '@/utils/login/index'
 
 const instance = axios.create({
   baseURL: process.env.VUE_APP_API_URL,
@@ -15,11 +15,11 @@ instance.interceptors.request.use(
 
     const authorization = getAuthorization()
     if (authorization) {
-      config.headers.Authorization = authorization
+      config!.headers!.Authorization = authorization
       return config
     }
 
-    delete config.headers.Authorization
+    delete config!.headers!.Authorization
 
     return config
   },

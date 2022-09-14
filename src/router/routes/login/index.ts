@@ -1,4 +1,4 @@
-import ROUTE from '@/constants/route.json'
+import ROUTE from '@/constants/route'
 
 const Login = () => import('@/pages/login/Login.vue')
 const Oauth2 = () => import('@/pages/login/Oauth2.vue')

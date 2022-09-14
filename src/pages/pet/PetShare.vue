@@ -33,8 +33,8 @@
 </template>
 
 <script setup>
-import SHARE from '@constants/share.json'
-import { MODULE_NAME, TYPES } from '@store/pet/petStore.js'
+import SHARE from '@/constants/share'
+import { MODULE_NAME, TYPES } from '@/store/modules/pet/petStore'
 import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 

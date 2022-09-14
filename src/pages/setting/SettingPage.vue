@@ -2,7 +2,8 @@
   <router-view />
 </template>
 
-<script>
+<script lang="ts">
+import ROUTE from '@/constants/route'
 export default {
   name: ROUTE.Setting.Page,
 }

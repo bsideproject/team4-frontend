@@ -68,10 +68,11 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { removeToken } from '@utils/login/index.js'
+import { removeToken } from '@/utils/login/index'
 import { useStore } from 'vuex'
 import { computed, onMounted } from '@vue/runtime-core'
-import { MODULE_NAME, TYPES } from '@store/user/userStore.js'
+import { MODULE_NAME, TYPES } from '@/store/modules/user/userStore'
+import ROUTE from '@/constants/route'
 
 const store = useStore()
 const router = useRouter()

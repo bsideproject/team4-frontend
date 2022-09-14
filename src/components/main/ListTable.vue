@@ -38,13 +38,13 @@ import { useRouter } from 'vue-router'
 import {
   MODULE_NAME as MN_TODO,
   TYPES as TY_TODO,
-} from '@store/checklist/todoStore.js'
+} from '@/store/modules/checklist/todoStore'
 import {
   MODULE_NAME as MN_HEADER,
   TYPES as TY_HEADER,
-} from '@store/common/headerStore.js'
+} from '@/store/modules/common/headerStore'
 import { computed, onMounted, watch } from 'vue'
-import { dateToStringFormat } from '@utils/common/index.js'
+import { dateToStringFormat } from '@/utils/common/index'
 
 const store = useStore()
 const router = useRouter()

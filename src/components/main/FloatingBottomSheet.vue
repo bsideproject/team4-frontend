@@ -26,6 +26,7 @@
 <script setup>
 import { ref, defineExpose } from 'vue'
 import { useRouter } from 'vue-router'
+import ROUTE from '@/constants/route'
 
 const router = useRouter()
 const isOpen = ref(false)

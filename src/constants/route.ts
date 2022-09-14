@@ -1,0 +1,33 @@
+const ROUTE = {
+  Main: "Main",
+  Login: "Login",
+  Checklist: {
+    Page: "ChecklistPage",
+    Quick: "Quick",
+    Schedule: "Schedule",
+    Todo: "Todo"
+  },
+  Setting: {
+    Page: "SettingPage",
+    Main: "SettingMain",
+    Profile: "MyProfile",
+    Licence: "Licence",
+    Notice: {
+      List: "List",
+      Detail: "Detail"
+    },
+    Feedback: "Feedback",
+    Withdraw: "Withdraw"
+  },
+  Group: "Group",
+  Pet: {
+    Page: "PetPage",
+    Create: "Create",
+    Modify: "Modify",
+    Profile: "PetProfile",
+    Share: "PetShare"
+  }
+} as const
+type ROUTE = typeof ROUTE[keyof typeof ROUTE]
+
+export default ROUTE

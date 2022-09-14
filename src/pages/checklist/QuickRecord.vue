@@ -29,7 +29,7 @@
 import QuickRecordBottomSheet from '@/components/checkList/QuickRecordBottomSheet.vue'
 import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
-import { MODULE_NAME, TYPES } from '@store/checklist/quickRecordStore.js'
+import { MODULE_NAME, TYPES } from '@/store/modules/checklist/quickRecordStore'
 
 const store = useStore()
 const quickRecordBottomSheet = ref(null)

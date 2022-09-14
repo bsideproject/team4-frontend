@@ -1,4 +1,4 @@
-import ROUTE from '@/constants/route.json'
+import ROUTE from '@/constants/route'
 
 const Group = () => import('@/pages/group/Group.vue')
 

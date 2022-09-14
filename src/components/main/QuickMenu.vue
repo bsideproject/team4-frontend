@@ -28,12 +28,12 @@ import { useStore } from 'vuex'
 import {
   MODULE_NAME as MN_QUICK,
   TYPES as TY_QUICK,
-} from '@store/checklist/quickRecordStore'
+} from '@/store/modules/checklist/quickRecordStore'
 import {
   MODULE_NAME as MN_HEADER,
   TYPES as TY_HEADER,
-} from '@store/common/headerStore'
-import { dateToStringFormat } from '@utils/common/index.js'
+} from '@/store/modules/common/headerStore'
+import { dateToStringFormat } from '@/utils/common/index'
 
 const store = useStore()
 const getWeeklyCalendarDate = computed(

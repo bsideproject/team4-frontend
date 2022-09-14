@@ -1,8 +1,8 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import routes from './routes/index.js'
-import store from '../store/index.js'
-import { getToken } from '@utils/login/index.js'
-import ROUTE from '@constants/route.json'
+import routes from '@/router/routes/index'
+import store from '@/store/index'
+import { getToken } from '@/utils/login/index'
+import ROUTE from '@/constants/route'
 
 export const router = createRouter({
   history: createWebHistory(),
