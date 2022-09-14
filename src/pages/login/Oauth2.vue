@@ -11,7 +11,7 @@ const router = useRouter()
 
 const { token } = route.query
 
-setToken(token)
+setToken(String(token))
 
 router.replace({ name: ROUTE.Main })
 </script>

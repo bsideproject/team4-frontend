@@ -1,6 +1,6 @@
 import axios from '@/api/axios/index'
 
-const getTodoList = (ymd: any) => {
+const getTodoList = (ymd: string) => {
   return axios.get(`/api/v1/checklist/${ymd}`)
 }
 
@@ -8,19 +8,19 @@ const postTodo = (data: any) => {
   return axios.post('/api/v1/checklist', data)
 }
 
-const getTodo = (todoId: any) => {
+const getTodo = (todoId: number) => {
   return axios.get(`/api/v1/checklist/${todoId}`)
 }
 
-const putTodo = (todoId: any) => {
+const putTodo = (todoId: number) => {
   return axios.put(`/api/v1/checklist/${todoId}`)
 }
 
-const deleteTodo = (todoId: any) => {
+const deleteTodo = (todoId: number) => {
   return axios.delete(`/api/v1/checklist/${todoId}`)
 }
 
-const putCheckedTodo = (todoId: any) => {
+const putCheckedTodo = (todoId: number) => {
   return axios.put(`/api/v1/checklist/checked/${todoId}`)
 }
 

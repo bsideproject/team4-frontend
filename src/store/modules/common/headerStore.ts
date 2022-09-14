@@ -1,7 +1,6 @@
 import { makeModuleTypes } from '@/utils/store/index'
 
 const MODULE_NAME = 'headerStore'
-
 const TYPES = makeModuleTypes([
   'title',
   'getTitle',
@@ -18,6 +17,13 @@ const TYPES = makeModuleTypes([
   'setWeeklyCalendarDate',
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
+type optionListType = Array<{title: string, callback: () => void}>
+interface State {
+  title: string,
+  headerType: string,
+  moreOptionList: optionListType,
+  weeklyCalendarDate: Date,
+}
 
 const module = {
   namespaced: true,
@@ -28,30 +34,30 @@ const module = {
     weeklyCalendarDate: new Date(),
   },
   getters: {
-    [TYPES.getTitle](state: any) {
+    [TYPES.getTitle](state: State) {
       return state.title
     },
-    [TYPES.getHeaderType](state: any) {
+    [TYPES.getHeaderType](state: State) {
       return state.headerType
     },
-    [TYPES.getMoreOptionList](state: any) {
+    [TYPES.getMoreOptionList](state: State) {
       return state.moreOptionList
     },
-    [TYPES.getWeeklyCalendarDate](state: any) {
+    [TYPES.getWeeklyCalendarDate](state: State) {
       return state.weeklyCalendarDate
     },
   },
   mutations: {
-    [TYPES.setTitle](state: any, payload: any) {
+    [TYPES.setTitle](state: State, payload: string) {
       state.title = payload
     },
-    [TYPES.setHeaderType](state: any, payload: any) {
+    [TYPES.setHeaderType](state: State, payload: string) {
       state.headerType = payload
     },
-    [TYPES.setMoreOptionList](state: any, payload: any) {
+    [TYPES.setMoreOptionList](state: State, payload: optionListType) {
       state.moreOptionList = payload
     },
-    [TYPES.setWeeklyCalendarDate](state: any, payload: any) {
+    [TYPES.setWeeklyCalendarDate](state: State, payload: Date) {
       state.weeklyCalendarDate = payload
     },
   },

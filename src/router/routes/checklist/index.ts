@@ -7,7 +7,7 @@ const Todo = () => import('@/pages/checklist/Todo.vue')
 export default [
   {
     path: 'quick',
-    // name: ROUTE.Checklist.QuickRecord,
+    name: ROUTE.Checklist.Quick,
     component: QuickRecord,
     meta: {
       title: '퀵기록 관리',

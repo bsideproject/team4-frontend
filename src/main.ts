@@ -3,10 +3,6 @@ import App from './App.vue'
 
 const app = createApp(App)
 
-// import ROUTE from '@/constants/route.js'
-// window.ROUTE = ROUTE
-
-// import { router } from './router/index.js'
 import { router } from './router/index'
 app.use(router)
 

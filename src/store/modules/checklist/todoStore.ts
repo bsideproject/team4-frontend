@@ -5,9 +5,11 @@ import {
   postTodo,
 } from '@/api/checklist/todo'
 import { makeModuleTypes } from '@/utils/store/index'
+import { Todo } from '@/types/checklist'
+import { Success } from '@/types/response'
+import { AxiosResponse } from 'axios'
 
 const MODULE_NAME = 'todoStore'
-
 const TYPES = makeModuleTypes([
   'todoList',
   'getTodoList',
@@ -25,6 +27,11 @@ const TYPES = makeModuleTypes([
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
+interface State {
+  todoList: Array<Todo>,
+  todo: Todo
+}
+
 const module = {
   namespaced: true,
   state: {
@@ -32,16 +39,16 @@ const module = {
     todo: {},
   },
   getters: {
-    [TYPES.getTodoList](state: any) {
+    [TYPES.getTodoList](state: State) {
       return state.todoList
     },
-    [TYPES.getTodo](state: any) {
+    [TYPES.getTodo](state: State) {
       return state.todo
     },
   },
   actions: {
-    [TYPES.actTodoList](context: any, payload: any) {
-      return getTodoList(payload).then((res: any) => {
+    [TYPES.actTodoList](context: any, payload: string) {
+      return getTodoList(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
         if (code === '401') {
           const { checklistDetailList } = data
@@ -51,8 +58,8 @@ const module = {
         }
       })
     },
-    [TYPES.actTodo](context: any, payload: any) {
-      return getTodo(payload).then((res: any) => {
+    [TYPES.actTodo](context: any, payload: number) {
+      return getTodo(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
         if (code === '405') {
           context.commit(TYPES.setTodo, data)
@@ -61,8 +68,8 @@ const module = {
         }
       })
     },
-    [TYPES.actCheckedTodo](context: any, payload: any) {
-      return putCheckedTodo(payload).then((res: any) => {
+    [TYPES.actCheckedTodo](context: any, payload: number) {
+      return putCheckedTodo(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code === '411') {
           /**
@@ -73,8 +80,8 @@ const module = {
         }
       })
     },
-    [TYPES.actSaveTodo](context: any, payload: any) {
-      return postTodo(payload).then((res: any) => {
+    [TYPES.actSaveTodo](context: any, payload: Todo) {
+      return postTodo(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code === '403') {
           /**
@@ -87,10 +94,10 @@ const module = {
     },
   },
   mutations: {
-    [TYPES.setTodoList](state: any, payload: any) {
+    [TYPES.setTodoList](state: State, payload: Array<Todo>) {
       state.todoList = payload
     },
-    [TYPES.setTodo](state: any, payload: any) {
+    [TYPES.setTodo](state: State, payload: Todo) {
       state.todo = payload
     },
   },

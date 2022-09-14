@@ -6,16 +6,29 @@ const renderComponent = ({ el, appContext, component, props }: any) => {
   return {
     render() {
       vnode.appContext = { ...appContext }
-      vnode!.props!.destroy = () => {
-        render(null, el)
-        // vnode = undefined
+      if (vnode.props != undefined) {
+        vnode.props.destroy = () => {
+          render(null, el)
+          // vnode = undefined
+        }
+        render(vnode, el)
       }
-      render(vnode, el)
     },
   }
 }
 
-const _confirm = async (instance: any, options: any) => {
+interface Options {
+  text: string, 
+  ok: {
+    label: string,
+    callback: () => void
+  }, 
+  cancel: {
+    label: string
+  }
+}
+
+const _confirm = async (instance: any, options: Options) => {
   const el = instance.root.refs['main']
   const appContext = instance.appContext
   const renderComp = renderComponent({
@@ -30,7 +43,7 @@ const _confirm = async (instance: any, options: any) => {
   renderComp.render()
 }
 
-const lpad = (value: any) => {
+const lpad = (value: string | number) => {
   if (value >= 10) {
     return value
   }

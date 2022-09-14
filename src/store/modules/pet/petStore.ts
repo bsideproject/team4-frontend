@@ -8,11 +8,12 @@ import {
   putDeactivatePet,
   deletePet,
 } from '@/api/pet/pet'
-
 import { makeModuleTypes } from '@/utils/store/index'
+import { Pet } from '@/types/pet'
+import { Success } from '@/types/response'
+import { AxiosResponse } from 'axios'
 
 const MODULE_NAME = 'petStore'
-
 const TYPES = makeModuleTypes([
   'pet',
   'getPet',
@@ -42,6 +43,13 @@ const TYPES = makeModuleTypes([
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
+interface State {
+  pet: object,
+  mainPetId: string,
+  totalPetNumber: number,
+  petList: Array<object>,
+}
+
 const module = {
   namespaced: true,
   state: {
@@ -51,22 +59,22 @@ const module = {
     petList: [],
   },
   getters: {
-    [TYPES.getPet](state: any) {
+    [TYPES.getPet](state: State) {
       return state.pet
     },
-    [TYPES.getPetList](state: any) {
+    [TYPES.getPetList](state: State) {
       return state.petList
     },
-    [TYPES.getMainPetId](state: any) {
+    [TYPES.getMainPetId](state: State) {
       return state.mainPetId
     },
-    [TYPES.getTotalPetNumber](state: any) {
+    [TYPES.getTotalPetNumber](state: State) {
       return state.totalPetNumber
     },
   },
   actions: {
-    [TYPES.actPet](context: any, payload: any) {
-      return getPet(payload).then((res: any) => {
+    [TYPES.actPet](context: any, payload: string) {
+      return getPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
 
         if (code === '202') {
@@ -76,9 +84,9 @@ const module = {
         }
       })
     },
-    [TYPES.actPetList](context: any, payload: any) {
+    [TYPES.actPetList](context: any) {
       return getPetList()
-        .then((res: any) => {
+        .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
 
           if (code === '203') {
@@ -89,7 +97,7 @@ const module = {
             context.commit(
               TYPES.setPetList,
               petList
-                ?.map((pet: any) => {
+                ?.map((pet: Pet) => {
                   pet.isMain = pet.petId === mainPetId
                   return pet
                 })
@@ -99,20 +107,18 @@ const module = {
             throw new Error(message)
           }
         })
-        .catch((err:any) => {
-          console.log(err)
-        })
+     
     },
-    [TYPES.actPostPet](context: any, payload: any) {
-      return postPet(payload).then((res: any) => {
+    [TYPES.actPostPet](context: any, payload: Pet) {
+      return postPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code !== '201') {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPutMainPet](context: any, payload: any) {
-      return putMainPet(payload).then((res: any) => {
+    [TYPES.actPutMainPet](context: any, payload: Pet) {
+      return putMainPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code === '209') {
           context.dispatch(TYPES.actPetList)
@@ -121,16 +127,16 @@ const module = {
         }
       })
     },
-    [TYPES.actPostSharePet](context: any, payload: any) {
-      return postSharePet(payload).then((res: any) => {
+    [TYPES.actPostSharePet](context: any, payload: string) {
+      return postSharePet(payload).then((res: AxiosResponse<Success>) => {
         const { code } = res.data
         if (code !== '208') {
           context.dispatch(TYPES.actPetList)
         }
       })
     },
-    [TYPES.actPutPet](context: any, payload: any) {
-      return putPet(payload).then((res: any) => {
+    [TYPES.actPutPet](context: any, payload: Pet) {
+      return putPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
 
         if (code === '204') {
@@ -140,8 +146,8 @@ const module = {
         }
       })
     },
-    [TYPES.actPutDeactivatePet](context: any, payload: any) {
-      return putDeactivatePet(payload).then((res: any) => {
+    [TYPES.actPutDeactivatePet](context: any, payload: string) {
+      return putDeactivatePet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code === '205') {
           /**
@@ -152,8 +158,8 @@ const module = {
         }
       })
     },
-    [TYPES.actDeletePet](context: any, payload: any) {
-      return deletePet(payload).then((res: any) => {
+    [TYPES.actDeletePet](context: any, payload: string) {
+      return deletePet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
 
         if (code === '207') {
@@ -166,16 +172,16 @@ const module = {
     },
   },
   mutations: {
-    [TYPES.setPet](state: any, payload: any) {
+    [TYPES.setPet](state: State, payload: Pet) {
       state.pet = payload
     },
-    [TYPES.setPetList](state: any, payload: any) {
+    [TYPES.setPetList](state: State, payload: Array<Pet>) {
       state.petList = payload
     },
-    [TYPES.setMainPetId](state: any, payload: any) {
+    [TYPES.setMainPetId](state: State, payload: string) {
       state.mainPetId = payload
     },
-    [TYPES.setTotalPetNumber](state: any, payload: any) {
+    [TYPES.setTotalPetNumber](state: State, payload: number) {
       state.totalPetNumber = payload
     },
   },
