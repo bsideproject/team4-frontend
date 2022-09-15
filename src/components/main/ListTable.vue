@@ -1,7 +1,7 @@
 <template>
   <div class="list-table">
     <ul class="list-table-cardList">
-      <li class="list-table-cardList__card">
+      <!-- <li class="list-table-cardList__card">
         <div class="card__check">
           <span class="schedule"></span>
         </div>
@@ -9,16 +9,13 @@
           <p class="label">강아지 생일</p>
           <p class="time">오후 5:00 ~ 오후 12:00</p>
         </div>
-      </li>
+      </li> -->
       <li
         class="list-table-cardList__card"
         v-for="(item, index) in getTodoList"
         :key="index"
       >
-        <div
-          class="card__check"
-          @click="() => clickTodoChecked(item.checklistId)"
-        >
+        <div class="card__check" @click="() => clickTodoChecked(item)">
           <span :class="['footprint', item.done ? 'checked' : '']"></span>
         </div>
         <div
@@ -45,6 +42,7 @@ import {
 } from '@/store/modules/common/headerStore'
 import { computed, onMounted, watch } from 'vue'
 import { dateToStringFormat } from '@/utils/common/index'
+import ROUTE from '@/constants/route'
 
 const store = useStore()
 const router = useRouter()
@@ -73,11 +71,14 @@ const actTodoList = (date) => {
     dateToStringFormat(date, '-')
   )
 }
-const clickTodoChecked = (todoId) => {
-  store.dispatch(`${MN_TODO}/${TY_TODO.actCheckedTodo}`, todoId)
+const clickTodoChecked = (item) => {
+  store.dispatch(`${MN_TODO}/${TY_TODO.actCheckedTodo}`, {
+    todoId: item.checklistId,
+    date: dateToStringFormat(new Date(item.date), '-'),
+  })
 }
 const clickTodoDetail = (todoId) => {
-  router.push(`/checklist/todo?id=${todoId}`)
+  router.push({ name: ROUTE.Checklist.Todo, query: { todoId } })
 }
 </script>
 
