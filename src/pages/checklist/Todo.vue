@@ -182,6 +182,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { MODULE_NAME, TYPES } from '@/store/modules/checklist/todoStore'
 import { useToast } from 'vue-toast-notification'
+import ROUTE from '@/constants/route'
 
 const route = useRoute()
 const router = useRouter()
@@ -259,9 +260,11 @@ const getOnEdit = computed(() => {
   }
 })
 
-onMounted(() => {
-  if (route.query.id) {
-    store.dispatch(`${MODULE_NAME}/${TYPES.actTodo}`)
+onMounted(async () => {
+  const { todoId } = route.query
+
+  if (todoId) {
+    await store.dispatch(`${MODULE_NAME}/${TYPES.actTodo}`, Number(todoId))
     Object.assign(todo, getTodo.value)
     todo.date = dateToStringFormat(
       new Date(
@@ -273,18 +276,21 @@ onMounted(() => {
   }
 
   if (todo.isRepeated) {
-    const eventPeriod = todo.repeatDetail.eventPeriod
+    const eventPeriod = todo?.repeatDetail?.eventPeriod
     repeatTab.value = eventPeriod
 
     if (eventPeriod === tabData.value[3].value) {
-      if (todo.repeatDetail.eventDay) {
+      if (todo.repeatDetail?.eventDay) {
         byDay.value = true
-      } else if (todo.repeatDetail.eventDate && todo.repeatDetail.eventWeek) {
+      } else if (
+        todo.repeatDetail?.eventDate &&
+        todo?.repeatDetail?.eventWeek
+      ) {
         byWeek.value = true
       }
     }
   }
-  if (todo.repeatDetail.endedAt) {
+  if (todo.repeatDetail?.endedAt) {
     isRepeatEnded.value = true
   }
 })
@@ -353,6 +359,7 @@ const clickSaveTodo = () => {
     todo.repeatDetail.eventDate = weekData.value
       .filter((w) => w.checked)
       .map((w) => w.value)
+      .join(',')
   } else if (repeatTab.value === tabData.value[3].value) {
     const todoDate = new Date(todo.date)
 
@@ -376,20 +383,15 @@ const clickSaveTodo = () => {
 
   console.log(todo)
 
-  store
-    .dispatch(`${MODULE_NAME}/${TYPES.actSaveTodo}`, todo)
-    .then((isSuccess) => {
-      if (isSuccess) {
-        toast.clear()
-        toast.open({
-          type: 'success',
-          message: '할 일이 저장되었습니다.',
-          position: 'bottom',
-        })
-      }
+  store.dispatch(`${MODULE_NAME}/${TYPES.actSaveTodo}`, todo).then(() => {
+    toast.clear()
+    toast.open({
+      type: 'success',
+      message: '할 일이 저장되었습니다.',
+      position: 'bottom',
     })
-
-  // router.push({ name: ROUTE.Main })
+    router.replace({ name: ROUTE.Main })
+  })
 }
 </script>
 

@@ -22,8 +22,8 @@ const TYPES = makeModuleTypes([
   'setTodo',
 
   'actSaveTodo',
-
   'actCheckedTodo',
+  'setCheckedTodo'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -68,29 +68,28 @@ const module = {
         }
       })
     },
-    [TYPES.actCheckedTodo](context: any, payload: number) {
+    [TYPES.actCheckedTodo](context: any, payload: {todoId: number, date: string}) {
       return putCheckedTodo(payload).then((res: AxiosResponse<Success>) => {
-        const { code, message } = res.data
+        const { code, message, data } = res.data
         if (code === '411') {
-          /**
-           * TODO: 성공시 처리
-           */
+          context.commit(TYPES.setCheckedTodo, data)
         } else {
           throw new Error(message)
         }
       })
     },
     [TYPES.actSaveTodo](context: any, payload: Todo) {
-      return postTodo(payload).then((res: AxiosResponse<Success>) => {
-        const { code, message } = res.data
-        if (code === '403') {
-          /**
-           * TODO: 성공시 처리
-           */
-        } else {
-          throw new Error(message)
-        }
-      })
+      return postTodo(payload)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message } = res.data
+          if (code === '403') {
+            /**
+             * TODO: 성공시 처리
+             */
+          } else {
+            throw new Error(message)
+          }
+        })
     },
   },
   mutations: {
@@ -100,6 +99,15 @@ const module = {
     [TYPES.setTodo](state: State, payload: Todo) {
       state.todo = payload
     },
+    [TYPES.setCheckedTodo](state: State, payload: {checklistId: number, done: boolean}) {
+      console.log(payload)
+      state.todoList = state.todoList.map(td => {
+        if (td.checklistId === payload.checklistId) {
+          td.done = payload.done
+        }
+        return td
+      })
+    }
   },
 }
 
