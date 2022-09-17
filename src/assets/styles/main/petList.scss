@@ -12,6 +12,8 @@
     // align-items: center;
     &__item {
       .item__name {
+        width: 60px;
+        margin: 0 auto;
         @include ptRegular14;
         overflow: hidden;
         white-space: nowrap;
@@ -35,7 +37,7 @@
     }
     &__item.active {
       .item__name {
-        padding: 0 0 0 14px;
+        // padding: 0 0 0 14px;
         position: relative;
         &::before {
           content: '';
@@ -45,7 +47,7 @@
           position: absolute;
           width: 12px;
           height: 12px;
-          left: 0;
+          left: 4px;
           bottom: 2px;
         }
       }

@@ -78,7 +78,7 @@ const clickTodoChecked = (item) => {
   })
 }
 const clickTodoDetail = (todoId) => {
-  router.push({ name: ROUTE.Checklist.Todo, query: { todoId } })
+  router.push({ name: ROUTE.Checklist.ModifyTodo, params: { todoId } })
 }
 </script>
 

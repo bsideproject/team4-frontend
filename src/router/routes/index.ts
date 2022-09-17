@@ -31,7 +31,7 @@ export default [
     meta: {
       auth: false,
       title: '로그인',
-      headerType: HEADER_TYPE.NONE,
+      headerType: HEADER_TYPE.LOGIN,
     },
   },
   {

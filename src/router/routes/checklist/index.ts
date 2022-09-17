@@ -2,7 +2,8 @@ import ROUTE from '@/constants/route'
 
 const QuickRecord = () => import('@/pages/checklist/QuickRecord.vue')
 const Schedule = () => import('@/pages/checklist/Schedule.vue')
-const Todo = () => import('@/pages/checklist/Todo.vue')
+const CreateTodo = () => import('@/pages/checklist/CreateTodo.vue')
+const ModifyTodo = () => import('@/pages/checklist/ModifyTodo.vue')
 
 export default [
   {
@@ -23,18 +24,18 @@ export default [
   },
   {
     path: 'todo',
-    name: ROUTE.Checklist.Todo,
-    component: Todo,
+    name: ROUTE.Checklist.CreateTodo,
+    component: CreateTodo,
     meta: {
       title: '할 일',
     },
   },
-  // {
-  //   path: 'todo/:todoId',
-  //   name: ROUTE.Checklist.Todo,
-  //   component: Todo,
-  //   meta: {
-  //     title: '할 일',
-  //   },
-  // },
+  {
+    path: 'todo/:todoId',
+    name: ROUTE.Checklist.ModifyTodo,
+    component: ModifyTodo,
+    meta: {
+      title: '할 일',
+    },
+  },
 ]

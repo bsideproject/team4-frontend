@@ -5,7 +5,8 @@ const ROUTE = {
     Page: "ChecklistPage",
     Quick: "Quick",
     Schedule: "Schedule",
-    Todo: "Todo"
+    CreateTodo: "CreateTodo",
+    ModifyTodo: "ModifyTodo"
   },
   Setting: {
     Page: "SettingPage",

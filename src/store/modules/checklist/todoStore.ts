@@ -3,6 +3,7 @@ import {
   putCheckedTodo,
   getTodo,
   postTodo,
+  putTodo
 } from '@/api/checklist/todo'
 import { makeModuleTypes } from '@/utils/store/index'
 import { Todo } from '@/types/checklist'
@@ -23,7 +24,8 @@ const TYPES = makeModuleTypes([
 
   'actSaveTodo',
   'actCheckedTodo',
-  'setCheckedTodo'
+  'setCheckedTodo',
+  'actPutTodo'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -91,6 +93,19 @@ const module = {
           }
         })
     },
+    [TYPES.actPutTodo](context: any, payload: {data: Todo, modifyType: string}) {
+      return putTodo(payload.data, payload.modifyType)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message } = res.data
+          if (code === '407') {
+            /**
+             * TODO: 할 일 수정 성공시 처리
+             */
+          } else {
+            throw new Error(message)
+          }
+        })
+    }
   },
   mutations: {
     [TYPES.setTodoList](state: State, payload: Array<Todo>) {

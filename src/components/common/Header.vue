@@ -9,6 +9,13 @@
 
     <article
       class="header-wrapper bd-bottom"
+      v-else-if="getHeaderType === 'login'"
+    >
+      <div class="header-wrapper__title">{{ getTitle }}</div>
+    </article>
+
+    <article
+      class="header-wrapper bd-bottom"
       v-else-if="getHeaderType === 'check'"
     >
       <a @click="goBack" class="header-wrapper__back"></a>
@@ -49,7 +56,7 @@
   </section>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
