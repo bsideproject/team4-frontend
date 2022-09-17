@@ -3,7 +3,8 @@ const HEADER_TYPE = {
   CHECK: "check",
   NONE: "none",
   MORE: "more",
-  SHARE: "share"
+  SHARE: "share",
+  LOGIN: "login"
 } as const
 type HEADER_TYPE = typeof HEADER_TYPE[keyof typeof HEADER_TYPE]
 

@@ -53,7 +53,7 @@ watch(
 const actQuickRecordList = (date) => {
   store.dispatch(
     `${MN_QUICK}/${TY_QUICK.actQuickRecordList}`,
-    dateToStringFormat(date, '.')
+    dateToStringFormat(date, '-')
   )
 }
 const clickQuickRecordCount = (quickId) => {

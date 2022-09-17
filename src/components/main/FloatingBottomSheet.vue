@@ -47,7 +47,7 @@ const clickRegisterSchedule = () => {
 }
 
 const clickRegisterTodo = () => {
-  router.push({ name: ROUTE.Checklist.Todo })
+  router.push({ name: ROUTE.Checklist.CreateTodo })
   closeBottomSheet()
 }
 defineExpose({
