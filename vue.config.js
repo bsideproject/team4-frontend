@@ -35,6 +35,7 @@ module.exports = defineConfig({
   },
   devServer: {
     port: process.env.VUE_APP_BASE_PORT,
+    disableHostCheck: true,
     proxy: {
       '^/api': {
         target: process.env.VUE_APP_API_URL,
