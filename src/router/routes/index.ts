@@ -6,13 +6,15 @@ import SettingRouter from '@/router/routes/setting/index'
 import GroupRouter from '@/router/routes/group/index'
 import PetRouter from '@/router/routes/pet/index'
 import ChecklistRouter from '@/router/routes/checklist/index'
+import NurtureRouter from '@/router/routes/nurture/index'
 
 const Main = () => import('@/pages/main/Main.vue')
 const LoginPage = () => import('@pages/login/LoginPage.vue')
 const SettingPage = () => import('@pages/setting/SettingPage.vue')
-const Group = () => import('@pages/group/Group.vue')
+const GroupPage = () => import('@pages/group/GroupPage.vue')
 const PetPage = () => import('@pages/pet/PetPage.vue')
 const ChecklistPage = () => import('@pages/checklist/ChecklistPage.vue')
+const NurturePage = () => import('@pages/nurture/NurturePage.vue')
 
 export default [
   {
@@ -46,7 +48,7 @@ export default [
   },
   {
     path: '/group',
-    component: Group,
+    component: GroupPage,
     children: GroupRouter,
     meta: {
       auth: true,
@@ -70,6 +72,15 @@ export default [
     meta: {
       auth: true,
       headerType: HEADER_TYPE.NONE,
+    },
+  },
+  {
+    path: '/nurture',
+    component: NurturePage,
+    children: NurtureRouter,
+    meta: {
+      auth: true,
+      headerType: HEADER_TYPE.MAIN,
     },
   },
 ]

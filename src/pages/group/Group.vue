@@ -101,27 +101,28 @@ onMounted(() => {
   }
 })
 
-const inviteURL = 'http://localhost:5000/family/invite'
 const clickInvite = () => {
+  console.log(getUser.value.userId)
+  const inviteURL = `${process.env.VUE_APP_BASE_URL}/group/invite/${getUser.value.userId}`
   isExport.value = false
   isGrant.value = false
-  if (navigator.share) {
-    window.navigator.share({
-      title: '펫하루 그룹 초대',
-      text: '링크 클릭시 초대된 그룹에 함께하됩니다.',
-      url: inviteURL,
+  // if (navigator.share) {
+  //   window.navigator.share({
+  //     title: '펫하루 그룹 초대',
+  //     text: '링크 클릭시 초대된 그룹에 함께하게됩니다.',
+  //     url: inviteURL,
+  //   })
+  // } else {
+  navigator.clipboard
+    .writeText(inviteURL)
+    .then(() => {
+      alert('초대링크가 복사되었습니다.')
     })
-  } else {
-    navigator.clipboard
-      .writeText(inviteURL)
-      .then(() => {
-        alert('초대링크가 복사되었습니다.')
-      })
-      .catch((error) => {
-        alert('잠시후 다시 시도해주세요.')
-        console.log(error)
-      })
-  }
+    .catch((error) => {
+      alert('잠시후 다시 시도해주세요.')
+      console.log(error)
+    })
+  // }
 }
 const clickGrant = (member) => {
   _confirm(instance, {

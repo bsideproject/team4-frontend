@@ -45,11 +45,11 @@
       content: '';
       width: 24px;
       height: 24px;
-      background: url('@images/icons/arrow_up.svg') center center no-repeat;
+      background: url('@images/icons/arrow_down.svg') center center no-repeat;
     }
 
     &.on::after {
-      background: url('@images/icons/arrow_down.svg') center center no-repeat;
+      background: url('@images/icons/arrow_up.svg') center center no-repeat;
     }
 
     span {
