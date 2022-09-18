@@ -10,7 +10,7 @@ import ChecklistRouter from '@/router/routes/checklist/index'
 const Main = () => import('@/pages/main/Main.vue')
 const LoginPage = () => import('@pages/login/LoginPage.vue')
 const SettingPage = () => import('@pages/setting/SettingPage.vue')
-const Group = () => import('@pages/group/Group.vue')
+const GroupPage = () => import('@pages/group/GroupPage.vue')
 const PetPage = () => import('@pages/pet/PetPage.vue')
 const ChecklistPage = () => import('@pages/checklist/ChecklistPage.vue')
 
@@ -46,7 +46,7 @@ export default [
   },
   {
     path: '/group',
-    component: Group,
+    component: GroupPage,
     children: GroupRouter,
     meta: {
       auth: true,

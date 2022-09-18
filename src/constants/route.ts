@@ -20,7 +20,11 @@ const ROUTE = {
     Feedback: "Feedback",
     Withdraw: "Withdraw"
   },
-  Group: "Group",
+  Group: {
+    Page: "GroupPage",
+    Info: "Group",
+    Invite: "Invite"
+  },
   Pet: {
     Page: "PetPage",
     Create: "Create",
