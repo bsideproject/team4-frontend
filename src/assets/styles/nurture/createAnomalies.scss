@@ -1,0 +1,70 @@
+@charset 'utf-8';
+
+.anomalies {
+  padding: 10px 20px;
+  min-height: $minHeight;
+
+  &__list {
+    padding: 10px 0;
+    .title {
+      border-radius: 4px;
+      p {
+        @include ptRegular16;
+        color: #323232;
+      }
+      background-color: #5794f0;
+      // opacity: 0.7;
+      line-height: 42px;
+
+      padding: 12px;
+      text-align: left;
+
+      position: relative;
+      &::after {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        content: '';
+        width: 24px;
+        height: 24px;
+        background: url('@images/icons/arrow_down.svg') center center no-repeat;
+      }
+      &.on {
+        p {
+          @include ptBold16;
+          color: #fff;
+        }
+
+        background-color: $primaryColor2;
+        // opacity: 1;
+        &::after {
+          background: url('@images/icons/arrow_up_white.svg') center center
+            no-repeat;
+        }
+      }
+    }
+
+    .content {
+      padding: 8px 10px 0 8px;
+      text-align: left;
+
+      .check-item {
+        margin: 8px 0;
+
+        input[type='checkbox'] {
+          width: 20px;
+          height: 20px;
+          border: 1px solid #000000;
+          border-radius: 2px;
+        }
+        label {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+
+  .mg100 {
+    margin-top: 100px;
+  }
+}

@@ -31,6 +31,19 @@ const ROUTE = {
     Modify: "Modify",
     Profile: "PetProfile",
     Share: "PetShare"
+  },
+  Nurture: {
+    Page: "NurturePage",
+    Main: "NurtureMain",
+    Anomalies: {
+      Create: "CreateAnomalies",
+      Modify: "ModifyAnomalies"
+    },
+    OneLine: {
+      Create: "CreateOneLine",
+      Modify: "ModifyOneLine",
+    }
+
   }
 } as const
 type ROUTE = typeof ROUTE[keyof typeof ROUTE]
