@@ -1,6 +1,7 @@
 import {
   getQuickRecordList,
   putQuickRecordCount,
+  putQuickRecord
 } from '@/api/checklist/quickRecord'
 import { makeModuleTypes } from '@/utils/store/index'
 import { QuickRecord } from '@/types/checklist'
@@ -14,7 +15,9 @@ const TYPES = makeModuleTypes([
   'actQuickRecordList',
   'setQuickRecordList',
   'actCountQuickRecord',
-  'setCountOne'
+  'setCountOne',
+  'actPutQuickRecord',
+  'setQuickRecord'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -37,7 +40,7 @@ const module = {
       getQuickRecordList(payload).then((res: AxiosResponse<Success>) => {
         const { quickDetailList } = res.data?.data
 
-        context.commit(TYPES.setQuickRecordList, quickDetailList || {})
+        context.commit(TYPES.setQuickRecordList, quickDetailList || [])
       })
     },
     [TYPES.actCountQuickRecord](context: any, payload: number) {
@@ -52,15 +55,42 @@ const module = {
           }
         })
     },
+    [TYPES.actPutQuickRecord](context: any, payload: QuickRecord) {
+      console.log(payload)
+      return putQuickRecord(payload)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message, data } = res.data
+
+          if (code === '305') {
+            context.commit(TYPES.setQuickRecord, data)
+          } else {
+            throw new Error(message)
+          }
+        })
+    }
   },
   mutations: {
     [TYPES.setQuickRecordList](state: State, payload: Array<QuickRecord>) {
-      state.quickRecordList = payload
+      state.quickRecordList = payload?.sort((a, b) => {
+        if (a.order > b.order) {
+          return 1
+        } else {
+          return -1
+        }
+      })
     },
     [TYPES.setCountOne](state: State, payload: number) {
       state.quickRecordList = state.quickRecordList.map(qr => {
         if (qr.quickId === payload) {
           qr.count++;
+        }
+        return qr
+      })
+    },
+    [TYPES.setQuickRecord](state: State, payload: QuickRecord) {
+      state.quickRecordList = state.quickRecordList.map(qr => {
+        if (qr.quickId === payload.quickId) {
+          qr = payload
         }
         return qr
       })

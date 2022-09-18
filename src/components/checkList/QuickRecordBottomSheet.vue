@@ -28,6 +28,12 @@
 
 <script setup>
 import { ref, defineProps, defineExpose, watch, reactive, toRef } from 'vue'
+import {
+  MODULE_NAME as MN_QUICK,
+  TYPES as TY_QUICK,
+} from '@/store/modules/checklist/quickRecordStore'
+import { useStore } from 'vuex'
+
 const props = defineProps({
   detail: {
     type: Object,
@@ -35,9 +41,11 @@ const props = defineProps({
   },
 })
 
+const store = useStore()
 const isOnEdit = ref(false)
 const isOpen = ref(false)
 const form = reactive({
+  quickId: 0,
   name: '',
   total: 0,
   explanation: '',
@@ -48,6 +56,7 @@ toRef(form)
 watch(
   () => props.detail,
   (newValue) => {
+    form.quickId = newValue.quickId
     form.name = newValue.name
     form.total = newValue.total
     form.explanation = newValue.explanation
@@ -78,19 +87,16 @@ const openBottomSheet = () => {
   isOpen.value = true
 }
 const closeBottomSheet = () => {
-  clearBottomSheet()
   isOpen.value = false
 }
-const clearBottomSheet = () => {
-  form.name = ''
-  form.total = 0
-  form.explanation = ''
-}
 const clickSaveQuickRecord = () => {
-  if (!isOnEdit.value) {
-    return false
+  if (isOnEdit.value) {
+    store
+      .dispatch(`${MN_QUICK}/${TY_QUICK.actPutQuickRecord}`, form)
+      .then(() => {
+        closeBottomSheet()
+      })
   }
-  closeBottomSheet()
 }
 defineExpose({
   openBottomSheet,

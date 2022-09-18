@@ -1,7 +1,8 @@
 import axios from '@/api/axios/index'
+import { Todo } from '@/types/checklist'
 
 const getTodoList = (ymd: string) => {
-  return axios.get(`/api/v1/checklist/${ymd}`)
+  return axios.get(`/api/v1/checklist/list/${ymd}`)
 }
 
 const postTodo = (data: any) => {
@@ -12,16 +13,16 @@ const getTodo = (todoId: number) => {
   return axios.get(`/api/v1/checklist/${todoId}`)
 }
 
-const putTodo = (todoId: number) => {
-  return axios.put(`/api/v1/checklist/${todoId}`)
+const putTodo = (data: Todo, modifyType: string) => {
+  return axios.put(`/api/v1/checklist/${data.checklistId}/date/${data.date}/modifyType/${modifyType}`, data)
 }
 
 const deleteTodo = (todoId: number) => {
   return axios.delete(`/api/v1/checklist/${todoId}`)
 }
 
-const putCheckedTodo = (todoId: number) => {
-  return axios.put(`/api/v1/checklist/checked/${todoId}`)
+const putCheckedTodo = (data: {todoId: number, date: string}) => {
+  return axios.put(`/api/v1/checklist/${data.todoId}/checked/date/${data.date}`)
 }
 
 export { getTodoList, postTodo, getTodo, putTodo, deleteTodo, putCheckedTodo }

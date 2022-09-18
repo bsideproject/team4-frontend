@@ -5,7 +5,8 @@ const ROUTE = {
     Page: "ChecklistPage",
     Quick: "Quick",
     Schedule: "Schedule",
-    Todo: "Todo"
+    CreateTodo: "CreateTodo",
+    ModifyTodo: "ModifyTodo"
   },
   Setting: {
     Page: "SettingPage",
@@ -19,13 +20,30 @@ const ROUTE = {
     Feedback: "Feedback",
     Withdraw: "Withdraw"
   },
-  Group: "Group",
+  Group: {
+    Page: "GroupPage",
+    Info: "Group",
+    Invite: "Invite"
+  },
   Pet: {
     Page: "PetPage",
     Create: "Create",
     Modify: "Modify",
     Profile: "PetProfile",
     Share: "PetShare"
+  },
+  Nurture: {
+    Page: "NurturePage",
+    Main: "NurtureMain",
+    Anomalies: {
+      Create: "CreateAnomalies",
+      Modify: "ModifyAnomalies"
+    },
+    OneLine: {
+      Create: "CreateOneLine",
+      Modify: "ModifyOneLine",
+    }
+
   }
 } as const
 type ROUTE = typeof ROUTE[keyof typeof ROUTE]

@@ -172,6 +172,7 @@
       <button class="btn-lg-disabled" v-else>저장하기</button>
     </article>
   </section>
+  <bottom-sheet ref="todoEditBottomSheet" :option-list="editOption" />
 </template>
 
 <script setup>
@@ -182,11 +183,13 @@ import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { MODULE_NAME, TYPES } from '@/store/modules/checklist/todoStore'
 import { useToast } from 'vue-toast-notification'
+import ROUTE from '@/constants/route'
 
 const route = useRoute()
 const router = useRouter()
 const store = useStore()
 const toast = useToast()
+const todoEditBottomSheet = ref(null)
 const compCalendar = ref(null)
 const compRepeatEndedCalendar = ref(null)
 const isRepeatEnded = ref(false)
@@ -195,6 +198,7 @@ const byDay = ref(false)
 const byWeek = ref(false)
 const tabData = ref([])
 const weekData = ref([])
+const editOption = ref([])
 const todo = reactive({
   checklistId: '',
   title: '',
@@ -228,63 +232,82 @@ weekData.value = [
   { name: '금', checked: false, value: 'FRIDAY' },
   { name: '토', checked: false, value: 'SATURDAY' },
 ]
+editOption.value = [
+  {
+    title: '이 일정만 수정',
+    callback: () => {
+      editTodo(todo, 'onlyThis')
+    },
+  },
+  {
+    title: '이후 일정 수정',
+    callback: () => {
+      editTodo(todo, 'afterThis')
+    },
+  },
+  {
+    title: '전체 일정 수정',
+    callback: () => {
+      editTodo(todo, 'all')
+    },
+  },
+]
 
 const getTodo = computed(() => store.getters[`${MODULE_NAME}/${TYPES.getTodo}`])
 const getOnEdit = computed(() => {
-  if (route.query.id) {
-    // if (todo.title !== getTodo.value.title) {
-    //   return true
-    // }
-    return true
-  } else {
-    if (todo.isRepeated) {
-      if (
-        repeatTab.value === tabData.value[2].value &&
-        weekData.value.every((w) => !w.checked)
-      ) {
-        return false
-      } else if (
-        repeatTab.value === tabData.value[3].value &&
-        !byDay.value &&
-        !byWeek.value
-      ) {
-        return false
-      }
-
-      if (isRepeatEnded.value && !todo.repeatDetail.endedAt) {
-        return false
-      }
+  if (todo.isRepeated) {
+    if (
+      repeatTab.value === tabData.value[2].value &&
+      weekData.value.every((w) => !w.checked)
+    ) {
+      return false
+    } else if (
+      repeatTab.value === tabData.value[3].value &&
+      !byDay.value &&
+      !byWeek.value
+    ) {
+      return false
     }
-    return true
+
+    if (isRepeatEnded.value && !todo.repeatDetail.endedAt) {
+      return false
+    }
   }
+  return true
 })
 
-onMounted(() => {
-  if (route.query.id) {
-    store.dispatch(`${MODULE_NAME}/${TYPES.actTodo}`)
-    Object.assign(todo, getTodo.value)
-    todo.date = dateToStringFormat(
-      new Date(
-        getTodo.value.date[0],
-        getTodo.value.date[1],
-        getTodo.value.date[2]
-      )
-    )
-  }
+onMounted(async () => {
+  const { todoId } = route.params
 
+  await store.dispatch(`${MODULE_NAME}/${TYPES.actTodo}`, Number(todoId))
+  Object.assign(todo, getTodo.value)
+  todo.date = dateToStringFormat(new Date(getTodo.value.date))
+  console.log(todo)
   if (todo.isRepeated) {
-    const eventPeriod = todo.repeatDetail.eventPeriod
+    const eventPeriod = todo?.repeatDetail?.eventPeriod
     repeatTab.value = eventPeriod
 
     if (eventPeriod === tabData.value[3].value) {
-      if (todo.repeatDetail.eventDay) {
+      if (todo.repeatDetail?.eventDay) {
         byDay.value = true
-      } else if (todo.repeatDetail.eventDate && todo.repeatDetail.eventWeek) {
+      } else if (
+        todo.repeatDetail?.eventDate &&
+        todo?.repeatDetail?.eventWeek
+      ) {
         byWeek.value = true
       }
     }
+  } else {
+    todo.repeatDetail = {
+      eventPeriod: tabData.value[0],
+      eventDate: null,
+      eventMonth: null,
+      eventDay: null,
+      eventWeek: null,
+      endedAt: null,
+    }
   }
-  if (todo.repeatDetail.endedAt) {
+  if (todo.repeatDetail?.endedAt) {
     isRepeatEnded.value = true
   }
 })
@@ -353,6 +376,7 @@ const clickSaveTodo = () => {
     todo.repeatDetail.eventDate = weekData.value
       .filter((w) => w.checked)
       .map((w) => w.value)
+      .join(',')
   } else if (repeatTab.value === tabData.value[3].value) {
     const todoDate = new Date(todo.date)
 
@@ -374,22 +398,28 @@ const clickSaveTodo = () => {
     )
   }
 
-  console.log(todo)
+  if (todo.isRepeated) {
+    todoEditBottomSheet.value.openBottomSheet()
+  } else {
+    editTodo(todo, 'none')
+  }
+}
 
+const editTodo = (data, modifyType) => {
   store
-    .dispatch(`${MODULE_NAME}/${TYPES.actSaveTodo}`, todo)
-    .then((isSuccess) => {
-      if (isSuccess) {
-        toast.clear()
-        toast.open({
-          type: 'success',
-          message: '할 일이 저장되었습니다.',
-          position: 'bottom',
-        })
-      }
+    .dispatch(`${MODULE_NAME}/${TYPES.actPutTodo}`, {
+      data,
+      modifyType,
     })
-
-  // router.push({ name: ROUTE.Main })
+    .then(() => {
+      toast.clear()
+      toast.open({
+        type: 'success',
+        message: '할 일이 수정되었습니다.',
+        position: 'bottom',
+      })
+      router.replace({ name: ROUTE.Main })
+    })
 }
 </script>
 

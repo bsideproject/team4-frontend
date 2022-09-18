@@ -12,7 +12,8 @@ export interface Todo {
   title: string,
   explanation: string,
   date: string,
-  isDoen: boolean,
+  done?: boolean,
+  isDoen?: boolean,
   isRepeated: boolean,
   repeatDetail: Repeat
 }

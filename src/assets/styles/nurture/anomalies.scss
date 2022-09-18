@@ -1,0 +1,92 @@
+@charset 'utf-8';
+
+.anomalies {
+  margin: 20px 0;
+
+  &__accordion {
+    height: 64px;
+    position: relative;
+    text-align: left;
+    padding-left: 48px;
+    line-height: 64px;
+
+    .title {
+      @include ptBold16;
+    }
+    &::before {
+      position: absolute;
+      content: '';
+      top: 20px;
+      left: 20px;
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/anomalies.svg') center center no-repeat;
+    }
+    &::after {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/arrow_down.svg') center center no-repeat;
+    }
+    &.on {
+      color: $primaryColor2;
+      background-color: #edf4ff;
+      &::before {
+        background: url('@images/icons/anomalies_primary.svg') center center
+          no-repeat;
+      }
+      &::after {
+        background: url('@images/icons/arrow_up_primary.svg') center center
+          no-repeat;
+      }
+    }
+  }
+
+  &__initial-area {
+    margin: 4px 32px 0 32px;
+    button {
+      margin-top: 16px;
+      height: 33px;
+      display: block;
+    }
+    .add {
+      width: 150px;
+    }
+    .noting {
+      width: 80px;
+    }
+  }
+
+  &__list {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid $borderColor;
+
+    text-align: left;
+
+    .list {
+      .item {
+        @include ptRegular16;
+        position: relative;
+        padding-left: 12px;
+        margin-bottom: 10px;
+
+        &::before {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          left: 0;
+          top: 10px;
+          content: '';
+
+          background: $primaryColor;
+          border-radius: 50%;
+          // transform: matrix(1, 0, 0, -1, 0, 0);
+        }
+      }
+    }
+  }
+}
