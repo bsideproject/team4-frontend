@@ -80,6 +80,7 @@ watch(
 watch(
   () => picked.value,
   (newValue) => {
+    alert('Calendar ' + newValue)
     emits('change', dateToStringFormat(newValue))
     closeCalendar()
   }

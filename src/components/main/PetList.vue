@@ -8,9 +8,9 @@
         @slideChange="onSlideChange"
       >
         <swiper-slide v-for="(item, index) in props.petList" :key="index">
-          <div :class="['pet-list-wrapper__item', item.isMain ? 'active' : '']">
+          <div class="pet-list-wrapper__item">
             <div class="name-area">
-              <span>
+              <span v-if="item.isMain">
                 <img src="@images/star.png" />
               </span>
               <span class="item__name">

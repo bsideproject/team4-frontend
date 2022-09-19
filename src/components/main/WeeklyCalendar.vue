@@ -50,6 +50,7 @@ const clickWeekDay = (index) => {
   setWeeklyDate(d)
 }
 const changeCalendar = (value) => {
+  alert('WeeklyCalendar change ' + value)
   setWeeklyDate(new Date(value))
 }
 const setWeeklyDate = (date) => {
@@ -77,6 +78,7 @@ const getDay = (date) => {
   return new Date(date).getDay()
 }
 const makeWeeklyList = (date) => {
+  alert('makeWeeklyList ' + date)
   const before = []
   const after = []
   const today = getDay(date)
