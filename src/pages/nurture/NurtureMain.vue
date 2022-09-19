@@ -22,13 +22,13 @@
     </div>
   </div>
 
-  <div class="floatArea">
+  <!-- <div class="floatArea">
     <button class="floatArea__btn--float" @click="clickFloating">
       <span></span>
       <span></span>
     </button>
     <floating-bottom-sheet ref="floatingBottomSheet" />
-  </div>
+  </div> -->
 </template>
 
 
@@ -38,7 +38,7 @@ import TabMenu from '@/components/main/TabMenu.vue'
 import WeeklyCalendar from '@/components/main/WeeklyCalendar'
 import Anomalies from '@/components/nurture/Anomalies'
 import OneLine from '@/components/nurture/OneLine'
-import FloatingBottomSheet from '@/components/main/FloatingBottomSheet.vue'
+// import FloatingBottomSheet from '@/components/main/FloatingBottomSheet.vue'
 
 import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
@@ -58,9 +58,9 @@ onMounted(() => {
   store.dispatch(`${MN_PET}/${TY_PET.actPetList}`)
 })
 
-const clickFloating = () => {
-  floatingBottomSheet.value.openBottomSheet()
-}
+// const clickFloating = () => {
+//   floatingBottomSheet.value.openBottomSheet()
+// }
 </script>
 
 <style lang="scss" scoped>
