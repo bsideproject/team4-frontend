@@ -43,7 +43,7 @@ const module = {
         context.commit(TYPES.setQuickRecordList, quickDetailList || [])
       })
     },
-    [TYPES.actCountQuickRecord](context: any, payload: number) {
+    [TYPES.actCountQuickRecord](context: any, payload: { quickId: number, date: string }) {
       return putQuickRecordCount(payload)
         .then((res: AxiosResponse<Success>) => {
           const {code, message, data } = res.data

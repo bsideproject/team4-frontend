@@ -73,4 +73,14 @@ const getWeekNumber = (dateFrom = new Date()) => {
   return (weekDay - 1 + currentDate) / 7 + 1
 }
 
-export { _confirm, dateToStringFormat, getWeekNumber }
+const stringToDate = (str: string) => {
+  if (str.includes('.')) {
+    const ymds = str.split('.').map(s => Number(s))
+    return new Date(ymds[0], ymds[1]-1, ymds[2])
+  } else if (str.includes('-')) {
+    const ymds = str.split('-').map(s => Number(s))
+    return new Date(ymds[0], ymds[1]-1, ymds[2])
+  }
+}
+
+export { _confirm, dateToStringFormat, getWeekNumber, stringToDate }

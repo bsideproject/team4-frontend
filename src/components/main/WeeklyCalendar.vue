@@ -27,6 +27,7 @@ import Calendar from '@/components/common/Calendar.vue'
 import { ref, watch } from 'vue'
 import { MODULE_NAME, TYPES } from '@/store/modules/common/headerStore'
 import { useStore } from 'vuex'
+import { stringToDate } from '@/utils/common'
 
 const today = ref(new Date())
 const compCalendar = ref(null)
@@ -50,8 +51,7 @@ const clickWeekDay = (index) => {
   setWeeklyDate(d)
 }
 const changeCalendar = (value) => {
-  alert('WeeklyCalendar change ' + value)
-  setWeeklyDate(new Date(value))
+  setWeeklyDate(stringToDate(value))
 }
 const setWeeklyDate = (date) => {
   today.value = date
@@ -78,7 +78,6 @@ const getDay = (date) => {
   return new Date(date).getDay()
 }
 const makeWeeklyList = (date) => {
-  alert('makeWeeklyList ' + date)
   const before = []
   const after = []
   const today = getDay(date)

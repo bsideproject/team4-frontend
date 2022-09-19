@@ -48,7 +48,7 @@ import {
 } from '@/store/modules/pet/petStore'
 
 const store = useStore()
-const floatingBottomSheet = ref(null)
+// const floatingBottomSheet = ref(null)
 
 const getPetList = computed(
   () => store.getters[`${MN_PET}/${TY_PET.getPetList}`]
