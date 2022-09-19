@@ -6,7 +6,7 @@
   <comp-footer />
 </template>
 
-<script lang="ts" setup>
+<script setup>
 // import { defineComponent } from 'vue'
 import CompHeader from '@/components/common/Header.vue'
 import CompFooter from '@/components/common/Footer.vue'

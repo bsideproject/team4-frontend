@@ -1,5 +1,5 @@
 <template>
-  <div class="pet-list section">
+  <div :class="['pet-list', getIsFixed ? 'fixed' : '']">
     <div class="pet-list-wrapper" v-if="props.petList.length">
       <swiper
         :slides-per-view="4"
@@ -9,9 +9,14 @@
       >
         <swiper-slide v-for="(item, index) in props.petList" :key="index">
           <div :class="['pet-list-wrapper__item', item.isMain ? 'active' : '']">
-            <p class="item__name">
-              {{ item.name }}
-            </p>
+            <div class="name-area">
+              <span>
+                <img src="@images/star.png" />
+              </span>
+              <span class="item__name">
+                {{ item.name }}
+              </span>
+            </div>
             <div
               class="item__photo"
               @click="
@@ -34,15 +39,17 @@
 
 <script setup>
 import ROUTE from '@/constants/route'
-import { defineProps } from 'vue'
+import { computed, defineProps } from 'vue'
 import { useRouter } from 'vue-router'
-
+import { useStore } from 'vuex'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@/store/modules/common/headerStore'
 // import Swiper core and required components
 import SwiperCore, { Navigation, Pagination, A11y } from 'swiper'
-
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
-
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -58,6 +65,11 @@ const props = defineProps({
   },
 })
 const router = useRouter()
+const store = useStore()
+
+const getIsFixed = computed(
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getIsFixed}`]
+)
 
 const onSwiper = (swiper) => {
   // console.log(swiper)

@@ -24,9 +24,11 @@ const clickDimmed = () => {
   closeBottomSheet()
 }
 const openBottomSheet = () => {
+  document.body.style.overflowY = 'hidden'
   isOpen.value = true
 }
 const closeBottomSheet = () => {
+  document.body.style.overflowY = 'scroll'
   isOpen.value = false
 }
 const clickItem = (callback) => {

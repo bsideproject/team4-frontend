@@ -15,6 +15,9 @@ const TYPES = makeModuleTypes([
   'weeklyCalendarDate',
   'getWeeklyCalendarDate',
   'setWeeklyCalendarDate',
+  'isFixed',
+  'getIsFixed',
+  'setIsFixed'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 type optionListType = Array<{title: string, callback: () => void}>
@@ -23,6 +26,7 @@ interface State {
   headerType: string,
   moreOptionList: optionListType,
   weeklyCalendarDate: Date,
+  isFixed: boolean
 }
 
 const module = {
@@ -32,6 +36,7 @@ const module = {
     headerType: '',
     moreOptionList: [],
     weeklyCalendarDate: new Date(),
+    isFixed: false
   },
   getters: {
     [TYPES.getTitle](state: State) {
@@ -46,6 +51,9 @@ const module = {
     [TYPES.getWeeklyCalendarDate](state: State) {
       return state.weeklyCalendarDate
     },
+    [TYPES.getIsFixed](state: State) {
+      return state.isFixed
+    }
   },
   mutations: {
     [TYPES.setTitle](state: State, payload: string) {
@@ -60,6 +68,9 @@ const module = {
     [TYPES.setWeeklyCalendarDate](state: State, payload: Date) {
       state.weeklyCalendarDate = payload
     },
+    [TYPES.setIsFixed](state: State, payload: boolean) {
+      state.isFixed = payload
+    }
   },
 }
 

@@ -2,7 +2,7 @@
   <router-view />
 </template>
 
-<script lang="ts">
+<script>
 import ROUTE from '@/constants/route'
 export default {
   name: ROUTE.Checklist.Page,

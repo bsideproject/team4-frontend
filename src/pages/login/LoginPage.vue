@@ -2,13 +2,12 @@
   <router-view />
 </template>
 
-<script lang="ts">
+<script>
 import ROUTE from '@/constants/route'
 export default {
-  name: ROUTE.Login
+  name: ROUTE.Login,
 }
 </script>
 
 <style scoped>
-
 </style>

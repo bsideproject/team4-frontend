@@ -2,7 +2,7 @@
   <section></section>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import ROUTE from '@/constants/route'
 import { useRoute, useRouter } from 'vue-router'
 import { setToken } from '@/utils/login/index'
