@@ -25,7 +25,7 @@
             >
               <img
                 class="item__photo--round"
-                src="@images/pet_02.jpeg"
+                src="@images/icons/profile_s_pet.svg"
                 alt=""
               />
             </div>
