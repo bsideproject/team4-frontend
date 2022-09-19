@@ -1,5 +1,7 @@
 <template>
-  <section :class="['header', getIsFixed ? 'fixed' : '']">
+  <section
+    :class="['header', getHeaderType === 'main' && getIsFixed ? 'fixed' : '']"
+  >
     <article
       :class="['header-wrapper', 'bg-primary', getIsFixed ? 'fixed' : '']"
       v-if="getHeaderType === 'main'"
@@ -75,7 +77,6 @@ import {
   TYPES as TY_PET,
 } from '@/store/modules/pet/petStore'
 import ROUTE from '@/constants/route'
-import { getPet } from '@/api/pet/pet'
 
 const store = useStore()
 const router = useRouter()

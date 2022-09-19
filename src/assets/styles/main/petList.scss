@@ -1,23 +1,27 @@
 @charset 'utf-8';
 
 .pet-list {
-  padding: 24px 20px 24px;
+  padding: 12px 20px 24px;
   background: #5794f0;
   color: #ffffff;
 
   &-wrapper {
     margin-bottom: 24px;
     gap: 20px;
+
+    .name-area {
+      display: flex;
+      justify-content: center;
+    }
     &__item {
       .item__name {
-        width: 60px;
-        margin: 0 auto;
+        display: inline-block;
+        margin: 0 8px;
         @include ptRegular14;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         word-break: break-all;
-        margin-bottom: 5px;
       }
       .item__photo {
         //background-image: url("@images/pet_01.jpeg");
@@ -37,17 +41,6 @@
       .item__name {
         // padding: 0 0 0 14px;
         position: relative;
-        &::before {
-          content: '';
-          background-image: url('@images/star.png');
-          background-repeat: no-repeat;
-          background-size: 100%;
-          position: absolute;
-          width: 12px;
-          height: 12px;
-          left: 4px;
-          bottom: 2px;
-        }
       }
       .item__image {
         border-radius: 60px;
