@@ -1,15 +1,13 @@
 @charset 'utf-8';
 
 .pet-list {
-  padding: 24px 20px 48px;
+  padding: 24px 20px 24px;
   background: #5794f0;
   color: #ffffff;
 
   &-wrapper {
-    // display: flex;
+    margin-bottom: 24px;
     gap: 20px;
-    // justify-content: left;
-    // align-items: center;
     &__item {
       .item__name {
         width: 60px;
@@ -62,5 +60,9 @@
   }
   .swiper-wrapper {
     z-index: 0;
+  }
+
+  &.fixed {
+    background-color: #fff;
   }
 }

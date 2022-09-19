@@ -30,4 +30,14 @@
     width: 1px;
     height: 16px;
   }
+
+  &.fixed {
+    max-width: $maxWidth;
+    position: fixed;
+    top: 0;
+    width: 70%;
+    margin: 52px auto 0 auto;
+    height: 20px;
+    z-index: 10;
+  }
 }

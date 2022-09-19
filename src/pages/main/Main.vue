@@ -27,8 +27,9 @@
       <span></span>
       <span></span>
     </button>
-    <floating-bottom-sheet ref="floatingBottomSheet" />
   </div>
+
+  <floating-bottom-sheet ref="floatingBottomSheet" />
 </template>
 
 
@@ -42,7 +43,10 @@ import FloatingBottomSheet from '@/components/main/FloatingBottomSheet.vue'
 
 import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
-import { MODULE_NAME as MN_PET, TYPES as TY_PET } from '@/store/modules/pet/petStore'
+import {
+  MODULE_NAME as MN_PET,
+  TYPES as TY_PET,
+} from '@/store/modules/pet/petStore'
 
 const store = useStore()
 const floatingBottomSheet = ref(null)
