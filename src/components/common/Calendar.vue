@@ -57,9 +57,11 @@ onMounted(() => {
 })
 
 const openCalendar = () => {
+  document.body.style.overflowY = 'hidden'
   isOpen.value = true
 }
 const closeCalendar = () => {
+  document.body.style.overflowY = 'scroll'
   isOpen.value = false
 }
 const clickDimmed = () => {

@@ -1,7 +1,13 @@
 <template>
-  <section class="header">
-    <article class="header-wrapper bg-primary" v-if="getHeaderType === 'main'">
-      <div class="header-wrapper__logo">
+  <section :class="['header', getIsFixed ? 'fixed' : '']">
+    <article
+      :class="['header-wrapper', 'bg-primary', getIsFixed ? 'fixed' : '']"
+      v-if="getHeaderType === 'main'"
+    >
+      <div class="fixed-logo" v-if="getIsFixed && getPetList.length">
+        <img src="@images/icons/profile_xs_pet.svg" alt="" />
+      </div>
+      <div class="header-wrapper__logo" @click="clickMainHeaderLogo">
         <img src="@images/png/logo_white.png" alt="" />
       </div>
       <router-link to="/setting" class="header-wrapper__menu" />
@@ -60,20 +66,34 @@
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import { MODULE_NAME, TYPES } from '@/store/modules/common/headerStore'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@/store/modules/common/headerStore'
+import {
+  MODULE_NAME as MN_PET,
+  TYPES as TY_PET,
+} from '@/store/modules/pet/petStore'
 import ROUTE from '@/constants/route'
+import { getPet } from '@/api/pet/pet'
 
 const store = useStore()
 const router = useRouter()
 const optionBottomSheet = ref(null)
 const getTitle = computed(
-  () => store.getters[`${MODULE_NAME}/${TYPES.getTitle}`]
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getTitle}`]
 )
 const getHeaderType = computed(
-  () => store.getters[`${MODULE_NAME}/${TYPES.getHeaderType}`]
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getHeaderType}`]
 )
 const getMoreOptionList = computed(
-  () => store.getters[`${MODULE_NAME}/${TYPES.getMoreOptionList}`]
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getMoreOptionList}`]
+)
+const getIsFixed = computed(
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getIsFixed}`]
+)
+const getPetList = computed(
+  () => store.getters[`${MN_PET}/${TY_PET.getPetList}`]
 )
 
 const goBack = () => {
@@ -85,6 +105,25 @@ const clickMore = () => {
 const clickShare = () => {
   router.push({ name: ROUTE.Pet.Share })
 }
+const clickMainHeaderLogo = () => {
+  location.reload()
+}
+
+document.addEventListener('scroll', function () {
+  let fixedScrollY = 80
+  let unFixedScrollY = 10
+
+  if (getPetList.value?.length) {
+    fixedScrollY = 100
+    unFixedScrollY = 70
+  }
+
+  if (window.scrollY > fixedScrollY && !getIsFixed.value) {
+    store.commit(`${MN_HEADER}/${TY_HEADER.setIsFixed}`, true)
+  } else if (window.scrollY < unFixedScrollY && getIsFixed.value) {
+    store.commit(`${MN_HEADER}/${TY_HEADER.setIsFixed}`, false)
+  }
+})
 </script>
 
 <style lang="scss" scoped>

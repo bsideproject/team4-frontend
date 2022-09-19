@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-menu">
+  <div :class="['tab-menu', getIsFixed ? 'fixed' : '']">
     <div class="wrapper">
       <router-link
         to="/"
@@ -19,11 +19,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@/store/modules/common/headerStore'
 
 const route = useRoute()
+const store = useStore()
 const tab = ref('main')
+
+const getIsFixed = computed(
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getIsFixed}`]
+)
+
 if (route.path === '/nurture') {
   tab.value = 'nurture'
 }

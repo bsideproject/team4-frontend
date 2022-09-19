@@ -8,12 +8,33 @@
     border-bottom: 1px solid $borderColor;
   }
 
+  &.fixed {
+    margin-bottom: 40px;
+  }
+
   &-wrapper {
     height: 52px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &.fixed {
+      max-width: $maxWidth;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+    }
+
+    .fixed-logo {
+      position: absolute;
+      content: '';
+      top: 10px;
+      left: 16px;
+      width: 24px;
+      height: 24px;
+    }
 
     &__logo {
       img {
