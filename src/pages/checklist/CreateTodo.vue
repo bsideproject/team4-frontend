@@ -177,7 +177,11 @@
 <script setup>
 import Calendar from '@/components/common/Calendar.vue'
 import { computed, reactive, ref, toRefs, watch } from 'vue'
-import { dateToStringFormat, getWeekNumber } from '@/utils/common/index'
+import {
+  dateToStringFormat,
+  getWeekNumber,
+  stringToDate,
+} from '@/utils/common/index'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { MODULE_NAME, TYPES } from '@/store/modules/checklist/todoStore'
@@ -265,7 +269,7 @@ watch(
       byWeek.value = false
       todo.repeatDetail.eventDate = null
       todo.repeatDetail.eventWeek = null
-      const todoDate = new Date(todo.date)
+      const todoDate = stringToDate(todo.date)
       todo.repeatDetail.eventDay = todoDate.getDate()
     }
   }
@@ -276,7 +280,7 @@ watch(
     if (newValue) {
       byDay.value = false
       todo.repeatDetail.eventDay = null
-      const todoDate = new Date(todo.date)
+      const todoDate = stringToDate(todo.date)
       todo.repeatDetail.eventDate = weekData.value[todoDate.getDay()].value
       todo.repeatDetail.eventWeek = getWeekNumber(todoDate)
     }
@@ -316,7 +320,7 @@ const clickSaveTodo = () => {
       .map((w) => w.value)
       .join(',')
   } else if (repeatTab.value === tabData.value[3].value) {
-    const todoDate = new Date(todo.date)
+    const todoDate = stringToDate(todo.date)
 
     if (byDay.value) {
       todo.repeatDetail.eventDay = todoDate.getDate()
@@ -327,11 +331,11 @@ const clickSaveTodo = () => {
   }
 
   if (todo.date) {
-    todo.date = dateToStringFormat(new Date(todo.date), '-')
+    todo.date = dateToStringFormat(stringToDate(todo.date), '-')
   }
   if (todo.repeatDetail.endedAt) {
     todo.repeatDetail.endedAt = dateToStringFormat(
-      new Date(todo.repeatDetail.endedAt),
+      stringToDate(todo.repeatDetail.endedAt),
       '-'
     )
   }

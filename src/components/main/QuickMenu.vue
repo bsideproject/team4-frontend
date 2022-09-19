@@ -60,7 +60,11 @@ const clickQuickRecordCount = (quickId) => {
   if (isDisabled(quickId)) {
     return false
   }
-  store.dispatch(`${MN_QUICK}/${TY_QUICK.actCountQuickRecord}`, quickId)
+  const data = {
+    quickId,
+    date: dateToStringFormat(getWeeklyCalendarDate.value),
+  }
+  store.dispatch(`${MN_QUICK}/${TY_QUICK.actCountQuickRecord}`, data)
 }
 const isDisabled = (quickId) => {
   const { total, count } = getQuickRecordList.value.find(
