@@ -3,6 +3,7 @@ import routes from '@/router/routes/index'
 import store from '@/store/index'
 import { getToken } from '@/utils/login/index'
 import ROUTE from '@/constants/route'
+import HEADER_TYPE from '@/constants/headerType'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -15,6 +16,9 @@ router.beforeEach((to, from, next) => {
   const { auth, title, headerType } = to.meta
   store.commit('headerStore/setTitle', title)
   store.commit('headerStore/setHeaderType', headerType)
+  if (headerType === HEADER_TYPE.MORE) {
+    store.commit('headerStore/setMoreOptionList', [])
+  }
 
   const browserTitle = document.title
   const serviceName = browserTitle.split('-')[0]?.trim()

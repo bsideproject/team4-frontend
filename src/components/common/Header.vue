@@ -59,7 +59,11 @@
     >
       <a @click="goBack" class="header-wrapper__back"></a>
       <div class="header-wrapper__title">{{ getTitle }}</div>
-      <button class="header-wrapper__share" @click="clickShare"></button>
+      <button
+        class="header-wrapper__share"
+        @click="clickShare"
+        v-if="getUser.role === ROLE.MANAGER"
+      ></button>
     </article>
   </section>
 </template>
@@ -76,7 +80,12 @@ import {
   MODULE_NAME as MN_PET,
   TYPES as TY_PET,
 } from '@/store/modules/pet/petStore'
+import {
+  MODULE_NAME as MN_USER,
+  TYPES as TY_USER,
+} from '@/store/modules/user/userStore'
 import ROUTE from '@/constants/route'
+import ROLE from '@/constants/role'
 
 const store = useStore()
 const router = useRouter()
@@ -96,6 +105,7 @@ const getIsFixed = computed(
 const getPetList = computed(
   () => store.getters[`${MN_PET}/${TY_PET.getPetList}`]
 )
+const getUser = computed(() => store.getters[`${MN_USER}/${TY_USER.getUser}`])
 
 const goBack = () => {
   router.back()
