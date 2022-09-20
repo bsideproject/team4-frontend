@@ -85,7 +85,8 @@
           class="todo__tab-every-day"
           v-else-if="repeatTab === tabData[1].value"
         >
-          <input type="text" v-model="todo.repeatDetail.eventDay" /> 일 마다
+          <!-- <input type="text" v-model="todo.repeatDetail.eventDay" /> 일 마다 -->
+          매일 마다
         </div>
         <div
           class="todo__tab-every-week"
@@ -282,16 +283,24 @@ onMounted(async () => {
   await store.dispatch(`${MODULE_NAME}/${TYPES.actTodo}`, Number(todoId))
   Object.assign(todo, getTodo.value)
   todo.date = dateToStringFormat(new Date(getTodo.value.date))
-  console.log(todo)
+
   if (todo.isRepeated) {
     const eventPeriod = todo?.repeatDetail?.eventPeriod
     repeatTab.value = eventPeriod
+    if (eventPeriod === tabData.value[2].value) {
+      const weeklyDates = todo?.repeatDetail?.eventDate?.split(',')
 
-    if (eventPeriod === tabData.value[3].value) {
-      if (todo.repeatDetail?.eventDay) {
+      weekData.value = weekData.value.map((w) => {
+        if (weeklyDates.includes(w.value)) {
+          w.checked = true
+        }
+        return w
+      })
+    } else if (eventPeriod === tabData.value[3].value) {
+      if (todo?.repeatDetail?.eventDay) {
         byDay.value = true
       } else if (
-        todo.repeatDetail?.eventDate &&
+        todo?.repeatDetail?.eventDate &&
         todo?.repeatDetail?.eventWeek
       ) {
         byWeek.value = true

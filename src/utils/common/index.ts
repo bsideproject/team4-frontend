@@ -70,7 +70,7 @@ const getWeekNumber = (dateFrom = new Date()) => {
   const weekDay = startOfMonth.getDay() // 0: Sun ~ 6: Sat
 
   // ((요일 - 1) + 해당 날짜) / 7일로 나누기 = N 주차
-  return (weekDay - 1 + currentDate) / 7 + 1
+  return Math.floor((weekDay - 1 + currentDate) / 7) + 1
 }
 
 const stringToDate = (str: string) => {

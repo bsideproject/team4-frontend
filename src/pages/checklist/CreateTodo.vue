@@ -85,7 +85,8 @@
           class="todo__tab-every-day"
           v-else-if="repeatTab === tabData[1].value"
         >
-          <input type="text" v-model="todo.repeatDetail.eventDay" /> 일 마다
+          <!-- <input type="text" v-model="todo.repeatDetail.eventDay" /> 일 마다 -->
+          <p>매일 마다</p>
         </div>
         <div
           class="todo__tab-every-week"
@@ -340,7 +341,7 @@ const clickSaveTodo = () => {
     )
   }
 
-  console.log(todo)
+  // console.log(todo)
 
   store.dispatch(`${MODULE_NAME}/${TYPES.actSaveTodo}`, todo).then(() => {
     toast.clear()

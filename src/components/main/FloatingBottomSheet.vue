@@ -5,12 +5,12 @@
       <div class="bottom-sheet__floating">
         <h3>체크리스트</h3>
         <div class="icon-area">
-          <div>
+          <!-- <div>
             <a src="#" @click="clickRegisterSchedule"
               ><img src="@images/icons/calendar.svg" alt=""
             /></a>
             <p>일정 등록</p>
-          </div>
+          </div> -->
           <div>
             <a src="#" @click="clickRegisterTodo"
               ><img src="@images/icons/todo.svg" alt=""
