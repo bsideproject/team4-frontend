@@ -9,7 +9,12 @@
         </div>
         <div>
           <p>1일 실행횟수</p>
-          <input type="text" v-model="form.total" />
+          <input
+            type="text"
+            v-model="form.total"
+            maxlength="2"
+            @input="onlyNumber"
+          />
         </div>
         <div>
           <p>메모</p>
@@ -27,12 +32,25 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineExpose, watch, reactive, toRef } from 'vue'
+import {
+  ref,
+  defineProps,
+  defineExpose,
+  watch,
+  reactive,
+  toRef,
+  computed,
+} from 'vue'
 import {
   MODULE_NAME as MN_QUICK,
   TYPES as TY_QUICK,
 } from '@/store/modules/checklist/quickRecordStore'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@/store/modules/common/headerStore'
 import { useStore } from 'vuex'
+import { dateToStringFormat } from '@/utils/common'
 
 const props = defineProps({
   detail: {
@@ -53,6 +71,10 @@ const form = reactive({
 
 toRef(form)
 
+const getWeeklyCalendarDate = computed(
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getWeeklyCalendarDate}`]
+)
+
 watch(
   () => props.detail,
   (newValue) => {
@@ -67,15 +89,18 @@ watch(
   () => form,
   (newValue) => {
     const { name, total, explanation } = props.detail
-    if (
-      newValue.name !== name ||
-      newValue.total !== total ||
-      newValue.explanation !== explanation
-    ) {
-      isOnEdit.value = true
-    } else {
-      isOnEdit.value = false
+
+    if (newValue.name && newValue.total) {
+      if (
+        newValue.name !== name ||
+        newValue.total !== total ||
+        newValue.explanation !== explanation
+      ) {
+        isOnEdit.value = true
+        return false
+      }
     }
+    isOnEdit.value = false
   },
   { deep: true }
 )
@@ -94,9 +119,16 @@ const clickSaveQuickRecord = () => {
     store
       .dispatch(`${MN_QUICK}/${TY_QUICK.actPutQuickRecord}`, form)
       .then(() => {
+        store.dispatch(
+          `${MN_QUICK}/${TY_QUICK.actQuickRecordList}`,
+          dateToStringFormat(getWeeklyCalendarDate.value, '-')
+        )
         closeBottomSheet()
       })
   }
+}
+const onlyNumber = (e) => {
+  e.target.value = e.target.value.replace(/[^0-9]/g, '')
 }
 defineExpose({
   openBottomSheet,

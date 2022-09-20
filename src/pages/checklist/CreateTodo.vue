@@ -115,7 +115,7 @@
               v-model="byDay"
               @change="changeMonthlyByDay"
             />
-            <label for="byDay">매월 25일 반복</label>
+            <label for="byDay">매월 {{ monthlyDate }}일 반복</label>
           </div>
           <div>
             <input
@@ -125,7 +125,9 @@
               v-model="byWeek"
               @change="changeMonthlyByWeek"
             />
-            <label for="byWeek">매월 3주차 목요일 반복</label>
+            <label for="byWeek"
+              >매월 {{ monthlyWeek }}주차 {{ monthlyDay }}요일 반복</label
+            >
           </div>
         </div>
         <div
@@ -200,6 +202,9 @@ const byDay = ref(false)
 const byWeek = ref(false)
 const tabData = ref([])
 const weekData = ref([])
+const monthlyDate = ref('')
+const monthlyDay = ref('')
+const monthlyWeek = ref('')
 const todo = reactive({
   checklistId: '',
   title: '',
@@ -255,14 +260,21 @@ const getOnEdit = computed(() => {
   return true
 })
 
-// watch(
-//   () => repeatTab.value,
-//   (newValue) => {
-//     weekData.value.map((w) => (w.checked = false))
-//     byDay.value = false
-//     byWeek.value = false
-//   }
-// )
+watch(
+  () => repeatTab.value,
+  (newValue) => {
+    // weekData.value.map((w) => (w.checked = false))
+    // byDay.value = false
+    // byWeek.value = false
+    if (newValue === 'monthly') {
+      const todoDate = stringToDate(todo.date)
+      const day = todoDate.getDay()
+      monthlyDate.value = todoDate.getDate()
+      monthlyWeek.value = getWeekNumber(todoDate)
+      monthlyDay.value = weekData.value[day].name
+    }
+  }
+)
 watch(
   () => byDay.value,
   (newValue) => {
