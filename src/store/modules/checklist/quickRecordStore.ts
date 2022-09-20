@@ -59,10 +59,12 @@ const module = {
       console.log(payload)
       return putQuickRecord(payload)
         .then((res: AxiosResponse<Success>) => {
-          const { code, message, data } = res.data
+          const { code, message } = res.data
 
           if (code === '305') {
-            context.commit(TYPES.setQuickRecord, data)
+            /**
+             * 퀵기록 성공시
+             */
           } else {
             throw new Error(message)
           }
