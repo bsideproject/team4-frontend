@@ -30,13 +30,14 @@
     .fixed-logo {
       position: absolute;
       content: '';
-      top: 10px;
+      top: 8px;
       left: 16px;
       width: 24px;
       height: 24px;
     }
 
     &__logo {
+      height: 36px;
       img {
         width: 90px;
         height: 36px;
