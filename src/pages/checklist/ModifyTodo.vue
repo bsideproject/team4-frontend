@@ -115,7 +115,7 @@
               v-model="byDay"
               @change="changeMonthlyByDay"
             />
-            <label for="byDay">매월 25일 반복</label>
+            <label for="byDay">매월 {{ monthlyDate }}일 반복</label>
           </div>
           <div>
             <input
@@ -125,7 +125,9 @@
               v-model="byWeek"
               @change="changeMonthlyByWeek"
             />
-            <label for="byWeek">매월 3주차 목요일 반복</label>
+            <label for="byWeek"
+              >매월 {{ monthlyWeek }}주차 {{ monthlyDay }}요일 반복</label
+            >
           </div>
         </div>
         <div
@@ -179,7 +181,11 @@
 <script setup>
 import Calendar from '@/components/common/Calendar.vue'
 import { computed, onMounted, reactive, ref, toRefs, watch } from 'vue'
-import { dateToStringFormat, getWeekNumber } from '@/utils/common/index'
+import {
+  dateToStringFormat,
+  getWeekNumber,
+  stringToDate,
+} from '@/utils/common/index'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { MODULE_NAME, TYPES } from '@/store/modules/checklist/todoStore'
@@ -200,6 +206,9 @@ const byWeek = ref(false)
 const tabData = ref([])
 const weekData = ref([])
 const editOption = ref([])
+const monthlyDate = ref('')
+const monthlyDay = ref('')
+const monthlyWeek = ref('')
 const todo = reactive({
   checklistId: '',
   title: '',
@@ -321,14 +330,21 @@ onMounted(async () => {
   }
 })
 
-// watch(
-//   () => repeatTab.value,
-//   (newValue) => {
-//     weekData.value.map((w) => (w.checked = false))
-//     byDay.value = false
-//     byWeek.value = false
-//   }
-// )
+watch(
+  () => repeatTab.value,
+  (newValue) => {
+    // weekData.value.map((w) => (w.checked = false))
+    // byDay.value = false
+    // byWeek.value = false
+    if (newValue === 'monthly') {
+      const todoDate = stringToDate(todo.date)
+      const day = todoDate.getDay()
+      monthlyDate.value = todoDate.getDate()
+      monthlyWeek.value = getWeekNumber(todoDate)
+      monthlyDay.value = weekData.value[day].name
+    }
+  }
+)
 watch(
   () => byDay.value,
   (newValue) => {
@@ -336,7 +352,7 @@ watch(
       byWeek.value = false
       todo.repeatDetail.eventDate = null
       todo.repeatDetail.eventWeek = null
-      const todoDate = new Date(todo.date)
+      const todoDate = stringToDate(todo.date)
       todo.repeatDetail.eventDay = todoDate.getDate()
     }
   }
@@ -347,7 +363,7 @@ watch(
     if (newValue) {
       byDay.value = false
       todo.repeatDetail.eventDay = null
-      const todoDate = new Date(todo.date)
+      const todoDate = stringToDate(todo.date)
       todo.repeatDetail.eventDate = weekData.value[todoDate.getDay()].value
       todo.repeatDetail.eventWeek = getWeekNumber(todoDate)
     }
@@ -387,7 +403,7 @@ const clickSaveTodo = () => {
       .map((w) => w.value)
       .join(',')
   } else if (repeatTab.value === tabData.value[3].value) {
-    const todoDate = new Date(todo.date)
+    const todoDate = stringToDate(todo.date)
 
     if (byDay.value) {
       todo.repeatDetail.eventDay = todoDate.getDate()
@@ -398,11 +414,11 @@ const clickSaveTodo = () => {
   }
 
   if (todo.date) {
-    todo.date = dateToStringFormat(new Date(todo.date), '-')
+    todo.date = dateToStringFormat(stringToDate(todo.date), '-')
   }
   if (todo.repeatDetail.endedAt) {
     todo.repeatDetail.endedAt = dateToStringFormat(
-      new Date(todo.repeatDetail.endedAt),
+      stringToDate(todo.repeatDetail.endedAt),
       '-'
     )
   }
