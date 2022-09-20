@@ -2,11 +2,13 @@ import {
   getGroupMemberList,
   deleteGroupMember,
   putGroupManager,
+  postGroup,
+  postGroupMember
 } from '@/api/group/group'
 import { makeModuleTypes } from '@/utils/store/index'
 import { Group } from '@/types/group'
 import { Success } from '@/types/response'
-import { AxiosResponse } from 'axios'
+import { Axios, AxiosResponse } from 'axios'
 
 const MODULE_NAME = 'groupStore'
 const TYPES = makeModuleTypes([
@@ -17,6 +19,8 @@ const TYPES = makeModuleTypes([
 
   'actDeleteGroupMember',
   'actPutGroupManager',
+  'actPostGroup',
+  'actPostGroupMember'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -36,19 +40,71 @@ const module = {
   },
   actions: {
     [TYPES.actGroupList](context: any, payload: number) {
-      getGroupMemberList(payload)
+      return getGroupMemberList(payload)
         .then((res: AxiosResponse<Success>) => {
-          console.log(res)
+          const { code, message, data} = res.data 
 
-          context.commit(TYPES.setGroupList, [])
+          if (code === '602') {
+            context.commit(TYPES.setGroupList, data.familyMemberList.sort((a: Group, b: Group) => {
+              if (a.role > b.role) {
+                return 1
+              } else {
+                return -1
+              }
+            }))    
+          } else {
+            throw new Error(message)
+          }
         })
     },
-    [TYPES.actDeleteGroupMember](context: any, payload: number) {
-      deleteGroupMember(payload)
+    [TYPES.actDeleteGroupMember](context: any, payload: {familyId: number, deleteMemberId: number}) {
+      return deleteGroupMember(payload)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message} = res.data 
+
+          if (code === '606') {
+            context.commit(TYPES.setGroupList, [])
+          } else {
+            throw new Error(message)
+          }
+        })
     },
-    [TYPES.actPutGroupManager](context: any, payload: number) {
-      putGroupManager(payload)
+    [TYPES.actPutGroupManager](context: any, payload: { familyId: number, prevManagerId: number, nextManagerId: number }) {
+      return putGroupManager(payload)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message, data} = res.data 
+
+          if (code === '604') {
+            context.dispatch(TYPES.actGroupList, data.familyId)
+          } else {
+            throw new Error(message)
+          }
+        })
     },
+    [TYPES.actPostGroup](context: any, payload: number) {
+      return postGroup(payload)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message, data } = res.data
+
+          if (code === '601') {
+            context.dispatch(TYPES.actGroupList, data.familyId)
+          } else {
+            throw new Error(message)
+          }
+        })
+    },
+    [TYPES.actPostGroupMember](context: any, payload: number) {
+      return postGroupMember(payload)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message, data } = res.data
+
+          if (code === '605') {
+            context.dispatch(TYPES.actGroupList, data.familyId)
+          } else {
+            throw new Error(message)
+          }
+        })
+    }
   },
   mutations: {
     [TYPES.setGroupList](state: State, payload: Array<Group>) {

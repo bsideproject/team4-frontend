@@ -10,7 +10,7 @@ export default [
     component: Group,
   },
   {
-    path: 'invite/:userId',
+    path: 'invite/:type/:userId',
     name: ROUTE.Group.Invite,
     component: Invite,
   }

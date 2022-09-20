@@ -8,21 +8,26 @@ const deleteGroup = () => {
   return axios.delete('/api/v1/family')
 }
 
-const postGroupMember = () => {
-  return axios.post('/api/v1/family/members')
+const postGroup = (managerId: number) => {
+  return axios.post('/api/v1/family', { groupManagerId: managerId })
 }
 
-const deleteGroupMember = (userId: number) => {
-  return axios.delete('/api/v1/family/members')
+const postGroupMember = (managerId: number) => {
+  return axios.post('/api/v1/family/members', { groupManagerId: managerId })
 }
 
-const putGroupManager = (userId: number) => {
-  return axios.put('/api/v1/family/manager')
+const deleteGroupMember = (data: {familyId: number, deleteMemberId:number} ) => {
+  return axios.post(`/api/v1/family/${data.familyId}/members`, { deleteMemberId: data.deleteMemberId })
+}
+
+const putGroupManager = (data: { familyId: number, prevManagerId: number, nextManagerId: number }) => {
+  return axios.put(`/api/v1/family/${data.familyId}/manager`, { prevManagerId: data.prevManagerId, nextManagerId: data.nextManagerId })
 }
 
 export {
   getGroupMemberList,
   deleteGroup,
+  postGroup,
   postGroupMember,
   deleteGroupMember,
   putGroupManager,

@@ -34,7 +34,10 @@
         <img src="@images/png/group_illust.png" alt="" />
       </div>
     </article>
-    <div class="group__invite" v-if="getGroupList.length < 4">
+    <div
+      class="group__invite"
+      v-if="getUser.role === ROLE.MANAGER && getGroupList.length < 4"
+    >
       <button @click="clickInvite">초대하기</button>
     </div>
   </section>
@@ -67,12 +70,12 @@ const getGroupList = computed(
   () => store.getters[`${MN_GROUP}/${TY_GROUP.getGroupList}`]
 )
 const getUser = computed(() => store.getters[`${MN_USER}/${TY_USER.getUser}`])
-onMounted(() => {
-  store.dispatch(`${MN_USER}/${TY_USER.actUser}`)
+onMounted(async () => {
+  await store.dispatch(`${MN_USER}/${TY_USER.actUser}`)
 
   const familyId = getUser.value.familyId
   if (familyId) {
-    store.dispatch(`${MN_GROUP}/${TY_GROUP.actGroupList}`, familyId)
+    await store.dispatch(`${MN_GROUP}/${TY_GROUP.actGroupList}`, familyId)
   }
 
   if (getUser.value.role === ROLE.MANAGER) {
@@ -102,10 +105,11 @@ onMounted(() => {
 })
 
 const clickInvite = () => {
-  // console.log(getUser.value.userId)
-  const inviteURL = `${process.env.VUE_APP_BASE_URL}/group/invite/${getUser.value.userId}`
+  const type = getUser.value.familyId ? 'exist' : 'new'
+  const inviteURL = `${process.env.VUE_APP_BASE_URL}/group/invite/${type}/${getUser.value.userId}`
   isExport.value = false
   isGrant.value = false
+
   if (navigator.share) {
     window.navigator.share({
       title: '펫하루 그룹 초대',
@@ -131,7 +135,9 @@ const clickGrant = (member) => {
       label: '네',
       callback: () => {
         store.dispatch(`${MN_GROUP}/${TY_GROUP.actPutGroupManager}`, {
-          userId: member.userId,
+          familyId: getUser.value.familyId,
+          prevManagerId: getUser.value.prevManagerId,
+          nextManagerId: member.userId,
         })
       },
     },
@@ -148,7 +154,8 @@ const clickExport = (member) => {
       label: '내보내기',
       callback: () => {
         store.dispatch(`${MN_GROUP}/${TY_GROUP.actDeleteGroupMember}`, {
-          userId: member.userId,
+          familyId: getUser.value.familyId,
+          deleteMemberId: member.userId,
         })
       },
     },
