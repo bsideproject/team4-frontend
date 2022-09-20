@@ -62,7 +62,7 @@ const clickQuickRecordCount = (quickId) => {
   }
   const data = {
     quickId,
-    date: dateToStringFormat(getWeeklyCalendarDate.value),
+    date: dateToStringFormat(getWeeklyCalendarDate.value, '-'),
   }
   store.dispatch(`${MN_QUICK}/${TY_QUICK.actCountQuickRecord}`, data)
 }
