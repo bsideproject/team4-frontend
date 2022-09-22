@@ -22,7 +22,7 @@
         </div>
       </div>
     </article>
-    <button class="btn-lg-enabled mg100">등록완료</button>
+    <button class="btn-lg-enabled mg100">수정완료</button>
   </section>
 </template>
 
