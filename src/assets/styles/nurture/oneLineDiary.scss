@@ -1,0 +1,127 @@
+@charset 'utf-8';
+
+.one-line-diary {
+  // margin: 20px 0 0 0;
+
+  &__accordion {
+    height: 64px;
+    position: relative;
+    text-align: left;
+    padding-left: 48px;
+    line-height: 64px;
+
+    .title {
+      @include ptBold16;
+    }
+    &::before {
+      position: absolute;
+      content: '';
+      top: 20px;
+      left: 20px;
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/oneline_diary.svg') center center no-repeat;
+    }
+    &::after {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url('@images/icons/arrow_down.svg') center center no-repeat;
+    }
+    &.on {
+      color: $primaryColor2;
+      background-color: #edf4ff;
+      &::before {
+        background: url('@images/icons/oneline_diary_primary.svg') center center
+          no-repeat;
+      }
+      &::after {
+        background: url('@images/icons/arrow_up_primary.svg') center center
+          no-repeat;
+      }
+    }
+  }
+
+  &__initial-area {
+    margin: 4px 32px 0 32px;
+    button {
+      margin-top: 16px;
+      height: 33px;
+      display: block;
+    }
+    .write {
+      width: 230px;
+      height: 44px;
+      margin: 24px auto;
+      position: relative;
+      padding-right: 24px;
+      &::after {
+        position: absolute;
+        top: 13px;
+        right: 20px;
+        content: '';
+        width: 16px;
+        height: 16px;
+        background: url('@images/icons/edit_white.svg') center center no-repeat;
+      }
+    }
+  }
+
+  &__list {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid $borderColor;
+
+    text-align: left;
+
+    .top-area {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+      .profile-image {
+        margin-right: 10px;
+        img {
+          width: 36px;
+          height: 36px;
+        }
+      }
+
+      &.unknown {
+        opacity: 0.4;
+      }
+      .info-writer {
+        @include ptBold16;
+        color: #323232;
+      }
+      .info-date {
+        @include ptRegular12;
+        color: #848484;
+      }
+
+      .btn {
+        position: absolute;
+        right: 0;
+        button {
+          @include ptRegular14;
+          width: 46px;
+          height: 33px;
+        }
+
+        .btn-edit {
+          margin-right: 12px;
+        }
+      }
+    }
+
+    .content-area {
+      p {
+        @include ptRegular14;
+        line-height: 26px;
+      }
+    }
+  }
+}

@@ -126,7 +126,7 @@ document.addEventListener('scroll', function () {
 
   if (getPetList.value?.length) {
     fixedScrollY = 100
-    unFixedScrollY = 70
+    unFixedScrollY = 60
   }
 
   if (window.scrollY > fixedScrollY && !getIsFixed.value) {
