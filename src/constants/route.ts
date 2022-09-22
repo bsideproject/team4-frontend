@@ -27,8 +27,8 @@ const ROUTE = {
   },
   Pet: {
     Page: "PetPage",
-    Create: "Create",
-    Modify: "Modify",
+    Create: "CreatePet",
+    Modify: "ModifyPet",
     Profile: "PetProfile",
     Share: "PetShare"
   },
@@ -39,9 +39,9 @@ const ROUTE = {
       Create: "CreateAnomalies",
       Modify: "ModifyAnomalies"
     },
-    OneLine: {
-      Create: "CreateOneLine",
-      Modify: "ModifyOneLine",
+    OneLineDiary: {
+      Create: "CreateOneLineDiary",
+      Modify: "ModifyOneLineDiary",
     }
 
   }

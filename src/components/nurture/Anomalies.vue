@@ -46,13 +46,13 @@ const clickAnomaliesTitle = () => {
   isFold.value = !isFold.value
 }
 const clickAddBtn = () => {
-  alert('등록')
+  router.push({ name: ROUTE.Nurture.Anomalies.Create })
 }
 const clickNotingBtn = () => {
   alert('이상없음')
 }
 const clickEditBtn = () => {
-  router.push({ name: ROUTE.Nurture.Anomalies.Create })
+  router.push({ name: ROUTE.Nurture.Anomalies.Modify })
 }
 </script>
 

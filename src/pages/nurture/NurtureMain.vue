@@ -6,7 +6,7 @@
   <div :class="getPetList.length ? 'checkList' : 'checkList--empty'">
     <div v-if="getPetList.length">
       <anomalies />
-      <one-line />
+      <one-line-diary />
     </div>
     <div v-else>
       <div class="empty__img">
@@ -37,7 +37,7 @@ import PetList from '@/components/main/PetList.vue'
 import TabMenu from '@/components/main/TabMenu.vue'
 import WeeklyCalendar from '@/components/main/WeeklyCalendar'
 import Anomalies from '@/components/nurture/Anomalies'
-import OneLine from '@/components/nurture/OneLine'
+import OneLineDiary from '@/components/nurture/OneLineDiary'
 // import FloatingBottomSheet from '@/components/main/FloatingBottomSheet.vue'
 
 import { computed, onMounted, ref } from 'vue'
