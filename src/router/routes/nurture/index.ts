@@ -4,8 +4,8 @@ import ROUTE from '@/constants/route'
 const NurtureMain = () => import('@/pages/nurture/NurtureMain.vue')
 const CreateAnomalies = () => import('@/pages/nurture/CreateAnomalies.vue')
 const ModifyAnomalies = () => import('@/pages/nurture/ModifyAnomalies.vue')
-const CreateOneLineDiary = () => import('@/pages/nurture/CreateOneLineDiary.vue')
-const ModifyOneLineDiary = () => import('@/pages/nurture/ModifyOneLineDiary.vue')
+const CreateOneLineDiary = () => import('@/pages/nurture/CreateOnelineDiary.vue')
+const ModifyOneLineDiary = () => import('@/pages/nurture/ModifyOnelineDiary.vue')
 
 export default [
   {
