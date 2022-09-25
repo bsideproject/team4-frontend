@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getAuthorization } from '@/utils/login/index'
+import { removeToken } from '@/utils/login/index'
 
 const instance = axios.create({
   baseURL: process.env.VUE_APP_API_URL,
@@ -31,6 +32,10 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   function (response) {
+    const { code } = response.data
+    if (code === '101') {
+      removeToken()
+    }
     return Promise.resolve(response)
   },
 
