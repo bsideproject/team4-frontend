@@ -9,7 +9,7 @@ const putQuickRecord = (data: QuickRecord) => {
   return axios.put(`/api/v1/quick/${data.quickId}`, data)
 }
 
-const putQuickRecordOrder = (data: any) => {
+const putQuickRecordOrder = (data: QuickRecord) => {
   return axios.put('/api/v1/quick', data)
 }
 
