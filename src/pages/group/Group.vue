@@ -97,7 +97,18 @@ onMounted(async () => {
       {
         title: '그룹 삭제하기',
         callback: () => {
-          alert('그룹 삭제하기')
+          store.dispatch(`${MN_GROUP}/${TY_GROUP.actDeleteGroup}`)
+          store.dispatch(`${MN_USER}/${TY_USER.actUser}`)
+        },
+      },
+    ])
+  } else {
+    store.commit(`${MN_HEADER}/${TY_HEADER.setMoreOptionList}`, [
+      {
+        title: '그룹 탈퇴하기',
+        callback: () => {
+          store.dispatch(`${MN_USER}/${TY_USER.actPostLeaveFamily}`)
+          store.commit(`${MN_GROUP}/${TY_GROUP.mutations}`, [])
         },
       },
     ])

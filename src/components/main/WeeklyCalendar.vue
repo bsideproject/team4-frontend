@@ -24,7 +24,7 @@
 
 <script setup>
 import Calendar from '@/components/common/Calendar.vue'
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { MODULE_NAME, TYPES } from '@/store/modules/common/headerStore'
 import { useStore } from 'vuex'
 import { stringToDate } from '@/utils/common'
@@ -35,6 +35,11 @@ const week = ['일', '월', '화', '수', '목', '금', '토']
 const weeklyList = ref([])
 const month = ref(null)
 const store = useStore()
+
+onMounted(() => {
+  store.commit(`${MODULE_NAME}/${TYPES.setWeeklyCalendarDate}`, today.value)
+})
+
 watch(
   () => today.value,
   (newValue) => {

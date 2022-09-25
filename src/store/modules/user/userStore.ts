@@ -1,9 +1,9 @@
-import { getUser, putUser } from '@/api/setting/myProfile'
+import { getUser, putUser, postleaveFamily } from '@/api/setting/myProfile'
 import { makeModuleTypes } from '@/utils/store/index'
 import { User } from '@/types/user'
 import { Success } from '@/types/response'
 import { AxiosResponse } from 'axios'
-import { Commit } from 'vuex'
+import { Commit, Dispatch } from 'vuex'
 
 const MODULE_NAME = 'userStore'
 const TYPES = makeModuleTypes([
@@ -14,6 +14,7 @@ const TYPES = makeModuleTypes([
 
   'actPutUser',
   'actDeleteUser',
+  'actPostLeaveFamily'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]; 
 
@@ -53,6 +54,18 @@ const module = {
           }
         })
     },
+    [TYPES.actPostLeaveFamily]({ dispatch, }: {dispatch: Dispatch}) {
+      return postleaveFamily()
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message } = res.data
+
+          if (code === '155') {
+            dispatch(TYPES.actUser)
+          } else {
+            throw new Error(message)
+          }
+        })
+    }
   },
   mutations: {
     [TYPES.setUser](state: State, payload: User) {

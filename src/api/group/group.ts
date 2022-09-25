@@ -4,8 +4,8 @@ const getGroupMemberList = (familyId: number) => {
   return axios.get(`/api/v1/family/${familyId}`)
 }
 
-const deleteGroup = () => {
-  return axios.delete('/api/v1/family')
+const deleteGroup = (familyId: number) => {
+  return axios.delete(`/api/v1/family/${familyId}`)
 }
 
 const postGroup = (managerId: number) => {
