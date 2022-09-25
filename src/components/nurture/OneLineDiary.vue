@@ -14,18 +14,36 @@
           </button>
         </div>
       </div>
-      <div class="one-line-diary__list">
+      <div
+        class="one-line-diary__list"
+        v-for="(item, index) in getOneLineDiaryList"
+        :key="index"
+      >
         <div class="top-area">
           <div class="profile-image">
             <img src="@images/icons/profile_big_default.svg" />
           </div>
           <div class="info">
-            <p class="info-writer">엄마</p>
-            <p class="info-date">7/29 09:40</p>
+            <p class="info-writer">{{ item.writer }}</p>
+            <p class="info-date">{{ item.lastModifiedAt }}</p>
+          </div>
+          <div class="btn">
+            <button
+              class="btn-md-default btn-edit"
+              @click="() => clickEditOneLineDiary(item.diaryId)"
+            >
+              수정
+            </button>
+            <button
+              class="btn-md-default btn-delete"
+              @click="() => clickDeleteOneLineDiary(item.diaryId)"
+            >
+              삭제
+            </button>
           </div>
         </div>
         <div class="content-area">
-          <p>동생이 쓴 한 줄 일기 내용입니다.</p>
+          <p>{{ item.contents }}</p>
         </div>
       </div>
       <div class="one-line-diary__list">
@@ -42,50 +60,43 @@
           <p>엄마가 쓴 한 줄 일기 내용입니다.</p>
         </div>
       </div>
-      <div class="one-line-diary__list">
-        <div class="top-area">
-          <div class="profile-image">
-            <img src="@images/icons/profile_big_default.svg" />
-          </div>
-          <div class="info">
-            <p class="info-writer">나</p>
-            <p class="info-date">7/29 09:40</p>
-          </div>
-          <div class="btn">
-            <button
-              class="btn-md-default btn-edit"
-              @click="clickEditOneLineDiary"
-            >
-              수정
-            </button>
-            <button
-              class="btn-md-default btn-delete"
-              @click="clickDeleteOneLineDiary"
-            >
-              삭제
-            </button>
-          </div>
-        </div>
-        <div class="content-area">
-          <p>
-            오늘 멍멍이랑 산책하다가 옆동네 길냥이를 발견했다. 호기심 많은
-            멍멍이는 냅다 길냥이한테 다가갔다. 당연히 냥냥펀치를 맞았다. 그 후
-            만난 길냥이들한테는 달려들지 않고 기가 팍 죽은 채로 조용히 갈 길
-            가는 게 웃겼다ㅋㅋ 백사십자 분량은 딱 이정도다.
-          </p>
-        </div>
-      </div>
     </article>
   </section>
 </template>
 
 <script setup>
 import ROUTE from '@/constants/route'
-import { ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-
+import { useStore } from 'vuex'
+import {
+  MODULE_NAME as MN_DIARY,
+  TYPES as TY_DIARY,
+} from '@/store/modules/nurture/oneLineDiaryStore'
+import {
+  MODULE_NAME as MN_PET,
+  TYPES as TY_PET,
+} from '@/store/modules/pet/petStore'
 const isFold = ref(false)
 const router = useRouter()
+const store = useStore()
+
+const getMainPetId = computed(
+  () => store.getters[`${MN_PET}/${TY_PET.getMainPetId}`]
+)
+
+const getOneLineDiaryList = computed(
+  () => store.getters[`${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`]
+)
+
+onMounted(() => {
+  store.dispatch(`${MN_PET}/${TY_PET.actPetList}`).then(() => {
+    store.dispatch(
+      `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
+      getMainPetId.value
+    )
+  })
+})
 
 const clickAnomaliesTitle = () => {
   isFold.value = !isFold.value
@@ -93,11 +104,21 @@ const clickAnomaliesTitle = () => {
 const clickWriteOneLineDiary = () => {
   router.push({ name: ROUTE.Nurture.OneLineDiary.Create })
 }
-const clickEditOneLineDiary = () => {
-  alert('한 줄 일기 수정')
+const clickEditOneLineDiary = (diaryId) => {
+  router.push({ name: ROUTE.Nurture.OneLineDiary.Modify, params: { diaryId } })
 }
-const clickDeleteOneLineDiary = () => {
-  alert('한 줄 일기 삭제')
+const clickDeleteOneLineDiary = (diaryId) => {
+  store
+    .dispatch(`${MN_DIARY}/${TY_DIARY.deleteOneLineDiary}`, {
+      petId: getMainPetId.value,
+      diaryId,
+    })
+    .then(() => {
+      store.dispatch(
+        `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
+        getMainPetId.value
+      )
+    })
 }
 </script>
 

@@ -4,7 +4,7 @@
       <span>하루에 1개의 일기만 쓸 수 있어요!</span>
     </article>
     <article class="one-line-diary__content">
-      <textarea v-model="content"></textarea>
+      <textarea v-model="contents"></textarea>
       <div class="text-count">
         <span class="fc-primary">{{ textCount }}</span>
         <span> / 140자</span>
@@ -20,16 +20,58 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import {
+  MODULE_NAME as MN_DIARY,
+  TYPES as TY_DIARY,
+} from '@/store/modules/nurture/oneLineDiaryStore'
+import {
+  MODULE_NAME as MN_PET,
+  TYPES as TY_PET,
+} from '@/store/modules/pet/petStore'
+import ROUTE from '@/constants/route'
 
-const content = ref('')
+const contents = ref('')
 const textCount = ref(0)
 const isOnEdit = ref(false)
+const route = useRoute()
+const router = useRouter()
+const store = useStore()
+
+const { diaryId } = route.params
+
+const getMainPetId = computed(
+  () => store.getters[`${MN_PET}/${TY_PET.getMainPetId}`]
+)
+const getOneLineDiaryList = computed(
+  () => store.getters[`${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`]
+)
+
+onMounted(() => {
+  if (diaryId) {
+    store.dispatch(`${MN_PET}/${TY_PET.actPetList}`).then(() => {
+      store
+        .dispatch(
+          `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
+          getMainPetId.value
+        )
+        .then(() => {
+          const diary = getOneLineDiaryList.value.find(
+            (d) => d.diaryId === Number(diaryId)
+          )
+          contents.value = diary?.contents
+        })
+    })
+  }
+})
 
 watch(
-  () => content.value,
+  () => contents.value,
   (newValue) => {
-    textCount.value = newValue.length
+    textCount.value = newValue?.length
 
     if (newValue) {
       isOnEdit.value = true
@@ -43,6 +85,18 @@ const clickWriteComplete = () => {
   if (!isOnEdit.value) {
     return false
   }
+
+  const data = {
+    diaryId,
+    petId: getMainPetId.value,
+    contents: contents.value,
+  }
+
+  store
+    .dispatch(`${MN_DIARY}/${TY_DIARY.modifyOneLineDiary}`, data)
+    .then(() => {
+      router.replace({ name: ROUTE.Nurture.Main })
+    })
 }
 </script>
 
