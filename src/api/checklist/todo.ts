@@ -5,7 +5,7 @@ const getTodoList = (ymd: string) => {
   return axios.get(`/api/v1/checklist/list/${ymd}`)
 }
 
-const postTodo = (data: any) => {
+const postTodo = (data: Todo) => {
   return axios.post('/api/v1/checklist', data)
 }
 
