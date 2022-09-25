@@ -3,6 +3,7 @@ import { makeModuleTypes } from '@/utils/store/index'
 import { User } from '@/types/user'
 import { Success } from '@/types/response'
 import { AxiosResponse } from 'axios'
+import { Commit } from 'vuex'
 
 const MODULE_NAME = 'userStore'
 const TYPES = makeModuleTypes([
@@ -31,22 +32,22 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actUser](context: any) {
+    [TYPES.actUser]({ commit, }: {commit: Commit}) {
       return getUser()
         .then((res: AxiosResponse<Success>) => {
           const { code, data } = res.data
           if (code === '152') {
-            context.commit(TYPES.setUser, data)
+            commit(TYPES.setUser, data)
           }
         })
     },
-    [TYPES.actPutUser](context: any, payload: User) {
+    [TYPES.actPutUser]({ commit, }: {commit: Commit}, payload: User) {
       return putUser(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
 
           if (code === '153') {
-            context.commit(TYPES.setUser, data)
+            commit(TYPES.setUser, data)
           } else {
             throw new Error(message)
           }
@@ -54,7 +55,7 @@ const module = {
     },
   },
   mutations: {
-    [TYPES.setUser](state: any, payload: User) {
+    [TYPES.setUser](state: State, payload: User) {
       state.user = payload
     },
   },

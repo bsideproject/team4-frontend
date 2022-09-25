@@ -12,6 +12,7 @@ import { makeModuleTypes } from '@/utils/store/index'
 import { Pet } from '@/types/pet'
 import { Success } from '@/types/response'
 import { AxiosResponse } from 'axios'
+import { Commit, Dispatch } from 'vuex'
 
 const MODULE_NAME = 'petStore'
 const TYPES = makeModuleTypes([
@@ -73,18 +74,18 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actPet](context: any, payload: string) {
+    [TYPES.actPet]({ commit }: {commit: Commit}, payload: string) {
       return getPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
 
         if (code === '202') {
-          context.commit(TYPES.setPet, data)
+          commit(TYPES.setPet, data)
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPetList](context: any) {
+    [TYPES.actPetList]({ commit }: {commit: Commit}) {
       return getPetList()
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
@@ -92,16 +93,16 @@ const module = {
           if (code === '203') {
             const { mainPetId, totalPetNumber, petList } = data
 
-            context.commit(TYPES.setMainPetId, mainPetId || '')
-            context.commit(TYPES.setTotalPetNumber, totalPetNumber || 0)
-            context.commit(
+            commit(TYPES.setMainPetId, mainPetId || '')
+            commit(TYPES.setTotalPetNumber, totalPetNumber || 0)
+            commit(
               TYPES.setPetList,
               petList
                 ?.map((pet: Pet) => {
                   pet.isMain = pet.petId === mainPetId
                   return pet
                 })
-                .sort((a: any, b: any) => b.isMain - a.isMain) || []
+                .sort((a: Pet, b: Pet) => +b.isMain - +a.isMain) || []
             )
           } else {
             throw new Error(message)
@@ -109,7 +110,8 @@ const module = {
         })
      
     },
-    [TYPES.actPostPet](context: any, payload: Pet) {
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    [TYPES.actPostPet]({ commit }: {commit: Commit}, payload: Pet) {
       return postPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code !== '201') {
@@ -117,36 +119,37 @@ const module = {
         }
       })
     },
-    [TYPES.actPutMainPet](context: any, payload: Pet) {
+    [TYPES.actPutMainPet]({ dispatch }: {dispatch: Dispatch}, payload: Pet) {
       return putMainPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code === '209') {
-          context.dispatch(TYPES.actPetList)
+          dispatch(TYPES.actPetList)
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPostSharePet](context: any, payload: string) {
+    [TYPES.actPostSharePet]({ dispatch }: {dispatch: Dispatch}, payload: string) {
       return postSharePet(payload).then((res: AxiosResponse<Success>) => {
         const { code } = res.data
         if (code !== '208') {
-          context.dispatch(TYPES.actPetList)
+          dispatch(TYPES.actPetList)
         }
       })
     },
-    [TYPES.actPutPet](context: any, payload: Pet) {
+    [TYPES.actPutPet]({ commit }: {commit: Commit}, payload: Pet) {
       return putPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
 
         if (code === '204') {
-          context.commit(TYPES.setPet, data)
+          commit(TYPES.setPet, data)
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPutDeactivatePet](context: any, payload: string) {
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    [TYPES.actPutDeactivatePet]({ commit }: {commit: Commit}, payload: string) {
       return putDeactivatePet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code === '205') {
@@ -158,13 +161,13 @@ const module = {
         }
       })
     },
-    [TYPES.actDeletePet](context: any, payload: string) {
+    [TYPES.actDeletePet]({ commit, dispatch }: {commit: Commit, dispatch: Dispatch}, payload: string) {
       return deletePet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
 
         if (code === '207') {
-          context.commit(TYPES.setPet, {})
-          context.dispatch(TYPES.getPetList)
+          commit(TYPES.setPet, {})
+          dispatch(TYPES.getPetList)
         } else {
           throw new Error(message)
         }
