@@ -6,6 +6,7 @@ import { module as petStore } from './modules/pet/petStore'
 import { module as quickRecordStore } from './modules/checklist/quickRecordStore'
 import { module as todoStore } from './modules/checklist/todoStore'
 import { module as userStore } from './modules/user/userStore'
+import { module as oneLineDiaryStore } from './modules/nurture/oneLineDiaryStore'
 
 export default createStore({
   modules: {
@@ -15,5 +16,6 @@ export default createStore({
     quickRecordStore,
     todoStore,
     userStore,
+    oneLineDiaryStore
   },
 })

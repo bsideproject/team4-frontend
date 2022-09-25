@@ -41,7 +41,7 @@ export default [
     },
   },
   {
-    path: 'oneline/modify',
+    path: 'oneline/modify/:diaryId',
     name: ROUTE.Nurture.OneLineDiary.Modify,
     component: ModifyOneLineDiary,
     meta: {
