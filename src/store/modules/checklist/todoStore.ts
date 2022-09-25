@@ -9,6 +9,7 @@ import { makeModuleTypes } from '@/utils/store/index'
 import { Todo } from '@/types/checklist'
 import { Success } from '@/types/response'
 import { AxiosResponse } from 'axios'
+import {  Commit } from "vuex";
 
 const MODULE_NAME = 'todoStore'
 const TYPES = makeModuleTypes([
@@ -49,38 +50,39 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actTodoList](context: any, payload: string) {
+    [TYPES.actTodoList]({ commit }: {commit: Commit}, payload: string) {
       return getTodoList(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
         if (code === '401') {
           const { checklistDetailList } = data
-          context.commit(TYPES.setTodoList, checklistDetailList || [])
+          commit(TYPES.setTodoList, checklistDetailList || [])
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actTodo](context: any, payload: number) {
+    [TYPES.actTodo]({ commit }: {commit: Commit}, payload: number) {
       return getTodo(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
         if (code === '405') {
-          context.commit(TYPES.setTodo, data)
+          commit(TYPES.setTodo, data)
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actCheckedTodo](context: any, payload: {todoId: number, date: string}) {
+    [TYPES.actCheckedTodo]({ commit }: {commit: Commit}, payload: {todoId: number, date: string}) {
       return putCheckedTodo(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
         if (code === '411') {
-          context.commit(TYPES.setCheckedTodo, data)
+          commit(TYPES.setCheckedTodo, data)
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actSaveTodo](context: any, payload: Todo) {
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    [TYPES.actSaveTodo]({ commit }: {commit: Commit}, payload: Todo) {
       return postTodo(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data
@@ -93,7 +95,8 @@ const module = {
           }
         })
     },
-    [TYPES.actPutTodo](context: any, payload: {data: Todo, modifyType: string}) {
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    [TYPES.actPutTodo]({ commit }: {commit: Commit}, payload: {data: Todo, modifyType: string}) {
       return putTodo(payload.data, payload.modifyType)
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data
