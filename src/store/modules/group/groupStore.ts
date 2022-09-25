@@ -3,7 +3,8 @@ import {
   deleteGroupMember,
   putGroupManager,
   postGroup,
-  postGroupMember
+  postGroupMember,
+  deleteGroup
 } from '@/api/group/group'
 import { makeModuleTypes } from '@/utils/store/index'
 import { Group } from '@/types/group'
@@ -21,7 +22,8 @@ const TYPES = makeModuleTypes([
   'actDeleteGroupMember',
   'actPutGroupManager',
   'actPostGroup',
-  'actPostGroupMember'
+  'actPostGroupMember',
+  'actDeleteGroup'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -100,6 +102,18 @@ const module = {
           const { code, message, data } = res.data
 
           if (code === '605') {
+            dispatch(TYPES.actGroupList, data.familyId)
+          } else {
+            throw new Error(message)
+          }
+        })
+    },
+    [TYPES.actDeleteGroup]({ dispatch }: {dispatch: Dispatch}, payload: number) {
+      return deleteGroup(payload)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message, data } = res.data
+
+          if (code === '603') {
             dispatch(TYPES.actGroupList, data.familyId)
           } else {
             throw new Error(message)
