@@ -1,9 +1,9 @@
 import {
   getTodoList,
-  putCheckedTodo,
+  modifyTodo,
   getTodo,
-  postTodo,
-  putTodo
+  saveTodo,
+  modifyCheckedTodo
 } from '@/api/checklist/todo'
 import { makeModuleTypes } from '@/utils/store/index'
 import { Todo } from '@/types/checklist'
@@ -14,19 +14,20 @@ import {  Commit } from "vuex";
 const MODULE_NAME = 'todoStore'
 const TYPES = makeModuleTypes([
   'todoList',
-  'getTodoList',
-  'actTodoList',
-  'setTodoList',
-
   'todo',
-  'getTodo',
-  'actTodo',
-  'setTodo',
 
-  'actSaveTodo',
-  'actCheckedTodo',
-  'setCheckedTodo',
-  'actPutTodo'
+  'getTodoList',
+  'getTodo',
+  
+  'fetchTodoList',
+  'fetchTodo',
+  'fetchSaveTodo',
+  'fetchCheckedTodo',
+  'fetchModifyTodo',
+
+  'setTodoList',
+  'setTodo',
+  'setCheckedTodo'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -50,7 +51,7 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actTodoList]({ commit }: {commit: Commit}, payload: string) {
+    [TYPES.fetchTodoList]({ commit }: {commit: Commit}, payload: string) {
       return getTodoList(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
         if (code === '401') {
@@ -61,7 +62,7 @@ const module = {
         }
       })
     },
-    [TYPES.actTodo]({ commit }: {commit: Commit}, payload: number) {
+    [TYPES.fetchTodo]({ commit }: {commit: Commit}, payload: number) {
       return getTodo(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
         if (code === '405') {
@@ -71,8 +72,8 @@ const module = {
         }
       })
     },
-    [TYPES.actCheckedTodo]({ commit }: {commit: Commit}, payload: {todoId: number, date: string}) {
-      return putCheckedTodo(payload).then((res: AxiosResponse<Success>) => {
+    [TYPES.fetchCheckedTodo]({ commit }: {commit: Commit}, payload: {todoId: number, date: string}) {
+      return modifyCheckedTodo(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
         if (code === '411') {
           commit(TYPES.setCheckedTodo, data)
@@ -82,8 +83,8 @@ const module = {
       })
     },
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    [TYPES.actSaveTodo]({ commit }: {commit: Commit}, payload: Todo) {
-      return postTodo(payload)
+    [TYPES.fetchSaveTodo]({ commit }: {commit: Commit}, payload: Todo) {
+      return saveTodo(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data
           if (code === '403') {
@@ -96,8 +97,8 @@ const module = {
         })
     },
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    [TYPES.actPutTodo]({ commit }: {commit: Commit}, payload: {data: Todo, modifyType: string}) {
-      return putTodo(payload.data, payload.modifyType)
+    [TYPES.fetchModifyTodo]({ commit }: {commit: Commit}, payload: {data: Todo, modifyType: string}) {
+      return modifyTodo(payload.data, payload.modifyType)
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data
           if (code === '407') {

@@ -56,7 +56,7 @@ toRefs(form)
 const getUser = computed(() => store.getters[`${MODULE_NAME}/${TYPES.getUser}`])
 
 onMounted(async () => {
-  await store.dispatch(`${MODULE_NAME}/${TYPES.actUser}`)
+  await store.dispatch(`${MODULE_NAME}/${TYPES.fetchGetUser}`)
 
   Object.assign(form, getUser.value)
 })
@@ -76,7 +76,7 @@ const onError = (e) => {
 }
 const clickEditProfile = () => {
   if (isOnEdit.value) {
-    store.dispatch(`${MODULE_NAME}/${TYPES.actPutUser}`, form).then(() => {
+    store.dispatch(`${MODULE_NAME}/${TYPES.fetchModifyUser}`, form).then(() => {
       isOnEdit.value = false
       toast.clear()
       toast.open({

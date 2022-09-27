@@ -5,21 +5,21 @@ const getQuickRecordList = (date: string) => {
   return axios.get(`/api/v1/quick/${date}`)
 }
 
-const putQuickRecord = (data: QuickRecord) => {
+const modifyQuickRecord = (data: QuickRecord) => {
   return axios.put(`/api/v1/quick/${data.quickId}`, data)
 }
 
-const putQuickRecordOrder = (data: QuickRecord) => {
+const modifyQuickRecordOrder = (data: QuickRecord) => {
   return axios.put('/api/v1/quick', data)
 }
 
-const putQuickRecordCount = (data: { quickId: number, date: string }) => {
+const modifyQuickRecordCount = (data: { quickId: number, date: string }) => {
   return axios.put(`/api/v1/quick/count/${data.quickId}/${data.date}`)
 }
 
 export {
   getQuickRecordList,
-  putQuickRecord,
-  putQuickRecordOrder,
-  putQuickRecordCount,
+  modifyQuickRecord,
+  modifyQuickRecordOrder,
+  modifyQuickRecordCount,
 }

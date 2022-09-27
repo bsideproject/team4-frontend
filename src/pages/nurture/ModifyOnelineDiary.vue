@@ -52,7 +52,7 @@ const getOneLineDiaryList = computed(
 
 onMounted(() => {
   if (diaryId) {
-    store.dispatch(`${MN_PET}/${TY_PET.actPetList}`).then(() => {
+    store.dispatch(`${MN_PET}/${TY_PET.fetchPetList}`).then(() => {
       store
         .dispatch(
           `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
@@ -93,7 +93,7 @@ const clickWriteComplete = () => {
   }
 
   store
-    .dispatch(`${MN_DIARY}/${TY_DIARY.modifyOneLineDiary}`, data)
+    .dispatch(`${MN_DIARY}/${TY_DIARY.fetchModifyOneLineDiary}`, data)
     .then(() => {
       router.replace({ name: ROUTE.Nurture.Main })
     })

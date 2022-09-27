@@ -44,7 +44,7 @@ const getMainPetId = computed(
 )
 
 onMounted(() => {
-  store.dispatch(`${MN_PET}/${TY_PET.actPetList}`).then(() => {
+  store.dispatch(`${MN_PET}/${TY_PET.fetchPetList}`).then(() => {
     store.dispatch(
       `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
       getMainPetId.value
@@ -75,9 +75,11 @@ const clickWriteComplete = () => {
     contents: contents.value,
   }
 
-  store.dispatch(`${MN_DIARY}/${TY_DIARY.saveOneLineDiary}`, data).then(() => {
-    router.replace({ name: ROUTE.Nurture.Main })
-  })
+  store
+    .dispatch(`${MN_DIARY}/${TY_DIARY.fetchSaveOneLineDiary}`, data)
+    .then(() => {
+      router.replace({ name: ROUTE.Nurture.Main })
+    })
 }
 </script>
 

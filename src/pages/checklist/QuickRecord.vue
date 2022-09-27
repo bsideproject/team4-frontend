@@ -52,15 +52,15 @@ const getQuickRecordList = computed(
 )
 
 onMounted(() => {
-  actQuickRecordList(getWeeklyCalendarDate.value)
+  fetchQuickRecordList(getWeeklyCalendarDate.value)
 })
 watch(
   () => getWeeklyCalendarDate.value,
-  (newValue) => actQuickRecordList(newValue)
+  (newValue) => fetchQuickRecordList(newValue)
 )
-const actQuickRecordList = (date) => {
+const fetchQuickRecordList = (date) => {
   store.dispatch(
-    `${MN_QUICK}/${TY_QUICK.actQuickRecordList}`,
+    `${MN_QUICK}/${TY_QUICK.fetchQuickRecordList}`,
     dateToStringFormat(date, '-')
   )
 }

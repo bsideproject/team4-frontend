@@ -55,24 +55,24 @@ const getTodoList = computed(
 )
 
 onMounted(() => {
-  actTodoList(getWeeklyCalendarDate.value)
+  fetchTodoList(getWeeklyCalendarDate.value)
 })
 
 watch(
   () => getWeeklyCalendarDate.value,
   (newValue) => {
-    actTodoList(newValue)
+    fetchTodoList(newValue)
   }
 )
 
-const actTodoList = (date) => {
+const fetchTodoList = (date) => {
   store.dispatch(
-    `${MN_TODO}/${TY_TODO.actTodoList}`,
+    `${MN_TODO}/${TY_TODO.fetchTodoList}`,
     dateToStringFormat(date, '-')
   )
 }
 const clickTodoChecked = (item) => {
-  store.dispatch(`${MN_TODO}/${TY_TODO.actCheckedTodo}`, {
+  store.dispatch(`${MN_TODO}/${TY_TODO.fetchCheckedTodo}`, {
     todoId: item.checklistId,
     date: dateToStringFormat(new Date(item.date), '-'),
   })

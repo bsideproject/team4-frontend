@@ -1,12 +1,12 @@
 import {
-  postPet,
   getPetList,
   getPet,
-  putMainPet,
-  postSharePet,
-  putPet,
-  putDeactivatePet,
-  deletePet,
+  modifyMainPet,
+  saveSharePet,
+  savePet,
+  modifyPet,
+  modifyDeactivatePet,
+  deletePet
 } from '@/api/pet/pet'
 import { makeModuleTypes } from '@/utils/store/index'
 import { Pet } from '@/types/pet'
@@ -17,30 +17,29 @@ import { Commit, Dispatch } from 'vuex'
 const MODULE_NAME = 'petStore'
 const TYPES = makeModuleTypes([
   'pet',
-  'getPet',
-  'actPet',
-  'setPet',
-
   'mainPetId',
-  'getMainPetId',
-  'setMainPetId',
-
   'totalPetNumber',
-  'getTotalPetNumber',
-  'setTotalPetNumber',
-
   'petList',
+
+  'getPet',
   'getPetList',
-  'actPetList',
+  'getTotalPetNumber',
+  'getMainPetId',
+
+  'fetchPet',
+  'fetchPetList',
+  'fetchSavePet',
+  'fetchModifyMainPet',
+  'fetchSaveSharePet',
+  
+  'fetchModifyPet',
+  'fetchModifyDeactivatePet',
+  'fetchDeletePet',
+  
+  'setPet',
   'setPetList',
-
-  'actPostPet',
-  'actPutMainPet',
-  'actPostSharePet',
-
-  'actPutPet',
-  'actPutDeactivatePet',
-  'actDeletePet',
+  'setMainPetId',
+  'setTotalPetNumber',
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -74,7 +73,7 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actPet]({ commit }: {commit: Commit}, payload: string) {
+    [TYPES.fetchPet]({ commit }: {commit: Commit}, payload: string) {
       return getPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
 
@@ -85,7 +84,7 @@ const module = {
         }
       })
     },
-    [TYPES.actPetList]({ commit }: {commit: Commit}) {
+    [TYPES.fetchPetList]({ commit }: {commit: Commit}) {
       return getPetList()
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
@@ -111,34 +110,34 @@ const module = {
      
     },
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    [TYPES.actPostPet]({ commit }: {commit: Commit}, payload: Pet) {
-      return postPet(payload).then((res: AxiosResponse<Success>) => {
+    [TYPES.fetchSavePet]({ commit }: {commit: Commit}, payload: Pet) {
+      return savePet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code !== '201') {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPutMainPet]({ dispatch }: {dispatch: Dispatch}, payload: Pet) {
-      return putMainPet(payload).then((res: AxiosResponse<Success>) => {
+    [TYPES.fetchModifyMainPet]({ dispatch }: {dispatch: Dispatch}, payload: Pet) {
+      return modifyMainPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code === '209') {
-          dispatch(TYPES.actPetList)
+          dispatch(TYPES.fetchPetList)
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPostSharePet]({ dispatch }: {dispatch: Dispatch}, payload: string) {
-      return postSharePet(payload).then((res: AxiosResponse<Success>) => {
+    [TYPES.fetchSaveSharePet]({ dispatch }: {dispatch: Dispatch}, payload: string) {
+      return saveSharePet(payload).then((res: AxiosResponse<Success>) => {
         const { code } = res.data
         if (code !== '208') {
-          dispatch(TYPES.actPetList)
+          dispatch(TYPES.fetchPetList)
         }
       })
     },
-    [TYPES.actPutPet]({ commit }: {commit: Commit}, payload: Pet) {
-      return putPet(payload).then((res: AxiosResponse<Success>) => {
+    [TYPES.fetchModifyPet]({ commit }: {commit: Commit}, payload: Pet) {
+      return modifyPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
 
         if (code === '204') {
@@ -149,8 +148,8 @@ const module = {
       })
     },
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    [TYPES.actPutDeactivatePet]({ commit }: {commit: Commit}, payload: string) {
-      return putDeactivatePet(payload).then((res: AxiosResponse<Success>) => {
+    [TYPES.fetchModifyDeactivatePet]({ commit }: {commit: Commit}, payload: string) {
+      return modifyDeactivatePet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code === '205') {
           /**
@@ -161,7 +160,7 @@ const module = {
         }
       })
     },
-    [TYPES.actDeletePet]({ commit, dispatch }: {commit: Commit, dispatch: Dispatch}, payload: string) {
+    [TYPES.fetchDeletePet]({ commit, dispatch }: {commit: Commit, dispatch: Dispatch}, payload: string) {
       return deletePet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
 

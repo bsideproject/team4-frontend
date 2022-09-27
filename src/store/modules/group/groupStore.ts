@@ -1,9 +1,9 @@
 import {
   getGroupMemberList,
   deleteGroupMember,
-  putGroupManager,
-  postGroup,
-  postGroupMember,
+  saveGroup,
+  saveGroupMember,
+  modifyGroupManager,
   deleteGroup
 } from '@/api/group/group'
 import { makeModuleTypes } from '@/utils/store/index'
@@ -16,14 +16,15 @@ const MODULE_NAME = 'groupStore'
 const TYPES = makeModuleTypes([
   'groupList',
   'getGroupList',
-  'actGroupList',
-  'setGroupList',
+  
+  'fetchGetGroupMemberList',
+  'fetchDeleteGroupMember',
+  'fetchMofiyGroupManager',
+  'fetchSaveGroup',
+  'fetchSaveGroupMember',
+  'fetchDeleteGroup',
 
-  'actDeleteGroupMember',
-  'actPutGroupManager',
-  'actPostGroup',
-  'actPostGroupMember',
-  'actDeleteGroup'
+  'setGroupList'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -42,7 +43,7 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actGroupList]({ commit }: {commit: Commit}, payload: number) {
+    [TYPES.fetchGetGroupMemberList]({ commit }: {commit: Commit}, payload: number) {
       return getGroupMemberList(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data} = res.data 
@@ -60,7 +61,7 @@ const module = {
           }
         })
     },
-    [TYPES.actDeleteGroupMember]({ commit }: {commit: Commit}, payload: {familyId: number, deleteMemberId: number}) {
+    [TYPES.fetchDeleteGroupMember]({ commit }: {commit: Commit}, payload: {familyId: number, deleteMemberId: number}) {
       return deleteGroupMember(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message} = res.data 
@@ -72,49 +73,49 @@ const module = {
           }
         })
     },
-    [TYPES.actPutGroupManager]({ dispatch }: {dispatch: Dispatch}, payload: { familyId: number, prevManagerId: number, nextManagerId: number }) {
-      return putGroupManager(payload)
+    [TYPES.fetchMofiyGroupManager]({ dispatch }: {dispatch: Dispatch}, payload: { familyId: number, prevManagerId: number, nextManagerId: number }) {
+      return modifyGroupManager(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data} = res.data 
 
           if (code === '604') {
-            dispatch(TYPES.actGroupList, data.familyId)
+            dispatch(TYPES.fetchGetGroupMemberList, data.familyId)
           } else {
             throw new Error(message)
           }
         })
     },
-    [TYPES.actPostGroup]({ dispatch }: {dispatch: Dispatch}, payload: number) {
-      return postGroup(payload)
+    [TYPES.fetchSaveGroup]({ dispatch }: {dispatch: Dispatch}, payload: number) {
+      return saveGroup(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
 
           if (code === '601') {
-            dispatch(TYPES.actGroupList, data.familyId)
+            dispatch(TYPES.fetchGetGroupMemberList, data.familyId)
           } else {
             throw new Error(message)
           }
         })
     },
-    [TYPES.actPostGroupMember]({ dispatch }: {dispatch: Dispatch}, payload: number) {
-      return postGroupMember(payload)
+    [TYPES.fetchSaveGroupMember]({ dispatch }: {dispatch: Dispatch}, payload: number) {
+      return saveGroupMember(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
 
           if (code === '605') {
-            dispatch(TYPES.actGroupList, data.familyId)
+            dispatch(TYPES.fetchGetGroupMemberList, data.familyId)
           } else {
             throw new Error(message)
           }
         })
     },
-    [TYPES.actDeleteGroup]({ dispatch }: {dispatch: Dispatch}, payload: number) {
+    [TYPES.fetchDeleteGroup]({ dispatch }: {dispatch: Dispatch}, payload: number) {
       return deleteGroup(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
 
           if (code === '603') {
-            dispatch(TYPES.actGroupList, data.familyId)
+            dispatch(TYPES.fetchGetGroupMemberList, data.familyId)
           } else {
             throw new Error(message)
           }

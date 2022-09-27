@@ -355,7 +355,7 @@ const clickSaveTodo = () => {
 
   // console.log(todo)
 
-  store.dispatch(`${MODULE_NAME}/${TYPES.actSaveTodo}`, todo).then(() => {
+  store.dispatch(`${MODULE_NAME}/${TYPES.fetchSaveTodo}`, todo).then(() => {
     toast.clear()
     toast.open({
       type: 'success',

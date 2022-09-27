@@ -117,10 +117,10 @@ const closeBottomSheet = () => {
 const clickSaveQuickRecord = () => {
   if (isOnEdit.value) {
     store
-      .dispatch(`${MN_QUICK}/${TY_QUICK.actPutQuickRecord}`, form)
+      .dispatch(`${MN_QUICK}/${TY_QUICK.fetchModifyQuickRecord}`, form)
       .then(() => {
         store.dispatch(
-          `${MN_QUICK}/${TY_QUICK.actQuickRecordList}`,
+          `${MN_QUICK}/${TY_QUICK.fetchQuickRecordList}`,
           dateToStringFormat(getWeeklyCalendarDate.value, '-')
         )
         closeBottomSheet()

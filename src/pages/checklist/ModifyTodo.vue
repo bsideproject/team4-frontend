@@ -289,7 +289,7 @@ const getOnEdit = computed(() => {
 onMounted(async () => {
   const { todoId } = route.params
 
-  await store.dispatch(`${MODULE_NAME}/${TYPES.actTodo}`, Number(todoId))
+  await store.dispatch(`${MODULE_NAME}/${TYPES.fetchTodo}`, Number(todoId))
   Object.assign(todo, getTodo.value)
   todo.date = dateToStringFormat(new Date(getTodo.value.date))
 
@@ -432,7 +432,7 @@ const clickSaveTodo = () => {
 
 const editTodo = (data, modifyType) => {
   store
-    .dispatch(`${MODULE_NAME}/${TYPES.actPutTodo}`, {
+    .dispatch(`${MODULE_NAME}/${TYPES.fetchModifyTodo}`, {
       data,
       modifyType,
     })
