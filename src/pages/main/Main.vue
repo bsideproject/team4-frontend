@@ -1,35 +1,37 @@
 <template>
-  <pet-list :pet-list="getPetList" />
-  <tab-menu />
-  <weekly-calendar v-if="getPetList.length" />
+  <section class="checklist-main">
+    <pet-list :pet-list="getPetList" />
+    <tab-menu />
+    <weekly-calendar v-if="getPetList.length" />
 
-  <div :class="getPetList.length ? 'checkList' : 'checkList--empty'">
-    <div v-if="getPetList.length">
-      <quick-menu />
-      <list-table />
-    </div>
-    <div v-else>
-      <div class="empty__img">
-        <img src="@assets/images/png/petadd_illust.png" alt="" />
+    <div :class="getPetList.length ? 'checkList' : 'checkList--empty'">
+      <div v-if="getPetList.length">
+        <quick-menu />
+        <list-table />
       </div>
-      <p class="empty__txt">등록된 펫이 없습니다. <br />펫을 등록해주세요!</p>
-      <button
-        class="empty__btn btn-lg-enabled"
-        @click="$router.push('/pet/create')"
-      >
-        등록
+      <div v-else>
+        <div class="empty__img">
+          <img src="@assets/images/png/petadd_illust.png" alt="" />
+        </div>
+        <p class="empty__txt">등록된 펫이 없습니다. <br />펫을 등록해주세요!</p>
+        <button
+          class="empty__btn btn-lg-enabled"
+          @click="$router.push('/pet/create')"
+        >
+          등록
+        </button>
+      </div>
+    </div>
+
+    <div class="floatArea">
+      <button class="floatArea__btn--float" @click="clickFloating">
+        <span></span>
+        <span></span>
       </button>
     </div>
-  </div>
 
-  <div class="floatArea">
-    <button class="floatArea__btn--float" @click="clickFloating">
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-
-  <floating-bottom-sheet ref="floatingBottomSheet" />
+    <floating-bottom-sheet ref="floatingBottomSheet" />
+  </section>
 </template>
 
 

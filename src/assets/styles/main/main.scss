@@ -17,6 +17,10 @@
   }
 }
 
+.checklist-main,
+.nurture-main {
+  min-height: $minHeight;
+}
 // .createProfile {
 //   padding: 28px 20px 24px;
 //   &-photo {

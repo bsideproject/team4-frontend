@@ -1,5 +1,5 @@
 <template>
-  <div class="weeklyCalendar section">
+  <div :class="['weeklyCalendar', getIsFixed ? 'fixed' : '']">
     <div class="weeklyCalendar-monthWrapper">
       <p class="weeklyCalendar-month" @click="clickWeekMonth">{{ month }}월</p>
       <span class="arrow-down"></span>
@@ -24,8 +24,11 @@
 
 <script setup>
 import Calendar from '@/components/common/Calendar.vue'
-import { onMounted, ref, watch } from 'vue'
-import { MODULE_NAME, TYPES } from '@/store/modules/common/headerStore'
+import { computed, onMounted, ref, watch } from 'vue'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@/store/modules/common/headerStore'
 import { useStore } from 'vuex'
 import { stringToDate } from '@/utils/common'
 
@@ -36,14 +39,18 @@ const weeklyList = ref([])
 const month = ref(null)
 const store = useStore()
 
+const getIsFixed = computed(
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getIsFixed}`]
+)
+
 onMounted(() => {
-  store.commit(`${MODULE_NAME}/${TYPES.setWeeklyCalendarDate}`, today.value)
+  store.commit(`${MN_HEADER}/${TY_HEADER.setWeeklyCalendarDate}`, today.value)
 })
 
 watch(
   () => today.value,
   (newValue) => {
-    store.commit(`${MODULE_NAME}/${TYPES.setWeeklyCalendarDate}`, newValue)
+    store.commit(`${MN_HEADER}/${TY_HEADER.setWeeklyCalendarDate}`, newValue)
   }
 )
 
