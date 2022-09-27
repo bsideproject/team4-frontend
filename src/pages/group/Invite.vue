@@ -14,9 +14,9 @@ const store = useStore()
 const { type, userId } = route.params
 
 if (type === 'new') {
-  store.dispatch(`${MN_GROUP}/${TY_GROUP.actPostGroup}`, userId)
+  store.dispatch(`${MN_GROUP}/${TY_GROUP.fetchSaveGroup}`, userId)
 } else if (type === 'exist') {
-  store.dispatch(`${MN_GROUP}/${TY_GROUP.actPostGroupMember}`, userId)
+  store.dispatch(`${MN_GROUP}/${TY_GROUP.fetchSaveGroupMember}`, userId)
 }
 </script>
 

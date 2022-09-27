@@ -43,16 +43,16 @@ const getQuickRecordList = computed(
   () => store.getters[`${MN_QUICK}/${TY_QUICK.getQuickRecordList}`]
 )
 onMounted(() => {
-  actQuickRecordList(getWeeklyCalendarDate.value)
+  fetchQuickRecordList(getWeeklyCalendarDate.value)
 })
 
 watch(
   () => getWeeklyCalendarDate.value,
-  (newValue) => actQuickRecordList(newValue)
+  (newValue) => fetchQuickRecordList(newValue)
 )
-const actQuickRecordList = (date) => {
+const fetchQuickRecordList = (date) => {
   store.dispatch(
-    `${MN_QUICK}/${TY_QUICK.actQuickRecordList}`,
+    `${MN_QUICK}/${TY_QUICK.fetchQuickRecordList}`,
     dateToStringFormat(date, '-')
   )
 }
@@ -64,7 +64,7 @@ const clickQuickRecordCount = (quickId) => {
     quickId,
     date: dateToStringFormat(getWeeklyCalendarDate.value, '-'),
   }
-  store.dispatch(`${MN_QUICK}/${TY_QUICK.actCountQuickRecord}`, data)
+  store.dispatch(`${MN_QUICK}/${TY_QUICK.fetchModifyQuickRecordCount}`, data)
 }
 const isDisabled = (quickId) => {
   const { total, count } = getQuickRecordList.value.find(

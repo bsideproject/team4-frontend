@@ -45,4 +45,8 @@
       }
     }
   }
+
+  &.fixed {
+    visibility: hidden;
+  }
 }

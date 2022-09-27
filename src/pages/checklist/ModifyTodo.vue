@@ -82,11 +82,11 @@
           반복 설정 없음
         </div>
         <div
-          class="todo__tab-every-day"
+          class="todo__tab-every-year"
           v-else-if="repeatTab === tabData[1].value"
         >
           <!-- <input type="text" v-model="todo.repeatDetail.eventDay" /> 일 마다 -->
-          매일 마다
+          매일 반복 설정
         </div>
         <div
           class="todo__tab-every-week"
@@ -289,7 +289,7 @@ const getOnEdit = computed(() => {
 onMounted(async () => {
   const { todoId } = route.params
 
-  await store.dispatch(`${MODULE_NAME}/${TYPES.actTodo}`, Number(todoId))
+  await store.dispatch(`${MODULE_NAME}/${TYPES.fetchTodo}`, Number(todoId))
   Object.assign(todo, getTodo.value)
   todo.date = dateToStringFormat(new Date(getTodo.value.date))
 
@@ -432,7 +432,7 @@ const clickSaveTodo = () => {
 
 const editTodo = (data, modifyType) => {
   store
-    .dispatch(`${MODULE_NAME}/${TYPES.actPutTodo}`, {
+    .dispatch(`${MODULE_NAME}/${TYPES.fetchModifyTodo}`, {
       data,
       modifyType,
     })

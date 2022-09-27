@@ -126,12 +126,12 @@ document.addEventListener('scroll', function () {
 
   if (getPetList.value?.length) {
     fixedScrollY = 100
-    unFixedScrollY = 60
+    unFixedScrollY = 100
   }
 
   if (window.scrollY > fixedScrollY && !getIsFixed.value) {
     store.commit(`${MN_HEADER}/${TY_HEADER.setIsFixed}`, true)
-  } else if (window.scrollY < unFixedScrollY && getIsFixed.value) {
+  } else if (window.scrollY <= unFixedScrollY && getIsFixed.value) {
     store.commit(`${MN_HEADER}/${TY_HEADER.setIsFixed}`, false)
   }
 })

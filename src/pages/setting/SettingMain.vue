@@ -90,7 +90,7 @@ const clickLogout = () => {
 const getUser = computed(() => store.getters[`${MODULE_NAME}/${TYPES.getUser}`])
 
 onMounted(() => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.actUser}`)
+  store.dispatch(`${MODULE_NAME}/${TYPES.fetchGetUser}`)
 })
 </script>
 

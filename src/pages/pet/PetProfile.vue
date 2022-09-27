@@ -94,7 +94,7 @@ const getMainPetId = computed(
 )
 
 onMounted(() => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.actPetList}`)
+  store.dispatch(`${MODULE_NAME}/${TYPES.fetchPetList}`)
   detailId.value = getMainPetId.value
 })
 watch(
@@ -112,7 +112,7 @@ const clickRepresentative = (pet) => {
   }
 
   store
-    .dispatch(`${MODULE_NAME}/${TYPES.actPutMainPet}`, {
+    .dispatch(`${MODULE_NAME}/${TYPES.fetchModifyMainPet}`, {
       mainPetId: pet.petId,
     })
     .then(() => {

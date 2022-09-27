@@ -71,11 +71,14 @@ const getGroupList = computed(
 )
 const getUser = computed(() => store.getters[`${MN_USER}/${TY_USER.getUser}`])
 onMounted(async () => {
-  await store.dispatch(`${MN_USER}/${TY_USER.actUser}`)
+  await store.dispatch(`${MN_USER}/${TY_USER.fetchGetUser}`)
 
   const familyId = getUser.value.familyId
   if (familyId) {
-    await store.dispatch(`${MN_GROUP}/${TY_GROUP.actGroupList}`, familyId)
+    await store.dispatch(
+      `${MN_GROUP}/${TY_GROUP.fetchGetGroupMemberList}`,
+      familyId
+    )
   }
 
   if (getUser.value.role === ROLE.MANAGER) {
@@ -97,7 +100,18 @@ onMounted(async () => {
       {
         title: '그룹 삭제하기',
         callback: () => {
-          alert('그룹 삭제하기')
+          store.dispatch(`${MN_GROUP}/${TY_GROUP.fetchDeleteGroup}`)
+          store.dispatch(`${MN_USER}/${TY_USER.fetchGetUser}`)
+        },
+      },
+    ])
+  } else {
+    store.commit(`${MN_HEADER}/${TY_HEADER.setMoreOptionList}`, [
+      {
+        title: '그룹 탈퇴하기',
+        callback: () => {
+          store.dispatch(`${MN_USER}/${TY_USER.fetchSaveLeaveFamily}`)
+          store.commit(`${MN_GROUP}/${TY_GROUP.mutations}`, [])
         },
       },
     ])
@@ -134,7 +148,7 @@ const clickGrant = (member) => {
     ok: {
       label: '네',
       callback: () => {
-        store.dispatch(`${MN_GROUP}/${TY_GROUP.actPutGroupManager}`, {
+        store.dispatch(`${MN_GROUP}/${TY_GROUP.fetchMofiyGroupManager}`, {
           familyId: getUser.value.familyId,
           prevManagerId: getUser.value.prevManagerId,
           nextManagerId: member.userId,
@@ -153,7 +167,7 @@ const clickExport = (member) => {
     ok: {
       label: '내보내기',
       callback: () => {
-        store.dispatch(`${MN_GROUP}/${TY_GROUP.actDeleteGroupMember}`, {
+        store.dispatch(`${MN_GROUP}/${TY_GROUP.fetchDeleteGroupMember}`, {
           familyId: getUser.value.familyId,
           deleteMemberId: member.userId,
         })

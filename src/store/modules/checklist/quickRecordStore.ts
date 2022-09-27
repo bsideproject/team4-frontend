@@ -1,22 +1,26 @@
 import {
   getQuickRecordList,
-  putQuickRecordCount,
-  putQuickRecord
+  modifyQuickRecord,
+  modifyQuickRecordCount,
 } from '@/api/checklist/quickRecord'
 import { makeModuleTypes } from '@/utils/store/index'
 import { QuickRecord } from '@/types/checklist'
 import { Success } from '@/types/response'
 import { AxiosResponse } from 'axios'
+import { Commit } from 'vuex'
 
 const MODULE_NAME = 'quickRecordStore'
 const TYPES = makeModuleTypes([
   'quickRecordList',
+  
   'getQuickRecordList',
-  'actQuickRecordList',
+  
+  'fetchQuickRecordList',
+  'fetchModifyQuickRecord',
+  'fetchModifyQuickRecordCount',
+
   'setQuickRecordList',
-  'actCountQuickRecord',
   'setCountOne',
-  'actPutQuickRecord',
   'setQuickRecord'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
@@ -36,28 +40,28 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actQuickRecordList](context: any, payload: string) {
+    [TYPES.fetchQuickRecordList]({ commit }: {commit: Commit}, payload: string) {
       getQuickRecordList(payload).then((res: AxiosResponse<Success>) => {
         const { quickDetailList } = res.data?.data
 
-        context.commit(TYPES.setQuickRecordList, quickDetailList || [])
+        commit(TYPES.setQuickRecordList, quickDetailList || [])
       })
     },
-    [TYPES.actCountQuickRecord](context: any, payload: { quickId: number, date: string }) {
-      return putQuickRecordCount(payload)
+    [TYPES.fetchModifyQuickRecordCount]({ commit }: {commit: Commit}, payload: { quickId: number, date: string }) {
+      return modifyQuickRecordCount(payload)
         .then((res: AxiosResponse<Success>) => {
           const {code, message, data } = res.data
 
           if (code === '309') {
-            context.commit(TYPES.setCountOne, data?.quickId)
+            commit(TYPES.setCountOne, data?.quickId)
           } else {
             throw new Error(message)
           }
         })
     },
-    [TYPES.actPutQuickRecord](context: any, payload: QuickRecord) {
-      console.log(payload)
-      return putQuickRecord(payload)
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    [TYPES.fetchModifyQuickRecord]({ commit }: {commit: Commit}, payload: QuickRecord) {
+      return modifyQuickRecord(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data
 

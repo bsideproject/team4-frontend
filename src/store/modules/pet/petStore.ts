@@ -1,45 +1,45 @@
 import {
-  postPet,
   getPetList,
   getPet,
-  putMainPet,
-  postSharePet,
-  putPet,
-  putDeactivatePet,
-  deletePet,
+  modifyMainPet,
+  saveSharePet,
+  savePet,
+  modifyPet,
+  modifyDeactivatePet,
+  deletePet
 } from '@/api/pet/pet'
 import { makeModuleTypes } from '@/utils/store/index'
 import { Pet } from '@/types/pet'
 import { Success } from '@/types/response'
 import { AxiosResponse } from 'axios'
+import { Commit, Dispatch } from 'vuex'
 
 const MODULE_NAME = 'petStore'
 const TYPES = makeModuleTypes([
   'pet',
-  'getPet',
-  'actPet',
-  'setPet',
-
   'mainPetId',
-  'getMainPetId',
-  'setMainPetId',
-
   'totalPetNumber',
-  'getTotalPetNumber',
-  'setTotalPetNumber',
-
   'petList',
+
+  'getPet',
   'getPetList',
-  'actPetList',
+  'getTotalPetNumber',
+  'getMainPetId',
+
+  'fetchPet',
+  'fetchPetList',
+  'fetchSavePet',
+  'fetchModifyMainPet',
+  'fetchSaveSharePet',
+  
+  'fetchModifyPet',
+  'fetchModifyDeactivatePet',
+  'fetchDeletePet',
+  
+  'setPet',
   'setPetList',
-
-  'actPostPet',
-  'actPutMainPet',
-  'actPostSharePet',
-
-  'actPutPet',
-  'actPutDeactivatePet',
-  'actDeletePet',
+  'setMainPetId',
+  'setTotalPetNumber',
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -73,18 +73,18 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actPet](context: any, payload: string) {
+    [TYPES.fetchPet]({ commit }: {commit: Commit}, payload: string) {
       return getPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
 
         if (code === '202') {
-          context.commit(TYPES.setPet, data)
+          commit(TYPES.setPet, data)
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPetList](context: any) {
+    [TYPES.fetchPetList]({ commit }: {commit: Commit}) {
       return getPetList()
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
@@ -92,16 +92,16 @@ const module = {
           if (code === '203') {
             const { mainPetId, totalPetNumber, petList } = data
 
-            context.commit(TYPES.setMainPetId, mainPetId || '')
-            context.commit(TYPES.setTotalPetNumber, totalPetNumber || 0)
-            context.commit(
+            commit(TYPES.setMainPetId, mainPetId || '')
+            commit(TYPES.setTotalPetNumber, totalPetNumber || 0)
+            commit(
               TYPES.setPetList,
               petList
                 ?.map((pet: Pet) => {
                   pet.isMain = pet.petId === mainPetId
                   return pet
                 })
-                .sort((a: any, b: any) => b.isMain - a.isMain) || []
+                .sort((a: Pet, b: Pet) => +b.isMain - +a.isMain) || []
             )
           } else {
             throw new Error(message)
@@ -109,45 +109,47 @@ const module = {
         })
      
     },
-    [TYPES.actPostPet](context: any, payload: Pet) {
-      return postPet(payload).then((res: AxiosResponse<Success>) => {
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    [TYPES.fetchSavePet]({ commit }: {commit: Commit}, payload: Pet) {
+      return savePet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code !== '201') {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPutMainPet](context: any, payload: Pet) {
-      return putMainPet(payload).then((res: AxiosResponse<Success>) => {
+    [TYPES.fetchModifyMainPet]({ dispatch }: {dispatch: Dispatch}, payload: Pet) {
+      return modifyMainPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code === '209') {
-          context.dispatch(TYPES.actPetList)
+          dispatch(TYPES.fetchPetList)
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPostSharePet](context: any, payload: string) {
-      return postSharePet(payload).then((res: AxiosResponse<Success>) => {
+    [TYPES.fetchSaveSharePet]({ dispatch }: {dispatch: Dispatch}, payload: string) {
+      return saveSharePet(payload).then((res: AxiosResponse<Success>) => {
         const { code } = res.data
         if (code !== '208') {
-          context.dispatch(TYPES.actPetList)
+          dispatch(TYPES.fetchPetList)
         }
       })
     },
-    [TYPES.actPutPet](context: any, payload: Pet) {
-      return putPet(payload).then((res: AxiosResponse<Success>) => {
+    [TYPES.fetchModifyPet]({ commit }: {commit: Commit}, payload: Pet) {
+      return modifyPet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message, data } = res.data
 
         if (code === '204') {
-          context.commit(TYPES.setPet, data)
+          commit(TYPES.setPet, data)
         } else {
           throw new Error(message)
         }
       })
     },
-    [TYPES.actPutDeactivatePet](context: any, payload: string) {
-      return putDeactivatePet(payload).then((res: AxiosResponse<Success>) => {
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    [TYPES.fetchModifyDeactivatePet]({ commit }: {commit: Commit}, payload: string) {
+      return modifyDeactivatePet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
         if (code === '205') {
           /**
@@ -158,13 +160,13 @@ const module = {
         }
       })
     },
-    [TYPES.actDeletePet](context: any, payload: string) {
+    [TYPES.fetchDeletePet]({ commit, dispatch }: {commit: Commit, dispatch: Dispatch}, payload: string) {
       return deletePet(payload).then((res: AxiosResponse<Success>) => {
         const { code, message } = res.data
 
         if (code === '207') {
-          context.commit(TYPES.setPet, {})
-          context.dispatch(TYPES.getPetList)
+          commit(TYPES.setPet, {})
+          dispatch(TYPES.getPetList)
         } else {
           throw new Error(message)
         }

@@ -3,20 +3,21 @@ import { makeModuleTypes } from '@/utils/store/index'
 const MODULE_NAME = 'headerStore'
 const TYPES = makeModuleTypes([
   'title',
-  'getTitle',
-  'setTitle',
   'headerType',
-  'getHeaderType',
-  'setHeaderType',
   'moreOptionList',
-  'getMoreOptionList',
-  'setMoreOptionList',
-
   'weeklyCalendarDate',
-  'getWeeklyCalendarDate',
-  'setWeeklyCalendarDate',
   'isFixed',
+
+  'getTitle',
+  'getHeaderType',
+  'getMoreOptionList',
+  'getWeeklyCalendarDate',
   'getIsFixed',
+  
+  'setTitle',
+  'setHeaderType',
+  'setMoreOptionList',
+  'setWeeklyCalendarDate',
   'setIsFixed'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]

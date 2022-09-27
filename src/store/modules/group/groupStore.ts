@@ -1,26 +1,30 @@
 import {
   getGroupMemberList,
   deleteGroupMember,
-  putGroupManager,
-  postGroup,
-  postGroupMember
+  saveGroup,
+  saveGroupMember,
+  modifyGroupManager,
+  deleteGroup
 } from '@/api/group/group'
 import { makeModuleTypes } from '@/utils/store/index'
 import { Group } from '@/types/group'
 import { Success } from '@/types/response'
-import { Axios, AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
+import { Commit, Dispatch } from 'vuex'
 
 const MODULE_NAME = 'groupStore'
 const TYPES = makeModuleTypes([
   'groupList',
   'getGroupList',
-  'actGroupList',
-  'setGroupList',
+  
+  'fetchGetGroupMemberList',
+  'fetchDeleteGroupMember',
+  'fetchMofiyGroupManager',
+  'fetchSaveGroup',
+  'fetchSaveGroupMember',
+  'fetchDeleteGroup',
 
-  'actDeleteGroupMember',
-  'actPutGroupManager',
-  'actPostGroup',
-  'actPostGroupMember'
+  'setGroupList'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
 
@@ -39,13 +43,13 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actGroupList](context: any, payload: number) {
+    [TYPES.fetchGetGroupMemberList]({ commit }: {commit: Commit}, payload: number) {
       return getGroupMemberList(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data} = res.data 
 
           if (code === '602') {
-            context.commit(TYPES.setGroupList, data.familyMemberList.sort((a: Group, b: Group) => {
+            commit(TYPES.setGroupList, data.familyMemberList.sort((a: Group, b: Group) => {
               if (a.role > b.role) {
                 return 1
               } else {
@@ -57,49 +61,61 @@ const module = {
           }
         })
     },
-    [TYPES.actDeleteGroupMember](context: any, payload: {familyId: number, deleteMemberId: number}) {
+    [TYPES.fetchDeleteGroupMember]({ commit }: {commit: Commit}, payload: {familyId: number, deleteMemberId: number}) {
       return deleteGroupMember(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message} = res.data 
 
           if (code === '606') {
-            context.commit(TYPES.setGroupList, [])
+            commit(TYPES.setGroupList, [])
           } else {
             throw new Error(message)
           }
         })
     },
-    [TYPES.actPutGroupManager](context: any, payload: { familyId: number, prevManagerId: number, nextManagerId: number }) {
-      return putGroupManager(payload)
+    [TYPES.fetchMofiyGroupManager]({ dispatch }: {dispatch: Dispatch}, payload: { familyId: number, prevManagerId: number, nextManagerId: number }) {
+      return modifyGroupManager(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data} = res.data 
 
           if (code === '604') {
-            context.dispatch(TYPES.actGroupList, data.familyId)
+            dispatch(TYPES.fetchGetGroupMemberList, data.familyId)
           } else {
             throw new Error(message)
           }
         })
     },
-    [TYPES.actPostGroup](context: any, payload: number) {
-      return postGroup(payload)
+    [TYPES.fetchSaveGroup]({ dispatch }: {dispatch: Dispatch}, payload: number) {
+      return saveGroup(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
 
           if (code === '601') {
-            context.dispatch(TYPES.actGroupList, data.familyId)
+            dispatch(TYPES.fetchGetGroupMemberList, data.familyId)
           } else {
             throw new Error(message)
           }
         })
     },
-    [TYPES.actPostGroupMember](context: any, payload: number) {
-      return postGroupMember(payload)
+    [TYPES.fetchSaveGroupMember]({ dispatch }: {dispatch: Dispatch}, payload: number) {
+      return saveGroupMember(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
 
           if (code === '605') {
-            context.dispatch(TYPES.actGroupList, data.familyId)
+            dispatch(TYPES.fetchGetGroupMemberList, data.familyId)
+          } else {
+            throw new Error(message)
+          }
+        })
+    },
+    [TYPES.fetchDeleteGroup]({ dispatch }: {dispatch: Dispatch}, payload: number) {
+      return deleteGroup(payload)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message, data } = res.data
+
+          if (code === '603') {
+            dispatch(TYPES.fetchGetGroupMemberList, data.familyId)
           } else {
             throw new Error(message)
           }

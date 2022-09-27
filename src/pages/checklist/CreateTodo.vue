@@ -82,11 +82,11 @@
           반복 설정 없음
         </div>
         <div
-          class="todo__tab-every-day"
+          class="todo__tab-every-year"
           v-else-if="repeatTab === tabData[1].value"
         >
           <!-- <input type="text" v-model="todo.repeatDetail.eventDay" /> 일 마다 -->
-          <p>매일 마다</p>
+          <p>매일 반복 설정</p>
         </div>
         <div
           class="todo__tab-every-week"
@@ -355,7 +355,7 @@ const clickSaveTodo = () => {
 
   // console.log(todo)
 
-  store.dispatch(`${MODULE_NAME}/${TYPES.actSaveTodo}`, todo).then(() => {
+  store.dispatch(`${MODULE_NAME}/${TYPES.fetchSaveTodo}`, todo).then(() => {
     toast.clear()
     toast.open({
       type: 'success',
