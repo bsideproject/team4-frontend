@@ -90,7 +90,7 @@ const getOneLineDiaryList = computed(
 )
 
 onMounted(() => {
-  store.dispatch(`${MN_PET}/${TY_PET.actPetList}`).then(() => {
+  store.dispatch(`${MN_PET}/${TY_PET.fetchPetList}`).then(() => {
     store.dispatch(
       `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
       getMainPetId.value
@@ -109,7 +109,7 @@ const clickEditOneLineDiary = (diaryId) => {
 }
 const clickDeleteOneLineDiary = (diaryId) => {
   store
-    .dispatch(`${MN_DIARY}/${TY_DIARY.deleteOneLineDiary}`, {
+    .dispatch(`${MN_DIARY}/${TY_DIARY.fetchDeleteOneLineDiary}`, {
       petId: getMainPetId.value,
       diaryId,
     })

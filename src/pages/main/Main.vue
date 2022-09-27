@@ -58,7 +58,7 @@ const getPetList = computed(
 )
 
 onMounted(() => {
-  store.dispatch(`${MN_PET}/${TY_PET.actPetList}`)
+  store.dispatch(`${MN_PET}/${TY_PET.fetchPetList}`)
 })
 
 const clickFloating = () => {

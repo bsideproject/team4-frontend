@@ -10,11 +10,12 @@ const TYPES = makeModuleTypes([
   'oneLineDiaryList',
 
   'getOneLineDiaryList',
+  
+  'fetchSaveOneLineDiary',
+  'fetchModifyOneLineDiary',
+  'fetchDeleteOneLineDiary',
+  
   'setOneLineDiaryList',
-
-  'saveOneLineDiary',
-  'modifyOneLineDiary',
-  'deleteOneLineDiary',
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]; 
 
@@ -44,7 +45,7 @@ const module = {
           }
         })
     },
-    [TYPES.saveOneLineDiary]({ dispatch, }: {dispatch: Dispatch}, payload: OneLineDiary) {
+    [TYPES.fetchSaveOneLineDiary]({ dispatch, }: {dispatch: Dispatch}, payload: OneLineDiary) {
       return saveOneLineDiary(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data
@@ -56,7 +57,7 @@ const module = {
           }
         })
     },
-    [TYPES.modifyOneLineDiary]({ dispatch, }: {dispatch: Dispatch}, payload: OneLineDiary) {
+    [TYPES.fetchModifyOneLineDiary]({ dispatch, }: {dispatch: Dispatch}, payload: OneLineDiary) {
       return modifyOneLineDiary(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data
@@ -68,7 +69,7 @@ const module = {
           }
         })
     },
-    [TYPES.deleteOneLineDiary]({ dispatch, }: {dispatch: Dispatch}, payload: { petId: number, diaryId: number }) {
+    [TYPES.fetchDeleteOneLineDiary]({ dispatch, }: {dispatch: Dispatch}, payload: { petId: number, diaryId: number }) {
       return deleteOneLineDiary(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data

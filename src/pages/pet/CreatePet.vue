@@ -189,7 +189,7 @@ const clickEditProfile = () => {
   /**
    * 펫 등록 API 호출
    */
-  store.dispatch(`${MODULE_NAME}/${TYPES.actPostPet}`, form).then(() => {
+  store.dispatch(`${MODULE_NAME}/${TYPES.fetchSavePet}`, form).then(() => {
     toast.clear()
     toast.open({
       type: 'success',

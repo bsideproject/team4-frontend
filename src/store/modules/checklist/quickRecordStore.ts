@@ -1,7 +1,7 @@
 import {
   getQuickRecordList,
-  putQuickRecordCount,
-  putQuickRecord
+  modifyQuickRecord,
+  modifyQuickRecordCount,
 } from '@/api/checklist/quickRecord'
 import { makeModuleTypes } from '@/utils/store/index'
 import { QuickRecord } from '@/types/checklist'
@@ -12,12 +12,15 @@ import { Commit } from 'vuex'
 const MODULE_NAME = 'quickRecordStore'
 const TYPES = makeModuleTypes([
   'quickRecordList',
+  
   'getQuickRecordList',
-  'actQuickRecordList',
+  
+  'fetchQuickRecordList',
+  'fetchModifyQuickRecord',
+  'fetchModifyQuickRecordCount',
+
   'setQuickRecordList',
-  'actCountQuickRecord',
   'setCountOne',
-  'actPutQuickRecord',
   'setQuickRecord'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]
@@ -37,15 +40,15 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actQuickRecordList]({ commit }: {commit: Commit}, payload: string) {
+    [TYPES.fetchQuickRecordList]({ commit }: {commit: Commit}, payload: string) {
       getQuickRecordList(payload).then((res: AxiosResponse<Success>) => {
         const { quickDetailList } = res.data?.data
 
         commit(TYPES.setQuickRecordList, quickDetailList || [])
       })
     },
-    [TYPES.actCountQuickRecord]({ commit }: {commit: Commit}, payload: { quickId: number, date: string }) {
-      return putQuickRecordCount(payload)
+    [TYPES.fetchModifyQuickRecordCount]({ commit }: {commit: Commit}, payload: { quickId: number, date: string }) {
+      return modifyQuickRecordCount(payload)
         .then((res: AxiosResponse<Success>) => {
           const {code, message, data } = res.data
 
@@ -57,8 +60,8 @@ const module = {
         })
     },
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    [TYPES.actPutQuickRecord]({ commit }: {commit: Commit}, payload: QuickRecord) {
-      return putQuickRecord(payload)
+    [TYPES.fetchModifyQuickRecord]({ commit }: {commit: Commit}, payload: QuickRecord) {
+      return modifyQuickRecord(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data
 

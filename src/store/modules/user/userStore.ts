@@ -1,4 +1,4 @@
-import { getUser, putUser, postleaveFamily } from '@/api/setting/myProfile'
+import { getUser, modifyUser, saveLeaveFamily } from '@/api/setting/user'
 import { makeModuleTypes } from '@/utils/store/index'
 import { User } from '@/types/user'
 import { Success } from '@/types/response'
@@ -9,12 +9,12 @@ const MODULE_NAME = 'userStore'
 const TYPES = makeModuleTypes([
   'user',
   'getUser',
-  'actUser',
-  'setUser',
 
-  'actPutUser',
-  'actDeleteUser',
-  'actPostLeaveFamily'
+  'fetchGetUser',
+  'fetchModifyUser',
+  'fetchSaveLeaveFamily',
+
+  'setUser'
 ])
 type TYPES = typeof TYPES[keyof typeof TYPES]; 
 
@@ -33,7 +33,7 @@ const module = {
     },
   },
   actions: {
-    [TYPES.actUser]({ commit, }: {commit: Commit}) {
+    [TYPES.fetchGetUser]({ commit, }: {commit: Commit}) {
       return getUser()
         .then((res: AxiosResponse<Success>) => {
           const { code, data } = res.data
@@ -42,8 +42,8 @@ const module = {
           }
         })
     },
-    [TYPES.actPutUser]({ commit, }: {commit: Commit}, payload: User) {
-      return putUser(payload)
+    [TYPES.fetchModifyUser]({ commit, }: {commit: Commit}, payload: User) {
+      return modifyUser(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
 
@@ -54,13 +54,13 @@ const module = {
           }
         })
     },
-    [TYPES.actPostLeaveFamily]({ dispatch, }: {dispatch: Dispatch}) {
-      return postleaveFamily()
+    [TYPES.fetchSaveLeaveFamily]({ dispatch, }: {dispatch: Dispatch}) {
+      return saveLeaveFamily()
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data
 
           if (code === '155') {
-            dispatch(TYPES.actUser)
+            dispatch(TYPES.fetchGetUser)
           } else {
             throw new Error(message)
           }

@@ -161,7 +161,7 @@ toRefs(form)
 const getPet = computed(() => store.getters[`${MN_PET}/${TY_PET.getPet}`])
 
 onMounted(async () => {
-  await store.dispatch(`${MN_PET}/${TY_PET.actPet}`, route.params.petId)
+  await store.dispatch(`${MN_PET}/${TY_PET.fetchPet}`, route.params.petId)
 
   Object.assign(form, getPet.value)
 
@@ -170,7 +170,7 @@ onMounted(async () => {
       title: '삭제하기',
       callback: () => {
         store
-          .dispatch(`${MN_PET}/${TY_PET.actDeletePet}`, getPet.value.petId)
+          .dispatch(`${MN_PET}/${TY_PET.fetchDeletePet}`, getPet.value.petId)
           .then(() => {
             toast.clear()
             toast.open({
@@ -187,7 +187,7 @@ onMounted(async () => {
       callback: () => {
         store
           .dispatch(
-            `${MN_PET}/${TY_PET.actPutDeactivatePet}`,
+            `${MN_PET}/${TY_PET.fetchModifyDeactivatePet}`,
             getPet.value.petId
           )
           .then(() => {
@@ -257,7 +257,7 @@ const clickEditProfile = () => {
   /**
    * 펫 등록 API 호출
    */
-  store.dispatch(`${MN_PET}/${TY_PET.actPutPet}`, form).then(() => {
+  store.dispatch(`${MN_PET}/${TY_PET.fetchModifyPet}`, form).then(() => {
     toast.clear()
     toast.open({
       type: 'success',

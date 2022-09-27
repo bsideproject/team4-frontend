@@ -40,11 +40,11 @@ const getPetList = computed(
 )
 
 onMounted(() => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.actPetList}`)
+  store.dispatch(`${MODULE_NAME}/${TYPES.fetchPetList}`)
 })
 
 const clickSharePet = (petId) => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.actPostSharePet}`, petId)
+  store.dispatch(`${MODULE_NAME}/${TYPES.fetchSaveSharePet}`, petId)
 }
 </script>
 
