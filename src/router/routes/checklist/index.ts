@@ -1,3 +1,4 @@
+import HEADER_TYPE from '@/constants/headerType'
 import ROUTE from '@/constants/route'
 
 const QuickRecord = () => import('@/pages/checklist/QuickRecord.vue')
@@ -36,6 +37,7 @@ export default [
     component: ModifyTodo,
     meta: {
       title: '할 일',
+      headerType: HEADER_TYPE.MORE,
     },
   },
 ]
