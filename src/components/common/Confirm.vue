@@ -1,7 +1,10 @@
 <template>
   <section class="confirm">
     <article class="confirm__dimmed" @click="clickDimmed"></article>
-    <article class="confirm__content">
+    <article
+      class="confirm__content"
+      :style="{ height: (props.options.style.height || 120) + 'px' }"
+    >
       <p v-html="props.options.text"></p>
       <div>
         <button class="btn-md-default" @click="clickCancel">
