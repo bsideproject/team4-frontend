@@ -36,10 +36,14 @@
     </article>
     <div
       class="group__invite"
-      v-if="getUser.role === ROLE.MANAGER && getGroupList.length < 4"
+      v-if="
+        !getUser.familyId ||
+        (getUser.role === ROLE.MANAGER && getGroupList.length < 4)
+      "
     >
       <button @click="clickInvite">초대하기</button>
     </div>
+    <no-pet-bottom-sheet ref="noPetBottomSheet" />
   </section>
 </template>
 
@@ -60,6 +64,9 @@ import {
 } from '@/store/modules/user/userStore'
 import { _confirm } from '@/utils/common'
 import ROLE from '@/constants/role'
+import NoPetBottomSheet from '@/components/group/NoPetBottomSheet.vue'
+
+const noPetBottomSheet = ref(null)
 
 const store = useStore()
 const instance = getCurrentInstance()
@@ -100,8 +107,11 @@ onMounted(async () => {
       {
         title: '그룹 삭제하기',
         callback: () => {
-          store.dispatch(`${MN_GROUP}/${TY_GROUP.fetchDeleteGroup}`)
-          store.dispatch(`${MN_USER}/${TY_USER.fetchGetUser}`)
+          store
+            .dispatch(`${MN_GROUP}/${TY_GROUP.fetchDeleteGroup}`)
+            .then(() => {
+              store.dispatch(`${MN_USER}/${TY_USER.fetchGetUser}`)
+            })
         },
       },
     ])
@@ -110,8 +120,11 @@ onMounted(async () => {
       {
         title: '그룹 탈퇴하기',
         callback: () => {
-          store.dispatch(`${MN_USER}/${TY_USER.fetchSaveLeaveFamily}`)
-          store.commit(`${MN_GROUP}/${TY_GROUP.mutations}`, [])
+          store
+            .dispatch(`${MN_USER}/${TY_USER.fetchSaveLeaveFamily}`)
+            .then(() => {
+              store.commit(`${MN_GROUP}/${TY_GROUP.setGroupList}`, [])
+            })
         },
       },
     ])
@@ -119,6 +132,11 @@ onMounted(async () => {
 })
 
 const clickInvite = () => {
+  if (!getUser.value.mainPetId) {
+    noPetBottomSheet.value.openBottomSheet()
+    return false
+  }
+
   const type = getUser.value.familyId ? 'exist' : 'new'
   const inviteURL = `${process.env.VUE_APP_BASE_URL}/group/invite/${type}/${getUser.value.userId}`
   isExport.value = false

@@ -63,4 +63,21 @@
       width: 90%;
     }
   }
+
+  &__empty-pet {
+    .empty-pet-illust {
+      padding: 20px 60px;
+      img {
+        width: 240px;
+        height: 240px;
+      }
+    }
+    .empty__txt {
+      @include ptBold20;
+      line-height: 30px;
+    }
+    .empty__btn {
+      margin-top: 32px;
+    }
+  }
 }
