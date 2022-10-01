@@ -17,8 +17,8 @@ const modifyTodo = (data: Todo, modifyType: string) => {
   return axios.put(`/api/v1/checklist/${data.checklistId}/date/${data.date}/modifyType/${modifyType}`, data)
 }
 
-const deleteTodo = (todoId: number) => {
-  return axios.delete(`/api/v1/checklist/${todoId}`)
+const deleteTodo = (data: Todo, deleteType: string) => {
+  return axios.delete(`/api/v1/checklist/${data.checklistId}/date/${data.date}/deleteType/${deleteType}`)
 }
 
 const modifyCheckedTodo = (data: {todoId: number, date: string}) => {

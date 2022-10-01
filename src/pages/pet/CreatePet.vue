@@ -153,7 +153,7 @@ const form = reactive({
 })
 
 const onError = (e) => {
-  e.target.src = require('@images/icons/profile_big_default.svg')
+  e.target.src = require('@images/icons/profile_m_pet.svg')
 }
 const clickEditProfileImage = () => {
   document.getElementById('iptFile').click()

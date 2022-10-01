@@ -3,7 +3,8 @@ import {
   modifyTodo,
   getTodo,
   saveTodo,
-  modifyCheckedTodo
+  modifyCheckedTodo,
+  deleteTodo
 } from '@/api/checklist/todo'
 import { makeModuleTypes } from '@/utils/store/index'
 import { Todo } from '@/types/checklist'
@@ -105,6 +106,17 @@ const module = {
             /**
              * TODO: 할 일 수정 성공시 처리
              */
+          } else {
+            throw new Error(message)
+          }
+        })
+    },
+    [TYPES.deleteTodo]({ commit }: {commit: Commit}, payload: {data: Todo, deleteType: string}) {
+      return deleteTodo(payload.data, payload.deleteType)
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message } = res.data
+          if (code === '409') {
+            commit(TYPES.setTodo, {})
           } else {
             throw new Error(message)
           }

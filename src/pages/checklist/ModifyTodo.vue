@@ -180,7 +180,15 @@
 
 <script setup>
 import Calendar from '@/components/common/Calendar.vue'
-import { computed, onMounted, reactive, ref, toRefs, watch } from 'vue'
+import {
+  computed,
+  getCurrentInstance,
+  onMounted,
+  reactive,
+  ref,
+  toRefs,
+  watch,
+} from 'vue'
 import {
   dateToStringFormat,
   getWeekNumber,
@@ -188,10 +196,19 @@ import {
 } from '@/utils/common/index'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { MODULE_NAME, TYPES } from '@/store/modules/checklist/todoStore'
+import {
+  MODULE_NAME as MN_TODO,
+  TYPES as TY_TODO,
+} from '@/store/modules/checklist/todoStore'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@/store/modules/common/headerStore'
 import { useToast } from 'vue-toast-notification'
 import ROUTE from '@/constants/route'
+import { _confirm } from '@/utils/common'
 
+const instance = getCurrentInstance()
 const route = useRoute()
 const router = useRouter()
 const store = useStore()
@@ -263,7 +280,7 @@ editOption.value = [
   },
 ]
 
-const getTodo = computed(() => store.getters[`${MODULE_NAME}/${TYPES.getTodo}`])
+const getTodo = computed(() => store.getters[`${MN_TODO}/${TY_TODO.getTodo}`])
 const getOnEdit = computed(() => {
   if (todo.isRepeated) {
     if (
@@ -289,7 +306,7 @@ const getOnEdit = computed(() => {
 onMounted(async () => {
   const { todoId } = route.params
 
-  await store.dispatch(`${MODULE_NAME}/${TYPES.fetchTodo}`, Number(todoId))
+  await store.dispatch(`${MN_TODO}/${TY_TODO.fetchTodo}`, Number(todoId))
   Object.assign(todo, getTodo.value)
   todo.date = dateToStringFormat(new Date(getTodo.value.date))
 
@@ -328,6 +345,39 @@ onMounted(async () => {
   if (todo.repeatDetail?.endedAt) {
     isRepeatEnded.value = true
   }
+
+  store.commit(`${MN_HEADER}/${TY_HEADER.setMoreOptionList}`, [
+    {
+      title: '할 일 삭제',
+      callback: () => {
+        _confirm(instance, {
+          text: '할 일을 삭제하시겠습니까?',
+          ok: {
+            label: '네',
+            callback: () => {
+              store
+                .dispatch(`${MN_TODO}/${TY_TODO.deleteTodo}`, {
+                  data: {
+                    checklistId: todo.checklistId,
+                    date: dateToStringFormat(stringToDate(todo.date), '-'),
+                  },
+                  deleteType: 'all',
+                })
+                .then(() => {
+                  router.replace({ name: ROUTE.Main })
+                })
+            },
+          },
+          cancel: {
+            label: '아니오',
+          },
+          style: {
+            height: 100,
+          },
+        })
+      },
+    },
+  ])
 })
 
 watch(
@@ -432,7 +482,7 @@ const clickSaveTodo = () => {
 
 const editTodo = (data, modifyType) => {
   store
-    .dispatch(`${MODULE_NAME}/${TYPES.fetchModifyTodo}`, {
+    .dispatch(`${MN_TODO}/${TY_TODO.fetchModifyTodo}`, {
       data,
       modifyType,
     })
