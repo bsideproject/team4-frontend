@@ -1,5 +1,6 @@
 <template>
   <section
+    v-if="getHeaderType !== 'login'"
     :class="['header', getHeaderType === 'main' && getIsFixed ? 'fixed' : '']"
   >
     <article
@@ -15,12 +16,12 @@
       <router-link to="/setting" class="header-wrapper__menu" />
     </article>
 
-    <article
+    <!-- <article
       class="header-wrapper bd-bottom"
       v-else-if="getHeaderType === 'login'"
     >
       <div class="header-wrapper__title">{{ getTitle }}</div>
-    </article>
+    </article> -->
 
     <article
       class="header-wrapper bd-bottom"
