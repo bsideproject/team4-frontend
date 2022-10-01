@@ -16,7 +16,7 @@
         <p class="empty__txt">등록된 펫이 없습니다. <br />펫을 등록해주세요!</p>
         <button
           class="empty__btn btn-lg-enabled"
-          @click="$router.push('/pet/create')"
+          @click="$router.push({ name: ROUTE.Pet.Create })"
         >
           등록
         </button>
@@ -49,6 +49,7 @@ import {
   MODULE_NAME as MN_PET,
   TYPES as TY_PET,
 } from '@/store/modules/pet/petStore'
+import ROUTE from '@/constants/route'
 
 const store = useStore()
 const floatingBottomSheet = ref(null)

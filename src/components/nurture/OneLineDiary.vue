@@ -66,7 +66,7 @@
 
 <script setup>
 import ROUTE from '@/constants/route'
-import { computed, onMounted, ref } from 'vue'
+import { computed, getCurrentInstance, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import {
@@ -77,6 +77,9 @@ import {
   MODULE_NAME as MN_PET,
   TYPES as TY_PET,
 } from '@/store/modules/pet/petStore'
+import { _confirm } from '@/utils/common'
+
+const instance = getCurrentInstance()
 const isFold = ref(false)
 const router = useRouter()
 const store = useStore()
@@ -108,17 +111,31 @@ const clickEditOneLineDiary = (diaryId) => {
   router.push({ name: ROUTE.Nurture.OneLineDiary.Modify, params: { diaryId } })
 }
 const clickDeleteOneLineDiary = (diaryId) => {
-  store
-    .dispatch(`${MN_DIARY}/${TY_DIARY.fetchDeleteOneLineDiary}`, {
-      petId: getMainPetId.value,
-      diaryId,
-    })
-    .then(() => {
-      store.dispatch(
-        `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
-        getMainPetId.value
-      )
-    })
+  _confirm(instance, {
+    text: '작성하신 한 줄 일기를 삭제하시겠습니까?',
+    ok: {
+      label: '네',
+      callback: () => {
+        store
+          .dispatch(`${MN_DIARY}/${TY_DIARY.fetchDeleteOneLineDiary}`, {
+            petId: getMainPetId.value,
+            diaryId,
+          })
+          .then(() => {
+            store.dispatch(
+              `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
+              getMainPetId.value
+            )
+          })
+      },
+    },
+    cancel: {
+      label: '아니오',
+    },
+    style: {
+      height: 100,
+    },
+  })
 }
 </script>
 

@@ -94,7 +94,11 @@ const getMainPetId = computed(
 )
 
 onMounted(() => {
-  store.dispatch(`${MODULE_NAME}/${TYPES.fetchPetList}`)
+  store.dispatch(`${MODULE_NAME}/${TYPES.fetchPetList}`).then(() => {
+    if (!getPetList.value.length) {
+      router.replace({ name: ROUTE.Main })
+    }
+  })
   detailId.value = getMainPetId.value
 })
 watch(
