@@ -1,12 +1,12 @@
 <template>
-  <footer class="footer"><p>Copyright &copy; Sidefriends. All Rights Deserved</p></footer>
+  <footer class="footer">
+    <p>&copy; 2022 Sidefriends. All rights reserved.</p>
+  </footer>
 </template>
 
 <script>
-export default {
-}
+export default {}
 </script>
 
 <style scoped>
-
 </style>
