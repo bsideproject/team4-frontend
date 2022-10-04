@@ -25,6 +25,6 @@ import 'vue-toast-notification/dist/theme-sugar.css'
 import VueGtag from "vue-gtag";
 app.use(VueGtag, {
   config: { id: "UA-195582456-1" }
-})
+}, router)
 
 app.mount('#app')
