@@ -30,7 +30,7 @@ _confirm(instance, {
             router.replace({ name: ROUTE.Main })
           })
           .catch(() => {
-            process.env.VUE_APP_BASE_URL
+            location.href = process.env.VUE_APP_BASE_URL
           })
       } else if (type === 'exist') {
         store
