@@ -32,7 +32,13 @@ import {
   MODULE_NAME as MN_PET,
   TYPES as TY_PET,
 } from '@/store/modules/pet/petStore'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@/store/modules/common/headerStore'
 import ROUTE from '@/constants/route'
+import { dateToStringFormat } from '@/utils/common'
+import { useToast } from 'vue-toast-notification'
 
 const contents = ref('')
 const textCount = ref(0)
@@ -40,6 +46,7 @@ const isOnEdit = ref(false)
 const route = useRoute()
 const router = useRouter()
 const store = useStore()
+const toast = useToast()
 
 const { diaryId } = route.params
 
@@ -49,15 +56,18 @@ const getMainPetId = computed(
 const getOneLineDiaryList = computed(
   () => store.getters[`${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`]
 )
+const getWeeklyCalendarDate = computed(
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getWeeklyCalendarDate}`]
+)
 
 onMounted(() => {
   if (diaryId) {
     store.dispatch(`${MN_PET}/${TY_PET.fetchPetList}`).then(() => {
       store
-        .dispatch(
-          `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
-          getMainPetId.value
-        )
+        .dispatch(`${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`, {
+          petId: getMainPetId.value,
+          date: dateToStringFormat(getWeeklyCalendarDate.value, '-'),
+        })
         .then(() => {
           const diary = getOneLineDiaryList.value.find(
             (d) => d.diaryId === Number(diaryId)
@@ -95,6 +105,12 @@ const clickWriteComplete = () => {
   store
     .dispatch(`${MN_DIARY}/${TY_DIARY.fetchModifyOneLineDiary}`, data)
     .then(() => {
+      toast.clear()
+      toast.open({
+        type: 'success',
+        message: '한 줄 일기가 수정되었습니다.',
+        position: 'bottom',
+      })
       router.replace({ name: ROUTE.Nurture.Main })
     })
 }
