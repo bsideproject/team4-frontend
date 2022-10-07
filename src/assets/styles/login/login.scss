@@ -62,4 +62,24 @@
       }
     }
   }
+
+  &__terms {
+    margin-top: 20px;
+    .terms__notice {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 20px;
+      color: #505050;
+
+      a {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 20px;
+        color: #505050;
+        text-decoration: underline solid #505050;
+        text-underline-offset: 2px;
+        cursor: pointer;
+      }
+    }
+  }
 }
