@@ -6,7 +6,9 @@
     <article class="one-line-diary__content">
       <textarea v-model="contents"></textarea>
       <div class="text-count">
-        <span class="fc-primary">{{ textCount }}</span>
+        <span :class="[Number(textCount) <= 140 ? 'fc-primary' : 'fc-warn']">{{
+          textCount
+        }}</span>
         <span> / 140자</span>
       </div>
     </article>
@@ -32,12 +34,14 @@ import {
   TYPES as TY_PET,
 } from '@/store/modules/pet/petStore'
 import ROUTE from '@/constants/route'
+import { useToast } from 'vue-toast-notification'
 
 const contents = ref('')
 const textCount = ref(0)
 const isOnEdit = ref(false)
 const router = useRouter()
 const store = useStore()
+const toast = useToast()
 
 const getMainPetId = computed(
   () => store.getters[`${MN_PET}/${TY_PET.getMainPetId}`]
@@ -45,10 +49,10 @@ const getMainPetId = computed(
 
 onMounted(() => {
   store.dispatch(`${MN_PET}/${TY_PET.fetchPetList}`).then(() => {
-    store.dispatch(
-      `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
-      getMainPetId.value
-    )
+    // store.dispatch(
+    //   `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
+    //   getMainPetId.value
+    // )
   })
 })
 
@@ -57,7 +61,7 @@ watch(
   (newValue) => {
     textCount.value = newValue.length
 
-    if (newValue) {
+    if (newValue && newValue.length <= 140) {
       isOnEdit.value = true
     } else {
       isOnEdit.value = false
@@ -78,6 +82,12 @@ const clickWriteComplete = () => {
   store
     .dispatch(`${MN_DIARY}/${TY_DIARY.fetchSaveOneLineDiary}`, data)
     .then(() => {
+      toast.clear()
+      toast.open({
+        type: 'success',
+        message: '한 줄 일기가 저장되었습니다.',
+        position: 'bottom',
+      })
       router.replace({ name: ROUTE.Nurture.Main })
     })
 }

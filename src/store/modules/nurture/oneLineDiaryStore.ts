@@ -34,7 +34,7 @@ const module = {
     },
   },
   actions: {
-    [TYPES.getOneLineDiaryList]({ commit, }: {commit: Commit}, payload: number) {
+    [TYPES.getOneLineDiaryList]({ commit, }: {commit: Commit}, payload: {petId: number, date: string}) {
       return getOneLineDiaryList(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message, data } = res.data
@@ -69,13 +69,14 @@ const module = {
           }
         })
     },
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     [TYPES.fetchDeleteOneLineDiary]({ dispatch, }: {dispatch: Dispatch}, payload: { petId: number, diaryId: number }) {
       return deleteOneLineDiary(payload)
         .then((res: AxiosResponse<Success>) => {
           const { code, message } = res.data
 
           if (code === '504') {
-            dispatch(TYPES.getOneLineDiaryList, payload.petId)
+            // dispatch(TYPES.getOneLineDiaryList, payload.petId)
           } else {
             throw new Error(message)
           }

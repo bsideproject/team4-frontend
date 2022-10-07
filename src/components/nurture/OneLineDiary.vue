@@ -7,7 +7,7 @@
       <span class="title">한 줄 일기</span>
     </article>
     <article class="one-line-diary__content" v-if="isFold">
-      <div class="one-line-diary__initial">
+      <div class="one-line-diary__initial" v-if="!getIsWriteDiaryToday">
         <div class="one-line-diary__initial-area">
           <button class="btn-md-enabled write" @click="clickWriteOneLineDiary">
             오늘의 한 줄 일기 쓰러 가기
@@ -19,15 +19,17 @@
         v-for="(item, index) in getOneLineDiaryList"
         :key="index"
       >
-        <div class="top-area">
+        <div :class="['top-area', item.deleted ? 'unknown' : '']">
           <div class="profile-image">
             <img src="@images/icons/profile_big_default.svg" />
           </div>
           <div class="info">
-            <p class="info-writer">{{ item.writer }}</p>
+            <p class="info-writer">
+              {{ item.deleted ? '알 수 없음' : item.userName }}
+            </p>
             <p class="info-date">{{ item.lastModifiedAt }}</p>
           </div>
-          <div class="btn">
+          <div class="btn" v-if="getUser.userId === item.userId">
             <button
               class="btn-md-default btn-edit"
               @click="() => clickEditOneLineDiary(item.diaryId)"
@@ -44,20 +46,6 @@
         </div>
         <div class="content-area">
           <p>{{ item.contents }}</p>
-        </div>
-      </div>
-      <div class="one-line-diary__list">
-        <div class="top-area unknown">
-          <div class="profile-image">
-            <img src="@images/icons/profile_big_default.svg" />
-          </div>
-          <div class="info">
-            <p class="info-writer">알 수 없음</p>
-            <p class="info-date">7/29 09:40</p>
-          </div>
-        </div>
-        <div class="content-area">
-          <p>엄마가 쓴 한 줄 일기 내용입니다.</p>
         </div>
       </div>
     </article>
@@ -77,7 +65,15 @@ import {
   MODULE_NAME as MN_PET,
   TYPES as TY_PET,
 } from '@/store/modules/pet/petStore'
-import { _confirm } from '@/utils/common'
+import {
+  MODULE_NAME as MN_HEADER,
+  TYPES as TY_HEADER,
+} from '@/store/modules/common/headerStore'
+import {
+  MODULE_NAME as MN_USER,
+  TYPES as TY_USER,
+} from '@/store/modules/user/userStore'
+import { dateToStringFormat, _confirm } from '@/utils/common'
 
 const instance = getCurrentInstance()
 const isFold = ref(false)
@@ -87,17 +83,25 @@ const store = useStore()
 const getMainPetId = computed(
   () => store.getters[`${MN_PET}/${TY_PET.getMainPetId}`]
 )
-
 const getOneLineDiaryList = computed(
   () => store.getters[`${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`]
 )
+const getWeeklyCalendarDate = computed(
+  () => store.getters[`${MN_HEADER}/${TY_HEADER.getWeeklyCalendarDate}`]
+)
+const getUser = computed(() => store.getters[`${MN_USER}/${TY_USER.getUser}`])
+const getIsWriteDiaryToday = computed(() =>
+  getOneLineDiaryList.value.some((d) => d.userId === getUser.value.userId)
+)
 
 onMounted(() => {
-  store.dispatch(`${MN_PET}/${TY_PET.fetchPetList}`).then(() => {
-    store.dispatch(
-      `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
-      getMainPetId.value
-    )
+  store.dispatch(`${MN_USER}/${TY_USER.fetchGetUser}`).then(() => {
+    store.dispatch(`${MN_PET}/${TY_PET.fetchPetList}`).then(() => {
+      store.dispatch(`${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`, {
+        petId: getMainPetId.value,
+        date: dateToStringFormat(getWeeklyCalendarDate.value, '-'),
+      })
+    })
   })
 })
 
@@ -122,10 +126,10 @@ const clickDeleteOneLineDiary = (diaryId) => {
             diaryId,
           })
           .then(() => {
-            store.dispatch(
-              `${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`,
-              getMainPetId.value
-            )
+            store.dispatch(`${MN_DIARY}/${TY_DIARY.getOneLineDiaryList}`, {
+              petId: getMainPetId.value,
+              date: dateToStringFormat(getWeeklyCalendarDate.value, '-'),
+            })
           })
       },
     },
