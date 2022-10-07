@@ -115,7 +115,7 @@ onMounted(async () => {
         },
       },
     ])
-  } else {
+  } else if (getUser.value.familyId) {
     store.commit(`${MN_HEADER}/${TY_HEADER.setMoreOptionList}`, [
       {
         title: '그룹 탈퇴하기',
