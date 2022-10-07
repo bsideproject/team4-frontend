@@ -5,6 +5,7 @@ const path = require('path')
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
+  filenameHashing: true,
   configureWebpack: {
     resolve: {
       alias: {
@@ -22,6 +23,10 @@ module.exports = defineConfig({
         '@pages': path.join(__dirname, 'src/pages'),
         '@store': path.join(__dirname, 'src/store/modules'),
       },
+    },
+    output: {
+      filename: 'js/[name].[hash].js',
+      chunkFilename: 'js/[name].[hash].js',
     },
   },
   css: {
