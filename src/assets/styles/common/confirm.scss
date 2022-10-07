@@ -7,6 +7,7 @@
 
   &__content {
     @include ptRegular16;
+    max-width: $maxWidth;
     position: fixed;
     margin: 0 auto;
     top: 40%;
