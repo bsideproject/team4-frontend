@@ -16,12 +16,12 @@
   }
 
   &__content {
-    padding: 36px 0 116px 0;
+    padding: 36px 0 96px 0;
 
     textarea {
       @include ppRegular14;
-      width: 298px;
-      height: 164px;
+      width: 296px;
+      height: 140px;
       margin: 0 auto;
       padding: 12px;
       border: 1px solid $borderColor;
