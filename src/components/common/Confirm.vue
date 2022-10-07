@@ -3,7 +3,7 @@
     <article class="confirm__dimmed" @click="clickDimmed"></article>
     <article
       class="confirm__content"
-      :style="{ height: (props.options.style.height || 120) + 'px' }"
+      :style="{ height: (props.options?.style?.height || 120) + 'px' }"
     >
       <p v-html="props.options.text"></p>
       <div>
@@ -30,6 +30,10 @@ const clickOk = () => {
   props.destroy()
 }
 const clickCancel = () => {
+  const { callback } = props.options.cancel
+  if (callback) {
+    callback()
+  }
   props.destroy()
 }
 const clickDimmed = () => {

@@ -19,5 +19,8 @@ const deletetUserImage = () => {
 const saveLeaveFamily = () => {
   return axios.post('/api/v1/users/family')
 }
+const fetchDeleteUser = () => {
+  return axios.delete('/api/v1/users')
+}
 
-export { getUser, modifyUser, deleteUser, saveUserImage, deletetUserImage, saveLeaveFamily }
+export { getUser, modifyUser, deleteUser, saveUserImage, deletetUserImage, saveLeaveFamily, fetchDeleteUser }

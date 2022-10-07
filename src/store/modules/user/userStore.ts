@@ -1,9 +1,10 @@
-import { getUser, modifyUser, saveLeaveFamily } from '@/api/setting/user'
+import { getUser, modifyUser, saveLeaveFamily, fetchDeleteUser } from '@/api/setting/user'
 import { makeModuleTypes } from '@/utils/store/index'
 import { User } from '@/types/user'
 import { Success } from '@/types/response'
 import { AxiosResponse } from 'axios'
 import { Commit, Dispatch } from 'vuex'
+import { removeToken } from '@/utils/login'
 
 const MODULE_NAME = 'userStore'
 const TYPES = makeModuleTypes([
@@ -13,6 +14,7 @@ const TYPES = makeModuleTypes([
   'fetchGetUser',
   'fetchModifyUser',
   'fetchSaveLeaveFamily',
+  'fetchDeleteUser',
 
   'setUser'
 ])
@@ -61,6 +63,19 @@ const module = {
 
           if (code === '155') {
             dispatch(TYPES.fetchGetUser)
+          } else {
+            throw new Error(message)
+          }
+        })
+    },
+    [TYPES.fetchDeleteUser]() {
+      return fetchDeleteUser()
+        .then((res: AxiosResponse<Success>) => {
+          const { code, message } = res.data
+
+          if (code === '154') {
+            removeToken()
+            location.reload()
           } else {
             throw new Error(message)
           }
