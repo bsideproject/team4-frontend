@@ -1,7 +1,10 @@
 export interface OneLineDiary {
   diaryId: number,
   contents: string,
+  createdAt: string,
   lastModifiedAt: string,
-  writer: string,
-  petId: number
+  petId: number,
+  userId: number,
+  userName: string,
+  delete: boolean,
 }
